@@ -18,8 +18,24 @@ flutter doctor
 
 echo "Installed flutter to `pwd`/flutter"
 
+GOOGLE_JSON_FILE=android/app/google-services.json
+
+touch $GOOGLE_JSON_FILE
+
+echo "GoogleJson"
+echo "GoogleJson $APPCENTER_SOURCE_DIRECTORY"
+
+if [ -e "$GOOGLE_JSON_FILE" ]
+then
+echo "Updating Google Json"
+echo "$GOOGLE_JSON" > $GOOGLE_JSON_FILE
+sed -i -e 's/\\"/'\"'/g' $GOOGLE_JSON_FILE
+echo "File updated"
+
 # build APK
 flutter build apk --release
 
 # copy the APK where AppCenter will find it
 mkdir -p android/app/build/outputs/apk/; mv build/app/outputs/apk/release/app-release.apk $_
+
+fi
