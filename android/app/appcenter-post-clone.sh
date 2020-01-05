@@ -33,9 +33,18 @@ sed -i -e 's/\\"/'\"'/g' $GOOGLE_JSON_FILE
 echo "File updated"
 
 # build APK
-flutter build apk --release
+flutter build apk --release --split-per-abi
+
+# build an app bundle
+flutter build appbundle --release
 
 # copy the APK where AppCenter will find it
-mkdir -p android/app/build/outputs/apk/; mv build/app/outputs/apk/release/app-release.apk $_
+mkdir -p android/app/build/outputs/apk/
+mv build/app/outputs/apk/release/app-arm64-v8a-release.apk /android/app/build/outputs/apk/
+mv build/app/outputs/apk/release/app-armeabi-v7a-release.apk /android/app/build/outputs/apk/
+mv build/app/outputs/apk/release/app-x86_64-release.apk /android/app/build/outputs/apk/
+
+# copy the an app bundle where AppCenter will find it
+mkdir -p android/app/build/outputs/bundle/; mv build/app/outputs/bundle/release/app-release.aab $_
 
 fi
