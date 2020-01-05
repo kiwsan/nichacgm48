@@ -16,7 +16,6 @@ class MainActivity : FlutterActivity() {
 
         // https://docs.microsoft.com/en-us/appcenter/sdk/distribute/android
         Distribute.setEnabled(true)
-        Distribute.setListener(MyDistributeListener())
 
         val appSecret = System.getenv("APPCENTER_APP_SECRET")
 
