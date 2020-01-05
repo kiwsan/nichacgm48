@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nichacgm48/pages/home.dart';
 
-import 'package:appcenter/appcenter.dart';
-import 'package:appcenter_analytics/appcenter_analytics.dart';
-import 'package:appcenter_crashes/appcenter_crashes.dart';
-import 'package:flutter/foundation.dart' show defaultTargetPlatform;
-import 'package:flutter/foundation.dart' show TargetPlatform;
-
 void main() => runApp(FlutterApp());
 
 class FlutterApp extends StatefulWidget {
@@ -15,39 +9,6 @@ class FlutterApp extends StatefulWidget {
 }
 
 class _FlutterAppState extends State<FlutterApp> {
-  String _appSecret;
-  String _installId = 'Unknown';
-  bool _areAnalyticsEnabled = false, _areCrashesEnabled = false;
-
-  _FlutterAppState() {
-    final ios = defaultTargetPlatform == TargetPlatform.iOS;
-    _appSecret = ios ? "iOSGuid" : "AndroidGuid";
-  }
-
-  @override
-  initState() {
-    super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  initPlatformState() async {
-    await AppCenter.start(
-        _appSecret, [AppCenterAnalytics.id, AppCenterCrashes.id]);
-
-    if (!mounted) return;
-
-    var installId = await AppCenter.installId;
-
-    var areAnalyticsEnabled = await AppCenterAnalytics.isEnabled;
-    var areCrashesEnabled = await AppCenterCrashes.isEnabled;
-
-    setState(() {
-      _installId = installId;
-      _areAnalyticsEnabled = areAnalyticsEnabled;
-      _areCrashesEnabled = areCrashesEnabled;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
