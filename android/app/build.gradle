@@ -54,7 +54,7 @@ android {
             versionCode System.getenv('APPCENTER_BUILD_ID').toInteger()
         }
 
-        //versionCode flutterVersionCode.toInteger() //System.getenv('APPCENTER_BUILD_ID').toInteger()
+        //versionCode flutterVersionCode.toInteger() //System.getenv('APPCENTER_BUILD_ID').toInteger() 
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
