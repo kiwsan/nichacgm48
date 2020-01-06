@@ -22,12 +22,12 @@ class _HomePageState extends State<HomePage> {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
-              expandedHeight: ScaleSize.safeBlockHorizontal * 50,
+              expandedHeight: ScaleSize.safeBlockHorizontal * 40,
               pinned: true,
               elevation: 0,
               titleSpacing: 0,
               floating: true,
-              leading: Icon(Icons.menu),
+              // leading: Icon(Icons.menu),
               backgroundColor: Colors.transparent,
               flexibleSpace: FlexibleSpaceBar(
                 collapseMode: CollapseMode.parallax,
@@ -35,9 +35,6 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(
-                      height: ScaleSize.safeBlockVertical * 2,
-                    ),
                     Padding(
                       padding: globalPadding,
                       child: HeadWidget(),
@@ -58,7 +55,7 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             Transform.translate(
               offset: Offset(ScaleSize.safeBlockHorizontal * 55,
-                  ScaleSize.safeBlockVertical - 210),
+                  ScaleSize.safeBlockVertical - 200),
               child: Transform.rotate(
                 angle: -4.2,
                 child: Image.asset(
