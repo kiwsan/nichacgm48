@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
               elevation: 0,
               titleSpacing: 0,
               floating: true,
-              // leading: Icon(Icons.menu),
+              //leading: Icon(Icons.menu),
               backgroundColor: Colors.transparent,
               flexibleSpace: FlexibleSpaceBar(
                 collapseMode: CollapseMode.parallax,
