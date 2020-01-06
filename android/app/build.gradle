@@ -47,7 +47,14 @@ android {
         applicationId "com.kiwsan.nichacgm48"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode flutterVersionCode.toInteger() //System.getenv('APPCENTER_BUILD_ID').toInteger()
+
+        if (System.getenv('APPCENTER_BUILD_ID') == null) {
+            versionCode flutterVersionCode.toInteger()
+        } else {
+            versionCode System.getenv('APPCENTER_BUILD_ID').toInteger()
+        }
+
+        //versionCode flutterVersionCode.toInteger() //System.getenv('APPCENTER_BUILD_ID').toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
