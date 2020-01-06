@@ -33,7 +33,7 @@ class PersonalInformationWidget extends StatelessWidget {
                   ),
                   CardTextWidget(
                     title: "LIKE: ",
-                    value: "สีเหลือง กะเพรา(กุ้ง+ปลาหมึก)",
+                    value: "สีเหลือง, กะเพรา(กุ้ง+ปลาหมึก)",
                   ),
                   CardTextWidget(
                     title: "BLOOD GROUP: ",
@@ -45,7 +45,7 @@ class PersonalInformationWidget extends StatelessWidget {
                   ),
                   CardTextWidget(
                     title: "HOBBY: ",
-                    value: "ถ่ายภาพ อ่านหนังสือ ดูหนัง,การ์ตูน,ซีรี่ย์",
+                    value: "ถ่ายภาพ, อ่านหนังสือ, ดูหนัง, การ์ตูน, ซีรี่ย์",
                   )
                 ],
               ),
