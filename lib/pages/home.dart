@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nichacgm48/common/app_constant.dart';
@@ -5,6 +6,7 @@ import 'package:nichacgm48/common/scale_size.dart';
 import 'package:nichacgm48/components/footer_widget.dart';
 import 'package:nichacgm48/components/head_widget.dart';
 import 'package:nichacgm48/components/layout_widget.dart';
+import 'package:nichacgm48/models/firebase_notification.dart';
 import 'package:nichacgm48/styleguide/text_styles.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,6 +15,58 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+
+  final List<FirebaseNotification> notifications = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> notification) async {
+        setState(() {
+          notifications.add(
+            FirebaseNotification(
+              title: notification["notification"]["title"],
+              body: notification["notification"]["body"],
+              color: Colors.red,
+            ),
+          );
+        });
+      },
+      onLaunch: (Map<String, dynamic> notification) async {
+        setState(() {
+          notifications.add(
+            FirebaseNotification(
+              title: notification["notification"]["title"],
+              body: notification["notification"]["body"],
+              color: Colors.green,
+            ),
+          );
+        });
+      },
+      onResume: (Map<String, dynamic> notification) async {
+        setState(() {
+          notifications.add(
+            FirebaseNotification(
+              title: notification["notification"]["title"],
+              body: notification["notification"]["body"],
+              color: Colors.blue,
+            ),
+          );
+        });
+      },
+    );
+
+    _firebaseMessaging.requestNotificationPermissions();
+
+    /*_firebaseMessaging.getToken().then((token) {
+      print(token);
+    }).catchError((e) {
+      print(e);
+    });*/
+  }
+
   @override
   Widget build(BuildContext context) {
     ScaleSize().init(context);
@@ -44,7 +98,10 @@ class _HomePageState extends State<HomePage> {
               ),
               actions: <Widget>[
                 IconButton(
-                  icon: const Icon(Icons.search),
+                  icon: const Icon(
+                    Icons.search,
+                    size: 35.0,
+                  ),
                   onPressed: () {},
                 ),
               ],
