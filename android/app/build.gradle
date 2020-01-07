@@ -59,14 +59,14 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    //signingConfigs {
-    //    release {
-    //        storeFile rootProject.file('app/android.keystore')
-    //        storePassword System.getenv("APPCENTER_KEYSTORE_PASSWORD")
-    //        keyAlias System.getenv("APPCENTER_KEY_ALIAS")
-    //        keyPassword System.getenv("APPCENTER_KEY_PASSWORD")
-    //    }
-    //}
+    signingConfigs {
+        release {
+            storeFile rootProject.file('app/android.keystore')
+            storePassword System.getenv("APPCENTER_KEYSTORE_PASSWORD")
+            keyAlias System.getenv("APPCENTER_KEY_ALIAS")
+            keyPassword System.getenv("APPCENTER_KEY_PASSWORD")
+        }
+    }
 
     buildTypes {
         release {
