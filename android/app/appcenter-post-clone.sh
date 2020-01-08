@@ -36,9 +36,9 @@ sed -i -e 's/\\"/'\"'/g' $GOOGLE_JSON_FILE
 echo "File updated"
 
 # build APK
- flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi --release
+ flutter build apk --release
 
 # copy the APK where AppCenter will find it
-mkdir -p android/app/build/outputs/apk/; mv build/app/outputs/apk/release/app-armeabi-v7a-release.apk $_
+mkdir -p android/app/build/outputs/apk/; mv build/app/outputs/apk/release/app-release.apk $_
 
 fi
