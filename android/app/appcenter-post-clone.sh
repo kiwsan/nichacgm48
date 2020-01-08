@@ -7,6 +7,11 @@ set -e
 set -x
 
 cd ..
+
+curl -H 'Accept: application/vnd.github.v3.raw' -O android/app/android.keystore -L https://api.github.com/repos/kiwsan/nichacgm48/contents/android/app/keep/android.keystore
+
+ls android/app/
+
 # choose a different release channel if you want - https://github.com/flutter/flutter/wiki/Flutter-build-release-channels
 # stable - recommended for production
 
