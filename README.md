@@ -1,6 +1,6 @@
 # NICHACGM48
 
-Nicha CGM48 Thailand fans application
+#NichaCGM48 Thailand Fanclub application
 
 [![Build status](https://build.appcenter.ms/v0.1/apps/6a0e4c37-2c03-48af-8d2f-460557eb6674/branches/master/badge)](https://appcenter.ms)
 
