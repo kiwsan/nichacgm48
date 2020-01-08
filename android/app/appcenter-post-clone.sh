@@ -8,9 +8,7 @@ set -x
 
 cd ..
 
-wget --header='Accept: application/vnd.github.v3.raw' https://api.github.com/repos/kiwsan/nichacgm48/contents/android/app/keep/android.keystore
-
-ls android/app/
+curl -H 'Authorization: token $GITHUB_TOKEN' -H 'Accept: application/vnd.github.v3.raw' -O -L $KEY_STORE_FILE
 
 # choose a different release channel if you want - https://github.com/flutter/flutter/wiki/Flutter-build-release-channels
 # stable - recommended for production
