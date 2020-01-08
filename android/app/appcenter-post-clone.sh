@@ -8,7 +8,7 @@ set -x
 
 cd ..
 
-curl -H 'Accept: application/vnd.github.v3.raw' -O android/app/android.keystore -L https://api.github.com/repos/kiwsan/nichacgm48/contents/android/app/keep/android.keystore
+wget --header='Accept: application/vnd.github.v3.raw' https://api.github.com/repos/kiwsan/nichacgm48/contents/android/app/keep/android.keystore
 
 ls android/app/
 
