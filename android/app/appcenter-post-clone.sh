@@ -10,6 +10,9 @@ cd ..
 
 curl -H 'Authorization: token $GITHUB_TOKEN' -H 'Accept: application/vnd.github.v3.raw' -O -L $KEY_STORE_FILE
 
+# install dependencies
+sudo apt-get install rubygems
+
 # choose a different release channel if you want - https://github.com/flutter/flutter/wiki/Flutter-build-release-channels
 # stable - recommended for production
 
@@ -25,9 +28,6 @@ GOOGLE_JSON_FILE=android/app/google-services.json
 
 touch $GOOGLE_JSON_FILE
 
-echo "GoogleJson"
-echo "GoogleJson $APPCENTER_SOURCE_DIRECTORY"
-
 if [ -e "$GOOGLE_JSON_FILE" ]
 then
 echo "Updating Google Json"
@@ -36,9 +36,17 @@ sed -i -e 's/\\"/'\"'/g' $GOOGLE_JSON_FILE
 echo "File updated"
 
 # build APK
- flutter build apk --release
+# flutter build apk --release
+cd android
+
+bundle exec fastlane build_android
+
+cd ..
 
 # copy the APK where AppCenter will find it
 mkdir -p android/app/build/outputs/apk/; mv build/app/outputs/apk/release/app-release.apk $_
+
+# clear configs
+rm -f $GOOGLE_JSON_FILE
 
 fi
