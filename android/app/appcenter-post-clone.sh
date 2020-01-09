@@ -33,10 +33,14 @@ sed -i -e 's/\\"/'\"'/g' $GOOGLE_JSON_FILE
 echo "File updated"
 
 # Android signing
-echo storePassword=$APPCENTER_KEYSTORE_PASSWORD > android/key.properties
-echo keyPassword=$APPCENTER_KEY_PASSWORD >> android/key.properties
-echo keyAlias=$APPCENTER_KEY_ALIAS >> android/key.properties
+#echo storePassword=$APPCENTER_KEYSTORE_PASSWORD > android/key.properties
+#echo keyPassword=$APPCENTER_KEY_PASSWORD >> android/key.properties
+#echo keyAlias=$APPCENTER_KEY_ALIAS >> android/key.properties
 echo storeFile=$APPCENTER_KEYSTORE_FILE >> android/key.properties
+
+ls
+
+cat android/key.properties
 
 # build APK
 # flutter build apk --release
