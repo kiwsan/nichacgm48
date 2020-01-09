@@ -41,6 +41,8 @@ cd android
 
 curl -H 'Authorization: token $GITHUB_TOKEN' -H 'Accept: application/vnd.github.v3.raw' -O $APPCENTER_KEYSTORE_FILE -L $KEY_STORE_FILE
 
+ls
+
 # build APK
 # flutter build apk --release
 
