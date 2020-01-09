@@ -40,9 +40,7 @@ echo storeFile=$APPCENTER_KEYSTORE_FILE >> android/key.properties
 cd android
 
 cd app
-
 curl -H 'Authorization: token $GITHUB_TOKEN' -H 'Accept: application/vnd.github.v3.raw' -O -L $KEY_STORE_FILE
-
 cd ..
 
 # build APK
