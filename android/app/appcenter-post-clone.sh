@@ -45,9 +45,6 @@ curl -H 'Authorization: token $GITHUB_TOKEN' -H 'Accept: application/vnd.github.
 
 cd ..
 
-ls
-ls app
-
 # build APK
 # flutter build apk --release
 
