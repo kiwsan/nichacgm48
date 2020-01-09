@@ -36,11 +36,15 @@ echo keyPassword=$APPCENTER_KEY_PASSWORD >> android/key.properties
 echo keyAlias=$APPCENTER_KEY_ALIAS >> android/key.properties
 echo storeFile=$APPCENTER_KEYSTORE_FILE >> android/key.properties
 
-# configs
+# key store
 cd android
 
 cd app
+
 curl -H 'Authorization: token $GITHUB_TOKEN' -H 'Accept: application/vnd.github.v3.raw' -O -L $KEY_STORE_FILE
+
+tar -xvzf android-keystore.tar.gz
+
 cd ..
 
 # build APK
