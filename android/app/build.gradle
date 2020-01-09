@@ -60,10 +60,17 @@ android {
 
     signingConfigs {
         release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
+            if (System.getenv("APPCENTER_KEYSTORE_FILE") != null) {
+                storePassword System.getenv("APPCENTER_KEYSTORE_PASSWORD")
+                keyAlias System.getenv("APPCENTER_KEY_ALIAS")
+                keyPassword System.getenv("APPCENTER_KEY_PASSWORD")
+                keyPassword System.getenv("APPCENTER_KEY_PASSWORD")
+            } else {
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+            }
         }
     }
 
