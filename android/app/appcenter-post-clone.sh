@@ -39,11 +39,7 @@ echo storeFile=$APPCENTER_KEYSTORE_FILE >> android/key.properties
 # configs
 cd android
 
-cd app
-
-curl -H 'Authorization: token $GITHUB_TOKEN' -H 'Accept: application/vnd.github.v3.raw' -O -L $KEY_STORE_FILE
-
-cd ..
+curl -H 'Authorization: token $GITHUB_TOKEN' -H 'Accept: application/vnd.github.v3.raw' -O $APPCENTER_KEYSTORE_FILE -L $KEY_STORE_FILE
 
 # build APK
 # flutter build apk --release
@@ -61,6 +57,6 @@ mkdir -p android/app/build/outputs/apk/; mv build/app/outputs/apk/release/app-re
 rm -f $GOOGLE_JSON_FILE
 rm -f android/key.properties
 rm -f android/key.properties
-rm -f $APPCENTER_KEYSTORE_FILE
+rm -f android/$APPCENTER_KEYSTORE_FILE
 
 fi
