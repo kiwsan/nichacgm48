@@ -44,8 +44,6 @@ curl -H 'Authorization: token $GITHUB_TOKEN' -H 'Accept: application/vnd.github.
 cd ..
 
 # build APK
-# flutter build apk --release
-
 bundle install
 bundle update fastlane
 bundle exec fastlane build_android
