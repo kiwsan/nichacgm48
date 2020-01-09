@@ -8,8 +8,6 @@ set -x
 
 cd ..
 
-curl -H 'Authorization: token $GITHUB_TOKEN' -H 'Accept: application/vnd.github.v3.raw' -O -L $KEY_STORE_FILE
-
 # choose a different release channel if you want - https://github.com/flutter/flutter/wiki/Flutter-build-release-channels
 # stable - recommended for production
 
@@ -33,18 +31,22 @@ sed -i -e 's/\\"/'\"'/g' $GOOGLE_JSON_FILE
 echo "File updated"
 
 # Android signing
-#echo storePassword=$APPCENTER_KEYSTORE_PASSWORD > android/key.properties
-#echo keyPassword=$APPCENTER_KEY_PASSWORD >> android/key.properties
-#echo keyAlias=$APPCENTER_KEY_ALIAS >> android/key.properties
+echo storePassword=$APPCENTER_KEYSTORE_PASSWORD > android/key.properties
+echo keyPassword=$APPCENTER_KEY_PASSWORD >> android/key.properties
+echo keyAlias=$APPCENTER_KEY_ALIAS >> android/key.properties
 echo storeFile=$APPCENTER_KEYSTORE_FILE >> android/key.properties
 
-ls
+# configs
+cd android
 
-cat android/key.properties
+cd app
+
+curl -H 'Authorization: token $GITHUB_TOKEN' -H 'Accept: application/vnd.github.v3.raw' -O -L $KEY_STORE_FILE
+
+cd ..
 
 # build APK
 # flutter build apk --release
-cd android
 
 bundle install
 bundle update fastlane
@@ -58,5 +60,7 @@ mkdir -p android/app/build/outputs/apk/; mv build/app/outputs/apk/release/app-re
 # clear configs
 rm -f $GOOGLE_JSON_FILE
 rm -f android/key.properties
+rm -f android/key.properties
+rm -f $APPCENTER_KEYSTORE_FILE
 
 fi
