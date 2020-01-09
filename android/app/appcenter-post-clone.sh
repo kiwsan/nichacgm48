@@ -32,6 +32,12 @@ echo "$GOOGLE_JSON" > $GOOGLE_JSON_FILE
 sed -i -e 's/\\"/'\"'/g' $GOOGLE_JSON_FILE
 echo "File updated"
 
+# Android signing
+echo storePassword=$APPCENTER_KEYSTORE_PASSWORD > android/key.properties
+echo keyPassword=$APPCENTER_KEY_PASSWORD >> android/key.properties
+echo keyAlias=$APPCENTER_KEY_ALIAS >> android/key.properties
+echo storeFile=$APPCENTER_KEYSTORE_FILE >> android/key.properties
+
 # build APK
 # flutter build apk --release
 cd android
@@ -47,5 +53,6 @@ mkdir -p android/app/build/outputs/apk/; mv build/app/outputs/apk/release/app-re
 
 # clear configs
 rm -f $GOOGLE_JSON_FILE
+rm -f android/key.properties
 
 fi
