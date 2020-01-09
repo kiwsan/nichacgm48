@@ -36,6 +36,7 @@ echo "File updated"
 # flutter build apk --release
 cd android
 
+bundle install
 bundle update fastlane
 bundle exec fastlane build_android
 
