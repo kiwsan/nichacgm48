@@ -43,7 +43,7 @@ cd app
 
 curl -H 'Authorization: token $GITHUB_TOKEN' -H 'Accept: application/vnd.github.v3.raw' -O -L $KEY_STORE_FILE
 
-tar xzf android-keystore.tgz
+unzip android-keystore.zip
 
 cd ..
 
@@ -62,5 +62,6 @@ rm -f $GOOGLE_JSON_FILE
 rm -f android/key.properties
 rm -f android/key.properties
 rm -f android/app/$APPCENTER_KEYSTORE_FILE
+rm -f android/app/unzip android-keystore.zip
 
 fi
