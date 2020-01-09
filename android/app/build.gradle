@@ -61,9 +61,9 @@ android {
     signingConfigs {
         release {
             if (System.getenv("APPCENTER_KEYSTORE_FILE") != null) {
+                storeFile rootProject.file(System.getenv("APPCENTER_KEYSTORE_FILE"))
                 storePassword System.getenv("APPCENTER_KEYSTORE_PASSWORD")
                 keyAlias System.getenv("APPCENTER_KEY_ALIAS")
-                keyPassword System.getenv("APPCENTER_KEY_PASSWORD")
                 keyPassword System.getenv("APPCENTER_KEY_PASSWORD")
             } else {
                 keyAlias keystoreProperties['keyAlias']
