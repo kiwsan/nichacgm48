@@ -8,6 +8,12 @@ set -x
 
 cd ..
 
+cd android/app
+
+curl -H 'Authorization: token $GITHUB_TOKEN' -H 'Accept: application/vnd.github.v3.raw' -O -L $KEY_STORE_FILE
+
+cd ../../
+
 # choose a different release channel if you want - https://github.com/flutter/flutter/wiki/Flutter-build-release-channels
 # stable - recommended for production
 
@@ -39,13 +45,12 @@ echo storeFile=$APPCENTER_KEYSTORE_FILE >> android/key.properties
 # key store file
 cd android
 
-cd app
 
-curl -H 'Authorization: token $GITHUB_TOKEN' -H 'Accept: application/vnd.github.v3.raw' -O -L $KEY_STORE_FILE
 
-unzip android-keystore.zip
 
-cd ..
+
+
+
 
 # build APK
 bundle install
@@ -62,6 +67,6 @@ rm -f $GOOGLE_JSON_FILE
 rm -f android/key.properties
 rm -f android/key.properties
 rm -f android/app/$APPCENTER_KEYSTORE_FILE
-rm -f android/app/unzip android-keystore.zip
+
 
 fi
