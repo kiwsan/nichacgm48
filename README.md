@@ -3,6 +3,7 @@
 #NichaCGM48 Thailand Fanclub application
 
 [![Build status](https://build.appcenter.ms/v0.1/apps/6a0e4c37-2c03-48af-8d2f-460557eb6674/branches/master/badge)](https://appcenter.ms)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkiwsan%2Fnichacgm48.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkiwsan%2Fnichacgm48?ref=badge_shield)
 
 <a href='https://play.google.com/store/apps/details?id=com.kiwsan.nichacgm48&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' width="150" src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
 
