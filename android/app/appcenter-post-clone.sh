@@ -6,18 +6,9 @@ set -e
 # debug log
 set -x
 
-
-curl -H 'Authorization: token $GITHUB_TOKEN' -H 'Accept: application/vnd.github.v3.raw' -O -L $KEY_STORE_FILE
-
-
-
-
 cd ..
 
-
-
-
-
+curl -H 'Authorization: token $GITHUB_TOKEN' -H 'Accept: application/vnd.github.v3.raw' -O -L $KEY_STORE_FILE
 
 # choose a different release channel if you want - https://github.com/flutter/flutter/wiki/Flutter-build-release-channels
 # stable - recommended for production
@@ -30,9 +21,13 @@ flutter doctor
 
 echo "Installed flutter to `pwd`/flutter"
 
+# Android Firebase
 GOOGLE_JSON_FILE=android/app/google-services.json
 
 touch $GOOGLE_JSON_FILE
+
+echo "GoogleJson"
+echo "GoogleJson $APPCENTER_SOURCE_DIRECTORY"
 
 if [ -e "$GOOGLE_JSON_FILE" ]
 then
@@ -47,31 +42,10 @@ echo keyPassword=$APPCENTER_KEY_PASSWORD >> android/key.properties
 echo keyAlias=$APPCENTER_KEY_ALIAS >> android/key.properties
 echo storeFile=$APPCENTER_KEYSTORE_FILE >> android/key.properties
 
-# key store file
-cd android
-
-
-
-
-
-
-
-
 # build APK
-bundle install
-bundle update fastlane
-bundle exec fastlane build_android
-
-cd ..
+ flutter build apk --release
 
 # copy the APK where AppCenter will find it
 mkdir -p android/app/build/outputs/apk/; mv build/app/outputs/apk/release/app-release.apk $_
-
-# clear configs
-rm -f $GOOGLE_JSON_FILE
-rm -f android/key.properties
-rm -f android/key.properties
-rm -f android/app/$APPCENTER_KEYSTORE_FILE
-
 
 fi
