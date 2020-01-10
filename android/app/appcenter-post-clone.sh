@@ -8,6 +8,8 @@ set -x
 
 curl -H 'Authorization: token $GITHUB_TOKEN' -H 'Accept: application/vnd.github.v3.raw' -O -L $KEY_STORE_FILE
 
+ls
+
 cd ..
 
 # choose a different release channel if you want - https://github.com/flutter/flutter/wiki/Flutter-build-release-channels
