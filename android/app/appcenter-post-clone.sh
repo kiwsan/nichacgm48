@@ -45,9 +45,20 @@ echo keyAlias=$APPCENTER_KEY_ALIAS >> android/key.properties
 echo storeFile=$APPCENTER_KEYSTORE_FILE >> android/key.properties
 
 # build APK
- flutter build apk --release
+cd android
+
+bundle install
+bundle update fastlane
+bundle exec fastlane build_android
+
+cd ..
 
 # copy the APK where AppCenter will find it
 mkdir -p android/app/build/outputs/apk/; mv build/app/outputs/apk/release/app-release.apk $_
+
+# clear configs
+rm -f $GOOGLE_JSON_FILE
+rm -f android/key.properties
+rm -f android/app/$APPCENTER_KEYSTORE_FILE
 
 fi
