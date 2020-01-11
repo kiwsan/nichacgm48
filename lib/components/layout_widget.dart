@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nichacgm48/common/app_constant.dart';
 import 'package:nichacgm48/common/scale_size.dart';
-import 'package:nichacgm48/components/follow_nacha_widget.dart';
+import 'package:nichacgm48/components/social_medias_widget.dart';
 import 'package:nichacgm48/components/hashtags_widget.dart';
 import 'package:nichacgm48/components/personal_information_widget.dart';
 import 'package:nichacgm48/components/photos_widget.dart';
@@ -16,7 +16,7 @@ class LayoutWidget extends StatelessWidget {
           padding: globalPadding,
           child: Column(
             children: <Widget>[
-              FollowNichaWidget(),
+              SocialMediasWidget(),
               SizedBox(
                 height: ScaleSize.safeBlockVertical * 1,
               ),
