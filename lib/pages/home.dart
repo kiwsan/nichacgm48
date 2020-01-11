@@ -22,49 +22,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _firebaseMessaging.configure(
-      onMessage: (Map<String, dynamic> notification) async {
-        setState(() {
-          notifications.add(
-            FirebaseNotification(
-              title: notification["notification"]["title"],
-              body: notification["notification"]["body"],
-              color: Colors.red,
-            ),
-          );
-        });
-      },
-      onLaunch: (Map<String, dynamic> notification) async {
-        setState(() {
-          notifications.add(
-            FirebaseNotification(
-              title: notification["notification"]["title"],
-              body: notification["notification"]["body"],
-              color: Colors.green,
-            ),
-          );
-        });
-      },
-      onResume: (Map<String, dynamic> notification) async {
-        setState(() {
-          notifications.add(
-            FirebaseNotification(
-              title: notification["notification"]["title"],
-              body: notification["notification"]["body"],
-              color: Colors.blue,
-            ),
-          );
-        });
-      },
-    );
 
-    _firebaseMessaging.requestNotificationPermissions();
-
-    /*_firebaseMessaging.getToken().then((token) {
-      print(token);
-    }).catchError((e) {
-      print(e);
-    });*/
+    _initialFirebase();
   }
 
   @override
@@ -183,5 +142,51 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  void _initialFirebase() {
+    _firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> notification) async {
+        setState(() {
+          notifications.add(
+            FirebaseNotification(
+              title: notification["notification"]["title"],
+              body: notification["notification"]["body"],
+              color: Colors.red,
+            ),
+          );
+        });
+      },
+      onLaunch: (Map<String, dynamic> notification) async {
+        setState(() {
+          notifications.add(
+            FirebaseNotification(
+              title: notification["notification"]["title"],
+              body: notification["notification"]["body"],
+              color: Colors.green,
+            ),
+          );
+        });
+      },
+      onResume: (Map<String, dynamic> notification) async {
+        setState(() {
+          notifications.add(
+            FirebaseNotification(
+              title: notification["notification"]["title"],
+              body: notification["notification"]["body"],
+              color: Colors.blue,
+            ),
+          );
+        });
+      },
+    );
+
+    _firebaseMessaging.requestNotificationPermissions();
+
+    /*_firebaseMessaging.getToken().then((token) {
+      print(token);
+    }).catchError((e) {
+      print(e);
+    });*/
   }
 }

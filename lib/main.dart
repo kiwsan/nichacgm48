@@ -9,7 +9,6 @@ class FlutterApp extends StatefulWidget {
 }
 
 class _FlutterAppState extends State<FlutterApp> {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,7 +28,7 @@ class _FlutterAppState extends State<FlutterApp> {
           // Define the default brightness and colors.
           brightness: Brightness.dark,
           primaryColor: Colors.white,
-          accentColor: Colors.white,
+          accentColor: Colors.yellow,
           primarySwatch: Colors.blue,
           fontFamily: 'Roboto'),
       home: HomePage(),
