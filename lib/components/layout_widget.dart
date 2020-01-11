@@ -5,6 +5,7 @@ import 'package:nichacgm48/components/follow_nacha_widget.dart';
 import 'package:nichacgm48/components/hashtags_widget.dart';
 import 'package:nichacgm48/components/personal_information_widget.dart';
 import 'package:nichacgm48/components/photos_widget.dart';
+import 'package:nichacgm48/components/supporters_widget.dart';
 
 class LayoutWidget extends StatelessWidget {
   @override
@@ -31,6 +32,13 @@ class LayoutWidget extends StatelessWidget {
           padding: globalPadding,
           child: HashTagsWidget(),
         ),
+        SizedBox(
+          height: ScaleSize.safeBlockVertical * 2.5,
+        ),
+        Padding(
+          padding: globalPadding,
+          child: SupportersWidget(),
+        )
       ],
     );
   }

@@ -153,6 +153,7 @@ class _HomePageState extends State<HomePage> {
                               Image.asset(
                                 "assets/images/h_nicha.png",
                                 width: ScaleSize.safeBlockHorizontal * 65,
+                                height: ScaleSize.safeBlockHorizontal * 90,
                               )
                             ]),
                         Column(
