@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:insta_html_parser/insta_html_parser.dart';
 import 'package:nichacgm48/common/app_constant.dart';
 import 'package:nichacgm48/common/scale_size.dart';
+import 'package:nichacgm48/components/full_creen_image.dart';
 import 'package:nichacgm48/models/instagram_post.dart';
 import 'package:nichacgm48/styleguide/text_styles.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class PhotosWidget extends StatelessWidget {
+  final List<InstagramPost> posts = [];
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -45,7 +48,9 @@ class PhotosWidget extends StatelessWidget {
                     : Padding(
                         padding: const EdgeInsets.only(
                             top: 70, bottom: 70, right: 5, left: 5),
-                        child: CircularProgressIndicator(),
+                        child: CircularProgressIndicator(
+                          backgroundColor: Colors.amber,
+                        ),
                       );
               },
             ),
@@ -56,15 +61,15 @@ class PhotosWidget extends StatelessWidget {
   }
 
   Future<List<InstagramPost>> getPosts(String url) async {
-    List<InstagramPost> posts = [];
     await InstaParser.postsUrlsFromProfile(
             "https://www.instagram.com/nicha.cgm48official/")
         .then((List<String> postsUrls) async {
-      for (int i = 0; i < 6; i++) {
+      for (int i = 0; i < postsUrls.length; i++) {
         var post = InstagramPost(
             photoLargeUrl: postsUrls[i] + '/media/?size=l',
             photoMediumUrl: postsUrls[i] + '/media/?size=m',
             photoSmallUrl: postsUrls[i] + '/media/?size=t');
+
         posts.add(post);
       }
     });
@@ -82,18 +87,43 @@ class InstagramPosts extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
         children: posts
-            .map((item) => ClipRRect(
+            .asMap()
+            .map((i, item) => MapEntry(
+                i,
+                ClipRRect(
                   borderRadius: BorderRadius.circular(14.0),
                   child: Padding(
                     padding: const EdgeInsets.all(2.0),
-                    child: FadeInImage.memoryNetwork(
-                        placeholder: kTransparentImage,
-                        image: item.photoMediumUrl,
-                        height: ScaleSize.blockSizeVertical * 22,
-                        width: ScaleSize.blockSizeHorizontal * 35,
-                        fit: BoxFit.cover),
+                    child: GestureDetector(
+                      onTap: () {
+                        _navigationToFullScreenImage(context, i);
+                      },
+                      child: FadeInImage.memoryNetwork(
+                          placeholder: kTransparentImage,
+                          image: item.photoMediumUrl,
+                          height: ScaleSize.blockSizeVertical * 22,
+                          width: ScaleSize.blockSizeHorizontal * 35,
+                          fit: BoxFit.cover),
+                    ),
                   ),
-                ))
+                )))
+            .values
             .toList());
+  }
+
+  void _navigationToFullScreenImage(BuildContext context, final int index) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => FullScreenImage(
+          posts: posts,
+          backgroundDecoration: const BoxDecoration(
+            color: Colors.black,
+          ),
+          initialIndex: index,
+          scrollDirection: Axis.horizontal,
+        ),
+      ),
+    );
   }
 }

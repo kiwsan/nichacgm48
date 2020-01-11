@@ -28,7 +28,7 @@ class _FlutterAppState extends State<FlutterApp> {
           // Define the default brightness and colors.
           brightness: Brightness.dark,
           primaryColor: Colors.white,
-          accentColor: Colors.yellow,
+          accentColor: Colors.white,
           primarySwatch: Colors.blue,
           fontFamily: 'Roboto'),
       home: HomePage(),
