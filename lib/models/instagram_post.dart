@@ -120,6 +120,9 @@ class Node {
   bool isVideo;
   String accessibilityCaption;
 
+  // More
+  String text;
+
   Node(
       {this.sTypename,
       this.id,
@@ -141,7 +144,8 @@ class Node {
       this.thumbnailSrc,
       this.thumbnailResources,
       this.isVideo,
-      this.accessibilityCaption});
+      this.accessibilityCaption,
+      this.text});
 
   Node.fromJson(Map<String, dynamic> json) {
     sTypename = json['__typename'];
@@ -180,6 +184,9 @@ class Node {
     }
     isVideo = json['is_video'];
     accessibilityCaption = json['accessibility_caption'];
+
+    // More
+    text = json['text'];
   }
 
   Map<String, dynamic> toJson() {
@@ -220,6 +227,10 @@ class Node {
     }
     data['is_video'] = this.isVideo;
     data['accessibility_caption'] = this.accessibilityCaption;
+
+    //More
+    data['text'] = this.text;
+
     return data;
   }
 }

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:nichacgm48/common/read_more_text.dart';
 import 'package:nichacgm48/models/instagram_post.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
@@ -62,13 +63,16 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
             ),
             Container(
               padding: const EdgeInsets.all(20.0),
-              child: Text(
-                "", //Write text on image
+              color: Colors.black54,
+              child: ReadMoreText(
+                "${widget.posts.edges[currentIndex].node.edgeMediaToCaption.edges[0].node.text}", //Write text on image
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 17.0,
                   decoration: null,
                 ),
+                trimLength: 150,
+                colorClickableText: Colors.amber,
               ),
             )
           ],
