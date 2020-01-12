@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Color grey100TextColor = HexColor("#aeaeae");
 Color grey800TextColor = HexColor("#707070");
-Color yellow800TextColor = HexColor("#fcdd65");
+Color yellow800TextColor = HexColor("#ffcb00");
 
 class HexColor extends Color {
   static int _getColorFromHex(String hexColor) {

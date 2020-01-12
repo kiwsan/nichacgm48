@@ -57,7 +57,7 @@ cd ..
 mkdir -p android/app/build/outputs/apk/; mv build/app/outputs/apk/release/app-release.apk $_
 
 # clear configs
-rm -f $GOOGLE_JSON_FILE
+#rm -f $GOOGLE_JSON_FILE
 rm -f android/key.properties
 rm -f android/app/$APPCENTER_KEYSTORE_FILE
 

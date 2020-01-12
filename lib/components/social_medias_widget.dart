@@ -3,7 +3,7 @@ import 'package:nichacgm48/common/social_media_widget.dart';
 import 'package:nichacgm48/styleguide/text_styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class FollowNichaWidget extends StatelessWidget {
+class SocialMediasWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const paddingWidth = 8.0;
@@ -31,7 +31,8 @@ class FollowNichaWidget extends StatelessWidget {
 
                     try {
                       bool launched =
-                          await launch(protocolUrl, forceSafariVC: false);
+                          //await launch(protocolUrl, forceSafariVC: false);
+                          await launch(fallbackUrl, forceSafariVC: false);
                       if (!launched) {
                         await launch(fallbackUrl, forceSafariVC: false);
                       }
@@ -49,7 +50,7 @@ class FollowNichaWidget extends StatelessWidget {
                         name: "NICHACGM48",
                       )),
                   onTap: () async {
-                    const protocolUrl = 'ig://page/cgm48official.nicha';
+                    const protocolUrl = 'ig://page/nicha.cgm48official';
                     const fallbackUrl =
                         'https://www.instagram.com/nicha.cgm48official';
 

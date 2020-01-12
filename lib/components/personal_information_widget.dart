@@ -29,7 +29,7 @@ class PersonalInformationWidget extends StatelessWidget {
                 children: <Widget>[
                   CardTextWidget(
                     title: "HEIGHT: ",
-                    value: "156",
+                    value: "163",
                   ),
                   CardTextWidget(
                     title: "LIKE: ",
