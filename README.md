@@ -32,3 +32,12 @@ samples, guidance on mobile development, and a full API reference.
 
 ## User story (Scrum)
 - https://tree.taiga.io/project/kiwsan-nichacgm48/backlog
+
+## Libraries Used
+- [cupertino_icons](https://pub.dev/packages/cupertino_icons)
+- [flutter_svg](https://pub.dev/packages/flutter_svg)
+- [url_launcher](https://pub.dev/packages/url_launcher)
+- [firebase_messaging](https://pub.dev/packages/firebase_messaging)
+- [transparent_image](https://pub.dev/packages/transparent_image)
+- [photo_view](https://pub.dev/packages/photo_view)
+- [cached_network_image](https://pub.dev/packages/cached_network_image)
