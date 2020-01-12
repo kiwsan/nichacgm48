@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:insta_html_parser/insta_html_parser.dart';
 import 'package:nichacgm48/common/app_constant.dart';
@@ -48,8 +49,12 @@ class PhotosWidget extends StatelessWidget {
                     : Padding(
                         padding: const EdgeInsets.only(
                             top: 70, bottom: 70, right: 5, left: 5),
-                        child: CircularProgressIndicator(
-                          backgroundColor: Colors.amber,
+                        child: SizedBox(
+                          child: CircularProgressIndicator(
+                            backgroundColor: Colors.amber,
+                          ),
+                          width: ScaleSize.safeBlockHorizontal * 5,
+                          height: ScaleSize.safeBlockHorizontal * 5,
                         ),
                       );
               },
@@ -88,7 +93,7 @@ class InstagramPosts extends StatelessWidget {
     return Row(
         children: posts
             .asMap()
-            .map((i, item) => MapEntry(
+            .map((i, post) => MapEntry(
                 i,
                 ClipRRect(
                   borderRadius: BorderRadius.circular(14.0),
@@ -98,9 +103,13 @@ class InstagramPosts extends StatelessWidget {
                       onTap: () {
                         _navigationToFullScreenImage(context, i);
                       },
-                      child: FadeInImage.memoryNetwork(
-                          placeholder: kTransparentImage,
-                          image: item.photoMediumUrl,
+                      child: CachedNetworkImage(
+                          placeholder: (context, url) => Container(
+                                height: ScaleSize.blockSizeVertical * 22,
+                                width: ScaleSize.blockSizeHorizontal * 35,
+                                color: Colors.black12,
+                              ),
+                          imageUrl: post.photoMediumUrl,
                           height: ScaleSize.blockSizeVertical * 22,
                           width: ScaleSize.blockSizeHorizontal * 35,
                           fit: BoxFit.cover),
