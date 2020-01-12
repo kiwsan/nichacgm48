@@ -70,6 +70,7 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
                   color: Colors.white,
                   fontSize: 17.0,
                   decoration: null,
+                  fontWeight: FontWeight.normal
                 ),
                 trimLength: 150,
                 colorClickableText: Colors.amber,
