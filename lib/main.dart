@@ -9,7 +9,6 @@ class FlutterApp extends StatefulWidget {
 }
 
 class _FlutterAppState extends State<FlutterApp> {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
