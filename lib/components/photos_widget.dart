@@ -7,7 +7,6 @@ import 'package:nichacgm48/common/scale_size.dart';
 import 'package:nichacgm48/components/full_creen_image.dart';
 import 'package:nichacgm48/models/instagram_post.dart';
 import 'package:nichacgm48/styleguide/text_styles.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class PhotosWidget extends StatelessWidget {
   final List<InstagramPost> posts = [];
