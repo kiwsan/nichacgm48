@@ -58,9 +58,9 @@ class _HomePageState extends State<HomePage> {
               actions: <Widget>[
                 IconButton(
                   icon: const Icon(
-                    Icons.notifications_none,
+                    Icons.notifications,
                     size: 35.0,
-                    color: Colors.black45,
+                    color: Colors.black54,
                   ),
                   onPressed: () {},
                 ),
