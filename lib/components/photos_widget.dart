@@ -67,7 +67,7 @@ class PhotosWidget extends StatelessWidget {
 
   Future<EdgeOwnerToTimelineMedia> fetchPosts(String url) async {
     final response = await http
-        .get('https://www.instagram.com/nicha.cgm48official/?__a=1&max_id=QVFDd2VLSnBlci1wRkJrZVpkXzYzU21xd3RoYXBxajc0cFhPMTZpQWpHZmNHekdZcmlnNUxWMmpVTmgtY3I3MVRPX2VrRHNPbldRd0p0UTZ6Y2ZMRHR1bg==');
+        .get('https://www.instagram.com/nicha.cgm48official/?__a=1');
 
     if (response.statusCode == 200) {
       // If the call to the server was successful, parse the JSON.
