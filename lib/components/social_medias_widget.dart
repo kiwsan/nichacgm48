@@ -3,7 +3,7 @@ import 'package:nichacgm48/common/social_media_widget.dart';
 import 'package:nichacgm48/styleguide/text_styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class FollowNichaWidget extends StatelessWidget {
+class SocialMediasWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const paddingWidth = 8.0;

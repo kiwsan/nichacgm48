@@ -1,18 +1,47 @@
-# touch android/fastlane/flutter_build.sh
-# touch android/fastlane/flutter_test.sh
-# chmod a+x android/fastlane/flutter_build.sh
-# chmod a+x android/fastlane/flutter_test.sh
+We’re going to make some simple shell scripts to build the app and run tests, to keep our Fastfile clean.
+
+```bash
+$ touch android/fastlane/flutter_build.sh
+```
+
+```bash
+touch android/fastlane/flutter_test.sh
+```
+
+```bash
+chmod a+x android/fastlane/flutter_build.sh
+```
+
+```bash
+chmod a+x android/fastlane/flutter_test.sh
+```
+
+You can use these lanes as demonstrated below:
 
 Build the release binaries:
-# bundle exec fastlane build_android
+```bash
+bundle exec fastlane build_android
+```
+
 Production deploy:
-# bundle exec fastlane deploy_android production:true
+```bash
+bundle exec fastlane deploy_android production:true
+```
+
 Beta deploy:
-# bundle exec fastlane deploy_android beta:true
+```bash
+bundle exec fastlane deploy_android beta:true
+```
+
 Alpha deploy:
-# bundle exec fastlane deploy_android alpha:true
+```bash
+bundle exec fastlane deploy_android alpha:true
+```
+
 Internal track deploy:
-# bundle exec fastlane deploy_android internal:true
+```bash
+bundle exec fastlane deploy_android internal:true
+```
 
 ## Resource
 - https://appditto.com/blog/automate-your-flutter-workflow
