@@ -12,14 +12,16 @@ class FullScreenImage extends StatefulWidget {
   final int initialIndex;
   final PageController pageController;
   final Axis scrollDirection;
+  final fontSize;
 
-  FullScreenImage({
-    this.loadingChild,
-    this.backgroundDecoration,
-    this.initialIndex,
-    @required this.posts,
-    this.scrollDirection = Axis.horizontal,
-  }) : pageController = PageController(initialPage: initialIndex);
+  FullScreenImage(
+      {this.loadingChild,
+      this.backgroundDecoration,
+      this.initialIndex,
+      @required this.posts,
+      this.scrollDirection = Axis.horizontal,
+      this.fontSize})
+      : pageController = PageController(initialPage: initialIndex);
 
   @override
   _FullScreenImageScreen createState() => _FullScreenImageScreen();
@@ -66,12 +68,11 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
               color: Colors.black54,
               child: ReadMoreText(
                 "${widget.posts.edges[currentIndex].node.edgeMediaToCaption.edges[0].node.text}", //Write text on image
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 17.0,
-                  decoration: null,
-                  fontWeight: FontWeight.normal
-                ),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: widget.fontSize,
+                    decoration: null,
+                    fontWeight: FontWeight.normal),
                 trimLength: 150,
                 colorClickableText: Colors.amber,
               ),
