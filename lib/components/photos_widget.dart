@@ -1,15 +1,16 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:insta_html_parser/insta_html_parser.dart';
 import 'package:nichacgm48/common/app_constant.dart';
 import 'package:nichacgm48/common/scale_size.dart';
 import 'package:nichacgm48/components/full_creen_image.dart';
 import 'package:nichacgm48/models/instagram_post.dart';
 import 'package:nichacgm48/styleguide/text_styles.dart';
+import 'package:http/http.dart' as http;
 
 class PhotosWidget extends StatelessWidget {
-  final List<InstagramPost> posts = [];
+  final EdgeOwnerToTimelineMedia posts = null;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class PhotosWidget extends StatelessWidget {
                 style: titleHeadingContentTextStyle,
               ),
               Text(
-                "VIEW ALL",
+                "", //VIEW ALL
                 style: viewAllTextStyle,
               )
             ],
@@ -38,9 +39,9 @@ class PhotosWidget extends StatelessWidget {
           padding: globalPaddingLeftOnly,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: FutureBuilder<List<InstagramPost>>(
+            child: FutureBuilder<EdgeOwnerToTimelineMedia>(
               future:
-                  getPosts("https://www.instagram.com/nicha.cgm48official/"),
+                  fetchPosts("https://www.instagram.com/nicha.cgm48official/"),
               builder: (context, result) {
                 if (result.hasError) print(result.error);
                 return result.hasData
@@ -64,33 +65,38 @@ class PhotosWidget extends StatelessWidget {
     );
   }
 
-  Future<List<InstagramPost>> getPosts(String url) async {
-    await InstaParser.postsUrlsFromProfile(
-            "https://www.instagram.com/nicha.cgm48official/")
-        .then((List<String> postsUrls) async {
-      for (int i = 0; i < postsUrls.length; i++) {
-        var post = InstagramPost(
-            photoLargeUrl: postsUrls[i] + '/media/?size=l',
-            photoMediumUrl: postsUrls[i] + '/media/?size=m',
-            photoSmallUrl: postsUrls[i] + '/media/?size=t');
+  Future<EdgeOwnerToTimelineMedia> fetchPosts(String url) async {
+    final response = await http
+        .get('https://www.instagram.com/nicha.cgm48official/?__a=1&max_id=QVFDd2VLSnBlci1wRkJrZVpkXzYzU21xd3RoYXBxajc0cFhPMTZpQWpHZmNHekdZcmlnNUxWMmpVTmgtY3I3MVRPX2VrRHNPbldRd0p0UTZ6Y2ZMRHR1bg==');
 
-        posts.add(post);
-      }
-    });
+    if (response.statusCode == 200) {
+      // If the call to the server was successful, parse the JSON.
+      var responseJson = json.decode(response.body);
 
-    return posts;
+      var timeline = EdgeOwnerToTimelineMedia.fromJson(
+          responseJson['graphql']['user']['edge_owner_to_timeline_media']);
+
+      //print('count: ${timeline.count}');
+      //print('info: ${timeline.pageInfo.toJson()}');
+      //print('posts: ${timeline.edges.length}');
+
+      return timeline;
+    } else {
+      // If that call was not successful, throw an error.
+      throw Exception('Failed to load post');
+    }
   }
 }
 
 class InstagramPosts extends StatelessWidget {
-  final List<InstagramPost> posts;
+  final EdgeOwnerToTimelineMedia posts;
 
   InstagramPosts({Key key, @required this.posts}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
-        children: posts
+        children: posts.edges
             .asMap()
             .map((i, post) => MapEntry(
                 i,
@@ -108,7 +114,7 @@ class InstagramPosts extends StatelessWidget {
                                 width: ScaleSize.blockSizeHorizontal * 35,
                                 color: Colors.black12,
                               ),
-                          imageUrl: post.photoMediumUrl,
+                          imageUrl: post.node.thumbnailSrc,
                           height: ScaleSize.blockSizeVertical * 22,
                           width: ScaleSize.blockSizeHorizontal * 35,
                           fit: BoxFit.cover),

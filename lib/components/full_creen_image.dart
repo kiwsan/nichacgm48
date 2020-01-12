@@ -5,7 +5,7 @@ import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
 class FullScreenImage extends StatefulWidget {
-  final List<InstagramPost> posts;
+  final EdgeOwnerToTimelineMedia posts;
   final Widget loadingChild;
   final Decoration backgroundDecoration;
   final int initialIndex;
@@ -53,7 +53,7 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
             PhotoViewGallery.builder(
               scrollPhysics: const BouncingScrollPhysics(),
               builder: _post,
-              itemCount: widget.posts.length,
+              itemCount: widget.posts.edges.length,
               loadingChild: widget.loadingChild,
               backgroundDecoration: widget.backgroundDecoration,
               pageController: widget.pageController,
@@ -78,9 +78,9 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
   }
 
   PhotoViewGalleryPageOptions _post(BuildContext context, int index) {
-    final InstagramPost post = widget.posts[index];
+    final post = widget.posts.edges[index];
     return PhotoViewGalleryPageOptions(
-      imageProvider: CachedNetworkImageProvider(post.photoLargeUrl),
+      imageProvider: CachedNetworkImageProvider(post.node.displayUrl),
       heroAttributes: PhotoViewHeroAttributes(tag: "tag$index"),
     );
   }
