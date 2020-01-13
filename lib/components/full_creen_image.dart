@@ -77,7 +77,8 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
               children: <Widget>[
                 Container(
                   color: Colors.black54,
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 5, bottom: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
