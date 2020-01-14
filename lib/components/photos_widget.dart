@@ -24,11 +24,28 @@ class PhotosWidget extends StatelessWidget {
               Text(
                 "PHOTOS",
                 style: titleHeadingContentTextStyle,
-              ),
-              Text(
-                "", //VIEW ALL
-                style: viewAllTextStyle,
-              )
+              ),              
+              InkWell(
+                  child: Text(
+                    "VIEW ALL",
+                    style: viewAllTextStyle,
+                  ),
+                  onTap: () async {
+                    const protocolUrl = 'ig://page/nicha.cgm48official';
+                    const fallbackUrl =
+                        'https://www.instagram.com/nicha.cgm48official';
+
+                    try {
+                      bool launched =
+                          await launch(protocolUrl, forceSafariVC: false);
+                      if (!launched) {
+                        await launch(fallbackUrl, forceSafariVC: false);
+                      }
+                    } catch (e) {
+                      await launch(fallbackUrl, forceSafariVC: false);
+                    }
+                  },
+                )
             ],
           ),
         ),
