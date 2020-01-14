@@ -8,6 +8,7 @@ import 'package:nichacgm48/components/full_creen_image.dart';
 import 'package:nichacgm48/models/instagram_post.dart';
 import 'package:nichacgm48/styleguide/text_styles.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class PhotosWidget extends StatelessWidget {
   final EdgeOwnerToTimelineMedia posts = null;
