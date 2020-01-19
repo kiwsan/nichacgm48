@@ -57,3 +57,8 @@ TextStyle copyRightTextStyle = TextStyle(
     fontSize: ScaleSize.safeBlockHorizontal * 2,
     color: grey800TextColor,
     fontWeight: FontWeight.normal);
+
+TextStyle bubbleBottomBarMenuTextStyle = TextStyle(
+    fontSize: ScaleSize.safeBlockHorizontal * 3.5,
+    color: Colors.yellow[600],
+    fontWeight: FontWeight.normal);
