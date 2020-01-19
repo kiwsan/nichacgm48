@@ -119,6 +119,40 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
                 )
               ],
             ),
+            Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  new Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.only(top: 15, left: 8),
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.arrow_back,
+                              size: 30.0,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 15, right: 0),
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.more_vert,
+                              size: 30.0,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {},
+                          ),
+                        )
+                      ])
+                ]),
           ],
         ),
       ),
