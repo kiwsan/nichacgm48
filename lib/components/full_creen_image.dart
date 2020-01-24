@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:nichacgm48/common/read_more_text.dart';
+import 'package:nichacgm48/common/scale_size.dart';
 import 'package:nichacgm48/models/instagram_post.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import 'package:time_formatter/time_formatter.dart';
 
 class FullScreenImage extends StatefulWidget {
   final EdgeOwnerToTimelineMedia posts;
@@ -12,14 +14,16 @@ class FullScreenImage extends StatefulWidget {
   final int initialIndex;
   final PageController pageController;
   final Axis scrollDirection;
+  final fontSize;
 
-  FullScreenImage({
-    this.loadingChild,
-    this.backgroundDecoration,
-    this.initialIndex,
-    @required this.posts,
-    this.scrollDirection = Axis.horizontal,
-  }) : pageController = PageController(initialPage: initialIndex);
+  FullScreenImage(
+      {this.loadingChild,
+      this.backgroundDecoration,
+      this.initialIndex,
+      @required this.posts,
+      this.scrollDirection = Axis.horizontal,
+      this.fontSize})
+      : pageController = PageController(initialPage: initialIndex);
 
   @override
   _FullScreenImageScreen createState() => _FullScreenImageScreen();
@@ -42,6 +46,11 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
 
   @override
   Widget build(BuildContext context) {
+    String publishedOn = formatTime(
+        widget.posts.edges[currentIndex].node.takenAtTimestamp * 1000);
+    var caption = widget
+        .posts.edges[currentIndex].node.edgeMediaToCaption.edges[0].node.text;
+
     return Scaffold(
       body: Container(
         decoration: widget.backgroundDecoration,
@@ -49,7 +58,7 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
           height: MediaQuery.of(context).size.height,
         ),
         child: Stack(
-          alignment: Alignment.bottomRight,
+          alignment: Alignment.bottomLeft,
           children: <Widget>[
             PhotoViewGallery.builder(
               scrollPhysics: const BouncingScrollPhysics(),
@@ -61,21 +70,89 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
               onPageChanged: onPageChanged,
               scrollDirection: widget.scrollDirection,
             ),
-            Container(
-              padding: const EdgeInsets.all(20.0),
-              color: Colors.black54,
-              child: ReadMoreText(
-                "${widget.posts.edges[currentIndex].node.edgeMediaToCaption.edges[0].node.text}", //Write text on image
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 17.0,
-                  decoration: null,
-                  fontWeight: FontWeight.normal
-                ),
-                trimLength: 150,
-                colorClickableText: Colors.amber,
-              ),
-            )
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Container(
+                  color: Colors.black54,
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 5, bottom: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Image.asset(
+                            "assets/icons/instagram_icon.png",
+                            width: ScaleSize.safeBlockHorizontal * 4,
+                            height: ScaleSize.safeBlockVertical * 4,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5.0),
+                            child: Text(
+                              "Nicha CGM48 on Instagram [$publishedOn]",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: widget.fontSize,
+                                  fontWeight: FontWeight.normal),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: ScaleSize.safeBlockHorizontal * 0.2,
+                      ),
+                      ReadMoreText(
+                        caption,
+                        //Write text on image
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: widget.fontSize,
+                            fontWeight: FontWeight.normal),
+                        trimLength: 150,
+                        colorClickableText: Colors.amber,
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+            Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  new Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.only(top: 15, left: 8),
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.arrow_back,
+                              size: 25.0,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 15, right: 0),
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.more_vert,
+                              size: 25.0,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {},
+                          ),
+                        )
+                      ])
+                ]),
           ],
         ),
       ),

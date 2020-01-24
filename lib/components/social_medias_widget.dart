@@ -31,7 +31,8 @@ class SocialMediasWidget extends StatelessWidget {
 
                     try {
                       bool launched =
-                          await launch(protocolUrl, forceSafariVC: false);
+                          //await launch(protocolUrl, forceSafariVC: false);
+                          await launch(fallbackUrl, forceSafariVC: false);
                       if (!launched) {
                         await launch(fallbackUrl, forceSafariVC: false);
                       }
@@ -49,7 +50,7 @@ class SocialMediasWidget extends StatelessWidget {
                         name: "NICHACGM48",
                       )),
                   onTap: () async {
-                    const protocolUrl = 'ig://page/cgm48official.nicha';
+                    const protocolUrl = 'ig://page/nicha.cgm48official';
                     const fallbackUrl =
                         'https://www.instagram.com/nicha.cgm48official';
 
