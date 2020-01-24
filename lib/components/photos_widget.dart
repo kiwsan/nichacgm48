@@ -8,6 +8,7 @@ import 'package:nichacgm48/components/full_creen_image.dart';
 import 'package:nichacgm48/models/instagram_post.dart';
 import 'package:nichacgm48/styleguide/text_styles.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class PhotosWidget extends StatelessWidget {
   final EdgeOwnerToTimelineMedia posts = null;
@@ -24,11 +25,28 @@ class PhotosWidget extends StatelessWidget {
               Text(
                 "PHOTOS",
                 style: titleHeadingContentTextStyle,
-              ),
-              Text(
-                "", //VIEW ALL
-                style: viewAllTextStyle,
-              )
+              ),              
+              InkWell(
+                  child: Text(
+                    "VIEW ALL",
+                    style: viewAllTextStyle,
+                  ),
+                  onTap: () async {
+                    const protocolUrl = 'ig://page/nicha.cgm48official';
+                    const fallbackUrl =
+                        'https://www.instagram.com/nicha.cgm48official';
+
+                    try {
+                      bool launched =
+                          await launch(protocolUrl, forceSafariVC: false);
+                      if (!launched) {
+                        await launch(fallbackUrl, forceSafariVC: false);
+                      }
+                    } catch (e) {
+                      await launch(fallbackUrl, forceSafariVC: false);
+                    }
+                  },
+                )
             ],
           ),
         ),
@@ -66,8 +84,8 @@ class PhotosWidget extends StatelessWidget {
   }
 
   Future<EdgeOwnerToTimelineMedia> fetchPosts(String url) async {
-    final response = await http
-        .get('https://www.instagram.com/nicha.cgm48official/?__a=1');
+    final response =
+        await http.get('https://www.instagram.com/nicha.cgm48official/?__a=1');
 
     if (response.statusCode == 200) {
       // If the call to the server was successful, parse the JSON.
@@ -136,6 +154,7 @@ class InstagramPosts extends StatelessWidget {
           ),
           initialIndex: index,
           scrollDirection: Axis.horizontal,
+          fontSize: ScaleSize.blockSizeHorizontal * 3.5,
         ),
       ),
     );
