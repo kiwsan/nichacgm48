@@ -88,12 +88,12 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Transform.translate(
-            offset: Offset(ScaleSize.safeBlockHorizontal - 82,
+            offset: Offset(ScaleSize.safeBlockHorizontal - 80,
                 ScaleSize.safeBlockVertical * 50),
             child: Transform.rotate(
               angle: -1,
-              child: SvgPicture.asset('assets/icons/ellipse_middle_right.svg',
-                  width: ScaleSize.safeBlockHorizontal * 24),
+              child: Image.asset('assets/icons/ellipse_middle_right.png',
+                  width: 100),
             ),
           ),
           Transform.translate(

@@ -145,7 +145,7 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
                           child: IconButton(
                             icon: const Icon(
                               Icons.more_vert,
-                              size: 25.0,
+                              size: 30.0,
                               color: Colors.white,
                             ),
                             onPressed: () {},
