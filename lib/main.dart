@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nichacgm48/pages/home.dart';
+import 'package:nichacgm48/ui/home.dart';
 
 void main() => runApp(FlutterApp());
 

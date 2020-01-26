@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:nichacgm48/common/read_more_text.dart';
-import 'package:nichacgm48/common/scale_size.dart';
-import 'package:nichacgm48/models/instagram_post.dart';
+import 'package:nichacgm48/utils/read_more_text.dart';
+import 'package:nichacgm48/utils/scale_size.dart';
+import 'package:nichacgm48/models/instagram_post_model.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:time_formatter/time_formatter.dart';

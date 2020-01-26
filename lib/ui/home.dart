@@ -2,14 +2,14 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nichacgm48/common/app_constant.dart';
-import 'package:nichacgm48/common/fade_animation.dart';
-import 'package:nichacgm48/common/scale_size.dart';
-import 'package:nichacgm48/components/footer_widget.dart';
-import 'package:nichacgm48/components/head_widget.dart';
-import 'package:nichacgm48/components/layout_widget.dart';
-import 'package:nichacgm48/models/firebase_notification.dart';
-import 'package:nichacgm48/styleguide/text_styles.dart';
+import 'package:nichacgm48/constants/globals.dart';
+import 'package:nichacgm48/utils/fade_animation.dart';
+import 'package:nichacgm48/utils/scale_size.dart';
+import 'package:nichacgm48/ui/widgets/footer_widget.dart';
+import 'package:nichacgm48/ui/widgets/head_widget.dart';
+import 'package:nichacgm48/ui/widgets/layout_widget.dart';
+import 'package:nichacgm48/models/firebase_notification_model.dart';
+import 'package:nichacgm48/styles/text_styles.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,17 +17,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  final FirebaseMessaging firebaseMessaging = FirebaseMessaging();
 
-  final List<FirebaseNotification> notifications = [];
-
-  GlobalKey<RefreshIndicatorState> refreshKey;
+  final List<FirebaseNotificationModel> notifications = [];
 
   @override
   void initState() {
     super.initState();
-
-    refreshKey = GlobalKey<RefreshIndicatorState>();
 
     _initialFirebase();
   }
@@ -152,18 +148,12 @@ class _HomePageState extends State<HomePage> {
     ));
   }
 
-  /* Mimic a delay and add a random value to the list */
-  Future<Null> refreshPage() async {
-    await Future.delayed(Duration(seconds: 2));
-    return null;
-  }
-
   void _initialFirebase() {
-    _firebaseMessaging.configure(
+    firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> notification) async {
         setState(() {
           notifications.add(
-            FirebaseNotification(
+            FirebaseNotificationModel(
               title: notification["notification"]["title"],
               body: notification["notification"]["body"],
               color: Colors.red,
@@ -174,7 +164,7 @@ class _HomePageState extends State<HomePage> {
       onLaunch: (Map<String, dynamic> notification) async {
         setState(() {
           notifications.add(
-            FirebaseNotification(
+            FirebaseNotificationModel(
               title: notification["notification"]["title"],
               body: notification["notification"]["body"],
               color: Colors.green,
@@ -185,7 +175,7 @@ class _HomePageState extends State<HomePage> {
       onResume: (Map<String, dynamic> notification) async {
         setState(() {
           notifications.add(
-            FirebaseNotification(
+            FirebaseNotificationModel(
               title: notification["notification"]["title"],
               body: notification["notification"]["body"],
               color: Colors.blue,
@@ -195,7 +185,7 @@ class _HomePageState extends State<HomePage> {
       },
     );
 
-    _firebaseMessaging.requestNotificationPermissions();
+    firebaseMessaging.requestNotificationPermissions();
 
     /*_firebaseMessaging.getToken().then((token) {
       print(token);
