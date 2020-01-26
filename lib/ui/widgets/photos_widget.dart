@@ -62,7 +62,7 @@ class PhotosWidget extends StatelessWidget {
               builder:
                   (context, AsyncSnapshot<EdgeOwnerToTimelineMedia> snapshot) {
                 if (snapshot.hasData) {
-                  return _instagramPosts(posts: snapshot.data);
+                  return _InstagramPosts(posts: snapshot.data);
                 } else if (snapshot.hasError) {
                   return Text(
                     snapshot.error.toString(),
@@ -90,10 +90,10 @@ class PhotosWidget extends StatelessWidget {
   }
 }
 
-class _instagramPosts extends StatelessWidget {
+class _InstagramPosts extends StatelessWidget {
   final EdgeOwnerToTimelineMedia posts;
 
-  _instagramPosts({Key key, @required this.posts}) : super(key: key);
+  _InstagramPosts({Key key, @required this.posts}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
