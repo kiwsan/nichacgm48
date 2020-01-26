@@ -57,3 +57,8 @@ TextStyle copyRightTextStyle = TextStyle(
     fontSize: ScaleSize.safeBlockHorizontal * 2,
     color: grey800TextColor,
     fontWeight: FontWeight.normal);
+
+TextStyle errorTextStyle = TextStyle(
+    fontSize: ScaleSize.safeBlockHorizontal * 3,
+    color: Colors.red,
+    fontWeight: FontWeight.normal);

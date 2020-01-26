@@ -64,7 +64,10 @@ class PhotosWidget extends StatelessWidget {
                 if (snapshot.hasData) {
                   return _instagramPosts(posts: snapshot.data);
                 } else if (snapshot.hasError) {
-                  return Text(snapshot.error.toString());
+                  return Text(
+                    snapshot.error.toString(),
+                    style: errorTextStyle,
+                  );
                 }
 
                 return Padding(
