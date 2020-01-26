@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nichacgm48/common/scale_size.dart';
+import 'package:nichacgm48/utils/scale_size.dart';
 import 'colors.dart';
 
 TextStyle welcomeTextStyle = TextStyle(

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class FirebaseNotification {
+class FirebaseNotificationModel {
   final String title;
   final String body;
   final Color color;
 
-  const FirebaseNotification(
+  const FirebaseNotificationModel(
       {@required this.title, @required this.body, @required this.color});
 }
