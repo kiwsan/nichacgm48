@@ -24,6 +24,18 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+Install dependencies:
+
+```bash
+$ flutter pub get
+```
+
+Run:
+
+```bash
+$ flutter run
+```
+
 ## Screenshots
 
 <img src="https://github.com/kiwsan/nichacgm48/blob/master/screenshots/81489713_1351720135015710_8971493847284580352_o.jpg" alt="Home Screen" width="220"/>

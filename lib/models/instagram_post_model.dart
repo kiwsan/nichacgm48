@@ -1,3 +1,5 @@
+import 'package:nichacgm48/models/base_model.dart';
+
 class EdgeMediaToCaption {
   List<Edges> edges;
 
@@ -253,7 +255,7 @@ class Edges {
   }
 }
 
-class EdgeOwnerToTimelineMedia {
+class EdgeOwnerToTimelineMedia extends BaseModel {
   int count;
   PageInfo pageInfo;
   List<Edges> edges;

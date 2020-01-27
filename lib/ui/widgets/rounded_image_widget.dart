@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nichacgm48/common/scale_size.dart';
+import 'package:nichacgm48/utils/scale_size.dart';
 
 class RoundedImageWidget extends StatelessWidget {
   final String image;
