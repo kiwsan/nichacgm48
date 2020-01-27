@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nichacgm48/common/scale_size.dart';
+import 'package:nichacgm48/utils/scale_size.dart';
 import 'colors.dart';
 
 TextStyle welcomeTextStyle = TextStyle(
@@ -56,4 +56,9 @@ TextStyle viewAllTextStyle = TextStyle(
 TextStyle copyRightTextStyle = TextStyle(
     fontSize: ScaleSize.safeBlockHorizontal * 2,
     color: grey800TextColor,
+    fontWeight: FontWeight.normal);
+
+TextStyle errorTextStyle = TextStyle(
+    fontSize: ScaleSize.safeBlockHorizontal * 3,
+    color: Colors.red,
     fontWeight: FontWeight.normal);
