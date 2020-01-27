@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:nichacgm48/common/app_constant.dart';
-import 'package:nichacgm48/common/scale_size.dart';
-import 'package:nichacgm48/components/social_medias_widget.dart';
-import 'package:nichacgm48/components/hashtags_widget.dart';
-import 'package:nichacgm48/components/personal_information_widget.dart';
-import 'package:nichacgm48/components/photos_widget.dart';
-import 'package:nichacgm48/components/supporters_widget.dart';
+import 'package:nichacgm48/constants/globals.dart';
+import 'package:nichacgm48/utils/scale_size.dart';
+import 'package:nichacgm48/ui/widgets/social_medias_widget.dart';
+import 'package:nichacgm48/ui/widgets/hashtags_widget.dart';
+import 'package:nichacgm48/ui/widgets/personal_information_widget.dart';
+import 'package:nichacgm48/ui/widgets/photos_widget.dart';
+import 'package:nichacgm48/ui/widgets/supporters_widget.dart';
 
 class LayoutWidget extends StatelessWidget {
   @override
