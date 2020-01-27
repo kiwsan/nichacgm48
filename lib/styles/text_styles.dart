@@ -62,3 +62,8 @@ TextStyle errorTextStyle = TextStyle(
     fontSize: ScaleSize.safeBlockHorizontal * 3,
     color: Colors.red,
     fontWeight: FontWeight.normal);
+
+TextStyle bubbleBottomBarMenuTextStyle = TextStyle(
+    fontSize: ScaleSize.safeBlockHorizontal * 3.5,
+    color: Colors.yellow[600],
+    fontWeight: FontWeight.normal);
