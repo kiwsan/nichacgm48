@@ -1,15 +1,18 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nichacgm48/common/app_constant.dart';
-import 'package:nichacgm48/common/fade_animation.dart';
-import 'package:nichacgm48/common/scale_size.dart';
-import 'package:nichacgm48/components/footer_widget.dart';
-import 'package:nichacgm48/components/head_widget.dart';
-import 'package:nichacgm48/components/layout_widget.dart';
-import 'package:nichacgm48/models/firebase_notification.dart';
-import 'package:nichacgm48/styleguide/text_styles.dart';
+import 'package:nichacgm48/constants/globals.dart';
+import 'package:nichacgm48/styles/text_styles.dart';
+import 'package:nichacgm48/ui/widgets/footer_widget.dart';
+import 'package:nichacgm48/ui/widgets/head_widget.dart';
+import 'package:nichacgm48/ui/widgets/layout_widget.dart';
+import 'package:nichacgm48/utils/fade_animation.dart';
+import 'package:nichacgm48/utils/scale_size.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,19 +20,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
-
-  final List<FirebaseNotification> notifications = [];
-
-  GlobalKey<RefreshIndicatorState> refreshKey;
+  final FirebaseMessaging firebaseMessaging = new FirebaseMessaging();
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      new FlutterLocalNotificationsPlugin();
 
   @override
   void initState() {
     super.initState();
 
-    refreshKey = GlobalKey<RefreshIndicatorState>();
-
-    _initialFirebase();
+    registerNotification();
+    configLocalNotification();
   }
 
   @override
@@ -88,12 +88,12 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Transform.translate(
-            offset: Offset(ScaleSize.safeBlockHorizontal - 82,
+            offset: Offset(ScaleSize.safeBlockHorizontal - 80,
                 ScaleSize.safeBlockVertical * 50),
             child: Transform.rotate(
               angle: -1,
-              child: SvgPicture.asset('assets/icons/ellipse_middle_right.svg',
-                  width: ScaleSize.safeBlockHorizontal * 24),
+              child: Image.asset('assets/icons/ellipse_middle_right.png',
+                  width: 100),
             ),
           ),
           Transform.translate(
@@ -152,55 +152,52 @@ class _HomePageState extends State<HomePage> {
     ));
   }
 
-  /* Mimic a delay and add a random value to the list */
-  Future<Null> refreshPage() async {
-    await Future.delayed(Duration(seconds: 2));
-    return null;
+  void registerNotification() {
+    firebaseMessaging.requestNotificationPermissions();
+
+    firebaseMessaging.configure(onMessage: (Map<String, dynamic> message) {
+      print('onMessage: $message');
+      showNotification(message['notification']);
+      return;
+    }, onResume: (Map<String, dynamic> message) {
+      print('onResume: $message');
+      return;
+    }, onLaunch: (Map<String, dynamic> message) {
+      print('onLaunch: $message');
+      return;
+    });
+
+    firebaseMessaging.getToken().then((token) {
+      //print('token: $token');
+    }).catchError((err) {
+      print(err.message.toString());
+    });
   }
 
-  void _initialFirebase() {
-    _firebaseMessaging.configure(
-      onMessage: (Map<String, dynamic> notification) async {
-        setState(() {
-          notifications.add(
-            FirebaseNotification(
-              title: notification["notification"]["title"],
-              body: notification["notification"]["body"],
-              color: Colors.red,
-            ),
-          );
-        });
-      },
-      onLaunch: (Map<String, dynamic> notification) async {
-        setState(() {
-          notifications.add(
-            FirebaseNotification(
-              title: notification["notification"]["title"],
-              body: notification["notification"]["body"],
-              color: Colors.green,
-            ),
-          );
-        });
-      },
-      onResume: (Map<String, dynamic> notification) async {
-        setState(() {
-          notifications.add(
-            FirebaseNotification(
-              title: notification["notification"]["title"],
-              body: notification["notification"]["body"],
-              color: Colors.blue,
-            ),
-          );
-        });
-      },
+  void configLocalNotification() {
+    var initializationSettingsAndroid =
+        new AndroidInitializationSettings('app_icon');
+    var initializationSettingsIOS = new IOSInitializationSettings();
+    var initializationSettings = new InitializationSettings(
+        initializationSettingsAndroid, initializationSettingsIOS);
+    flutterLocalNotificationsPlugin.initialize(initializationSettings);
+  }
+
+  void showNotification(message) async {
+    var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
+      Platform.isAndroid ? 'com.kiwsan' : 'com.kiwsan',
+      'nichacgm48',
+      'Nicha CGM48 Thailand fans application',
+      playSound: true,
+      enableVibration: true,
+      importance: Importance.Max,
+      priority: Priority.High,
     );
-
-    _firebaseMessaging.requestNotificationPermissions();
-
-    /*_firebaseMessaging.getToken().then((token) {
-      print(token);
-    }).catchError((e) {
-      print(e);
-    });*/
+    var iOSPlatformChannelSpecifics = new IOSNotificationDetails();
+    var platformChannelSpecifics = new NotificationDetails(
+        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+    await flutterLocalNotificationsPlugin.show(0, message['title'].toString(),
+        message['body'].toString(), platformChannelSpecifics,
+        payload: json.encode(message));
   }
 }
