@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nichacgm48/styleguide/text_styles.dart';
+import 'package:nichacgm48/styles/text_styles.dart';
 
 class HeadWidget extends StatelessWidget {
   @override
