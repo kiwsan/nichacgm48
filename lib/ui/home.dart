@@ -1,15 +1,18 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nichacgm48/constants/globals.dart';
-import 'package:nichacgm48/utils/fade_animation.dart';
-import 'package:nichacgm48/utils/scale_size.dart';
+import 'package:nichacgm48/styles/text_styles.dart';
 import 'package:nichacgm48/ui/widgets/footer_widget.dart';
 import 'package:nichacgm48/ui/widgets/head_widget.dart';
 import 'package:nichacgm48/ui/widgets/layout_widget.dart';
-import 'package:nichacgm48/models/firebase_notification_model.dart';
-import 'package:nichacgm48/styles/text_styles.dart';
+import 'package:nichacgm48/utils/fade_animation.dart';
+import 'package:nichacgm48/utils/scale_size.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,15 +20,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final FirebaseMessaging firebaseMessaging = FirebaseMessaging();
-
-  final List<FirebaseNotificationModel> notifications = [];
+  final FirebaseMessaging firebaseMessaging = new FirebaseMessaging();
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      new FlutterLocalNotificationsPlugin();
 
   @override
   void initState() {
     super.initState();
 
-    _initialFirebase();
+    registerNotification();
+    configLocalNotification();
   }
 
   @override
@@ -148,49 +152,52 @@ class _HomePageState extends State<HomePage> {
     ));
   }
 
-  void _initialFirebase() {
-    firebaseMessaging.configure(
-      onMessage: (Map<String, dynamic> notification) async {
-        setState(() {
-          notifications.add(
-            FirebaseNotificationModel(
-              title: notification["notification"]["title"],
-              body: notification["notification"]["body"],
-              color: Colors.red,
-            ),
-          );
-        });
-      },
-      onLaunch: (Map<String, dynamic> notification) async {
-        setState(() {
-          notifications.add(
-            FirebaseNotificationModel(
-              title: notification["notification"]["title"],
-              body: notification["notification"]["body"],
-              color: Colors.green,
-            ),
-          );
-        });
-      },
-      onResume: (Map<String, dynamic> notification) async {
-        setState(() {
-          notifications.add(
-            FirebaseNotificationModel(
-              title: notification["notification"]["title"],
-              body: notification["notification"]["body"],
-              color: Colors.blue,
-            ),
-          );
-        });
-      },
-    );
-
+  void registerNotification() {
     firebaseMessaging.requestNotificationPermissions();
 
-    /*_firebaseMessaging.getToken().then((token) {
-      print(token);
-    }).catchError((e) {
-      print(e);
-    });*/
+    firebaseMessaging.configure(onMessage: (Map<String, dynamic> message) {
+      print('onMessage: $message');
+      showNotification(message['notification']);
+      return;
+    }, onResume: (Map<String, dynamic> message) {
+      print('onResume: $message');
+      return;
+    }, onLaunch: (Map<String, dynamic> message) {
+      print('onLaunch: $message');
+      return;
+    });
+
+    firebaseMessaging.getToken().then((token) {
+      //print('token: $token');
+    }).catchError((err) {
+      print(err.message.toString());
+    });
+  }
+
+  void configLocalNotification() {
+    var initializationSettingsAndroid =
+        new AndroidInitializationSettings('app_icon');
+    var initializationSettingsIOS = new IOSInitializationSettings();
+    var initializationSettings = new InitializationSettings(
+        initializationSettingsAndroid, initializationSettingsIOS);
+    flutterLocalNotificationsPlugin.initialize(initializationSettings);
+  }
+
+  void showNotification(message) async {
+    var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
+      Platform.isAndroid ? 'com.kiwsan' : 'com.kiwsan',
+      'nichacgm48',
+      'Nicha CGM48 Thailand fans application',
+      playSound: true,
+      enableVibration: true,
+      importance: Importance.Max,
+      priority: Priority.High,
+    );
+    var iOSPlatformChannelSpecifics = new IOSNotificationDetails();
+    var platformChannelSpecifics = new NotificationDetails(
+        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+    await flutterLocalNotificationsPlugin.show(0, message['title'].toString(),
+        message['body'].toString(), platformChannelSpecifics,
+        payload: json.encode(message));
   }
 }
