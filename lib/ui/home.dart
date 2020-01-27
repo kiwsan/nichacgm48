@@ -6,13 +6,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nichacgm48/common/app_constant.dart';
-import 'package:nichacgm48/common/fade_animation.dart';
-import 'package:nichacgm48/common/scale_size.dart';
-import 'package:nichacgm48/components/footer_widget.dart';
-import 'package:nichacgm48/components/head_widget.dart';
-import 'package:nichacgm48/components/layout_widget.dart';
-import 'package:nichacgm48/styleguide/text_styles.dart';
+import 'package:nichacgm48/constants/globals.dart';
+import 'package:nichacgm48/styles/text_styles.dart';
+import 'package:nichacgm48/ui/widgets/footer_widget.dart';
+import 'package:nichacgm48/ui/widgets/head_widget.dart';
+import 'package:nichacgm48/ui/widgets/layout_widget.dart';
+import 'package:nichacgm48/utils/fade_animation.dart';
+import 'package:nichacgm48/utils/scale_size.dart';
 
 class HomePage extends StatefulWidget {
   @override

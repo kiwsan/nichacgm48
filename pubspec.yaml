@@ -33,6 +33,7 @@ dependencies:
   cached_network_image: ^2.0.0
   time_formatter: ^1.0.0
   simple_animations: ^1.3.4
+  rxdart : ^0.21.0
 
 dev_dependencies:
   flutter_test:
