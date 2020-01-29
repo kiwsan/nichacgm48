@@ -5,6 +5,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nichacgm48/constants/globals.dart';
 import 'package:nichacgm48/styles/text_styles.dart';
@@ -12,7 +13,6 @@ import 'package:nichacgm48/ui/widgets/footer_widget.dart';
 import 'package:nichacgm48/ui/widgets/head_widget.dart';
 import 'package:nichacgm48/ui/widgets/layout_widget.dart';
 import 'package:nichacgm48/utils/fade_animation.dart';
-import 'package:nichacgm48/utils/scale_size.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -34,14 +34,15 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    ScaleSize().init(context);
+    //default value : width : 1080px , height:1920px , allowFontScaling:false
+    ScreenUtil.init(context);
 
     return Scaffold(
         body: NestedScrollView(
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return <Widget>[
           SliverAppBar(
-            expandedHeight: ScaleSize.safeBlockHorizontal * 40,
+            expandedHeight: ScreenUtil().setHeight(440),
             pinned: true,
             elevation: 0,
             titleSpacing: 0,
@@ -55,7 +56,8 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Padding(
-                    padding: globalPadding,
+                    padding: EdgeInsets.symmetric(
+                        horizontal: ScreenUtil().setWidth(globalPadding)),
                     child: HeadWidget(),
                   ),
                 ],
@@ -63,9 +65,9 @@ class _HomePageState extends State<HomePage> {
             ),
             actions: <Widget>[
               IconButton(
-                icon: const Icon(
+                icon: Icon(
                   Icons.notifications,
-                  size: 35.0,
+                  size: ScreenUtil().setWidth(90),
                   color: Colors.black54,
                 ),
                 onPressed: () {},
@@ -77,39 +79,43 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children: <Widget>[
           Transform.translate(
-            offset: Offset(ScaleSize.safeBlockHorizontal * 55,
-                ScaleSize.safeBlockVertical - 200),
+            offset: Offset(
+                ScreenUtil().setWidth(590), ScreenUtil().setHeight(-650)),
             child: Transform.rotate(
-              angle: -4.2,
+              angle: -4.1,
               child: SvgPicture.asset(
                 'assets/icons/ellipse_top_left.svg',
-                width: ScaleSize.safeBlockHorizontal * 95,
+                width: ScreenUtil().setWidth(1250),
               ),
             ),
           ),
           Transform.translate(
-            offset: Offset(ScaleSize.safeBlockHorizontal - 80,
-                ScaleSize.safeBlockVertical * 50),
+            offset: Offset(
+                ScreenUtil().setHeight(-250), ScreenUtil().setHeight(900)),
             child: Transform.rotate(
-              angle: -1,
-              child: Image.asset('assets/icons/ellipse_middle_right.png',
-                  width: 100),
+              angle: -0.5,
+              child: SvgPicture.asset(
+                'assets/icons/ellipse_middle_right.svg',
+                width: ScreenUtil().setWidth(250),
+                height: ScreenUtil().setHeight(300),
+              ),
             ),
           ),
           Transform.translate(
-            offset: Offset(ScaleSize.safeBlockHorizontal * 92,
-                ScaleSize.safeBlockVertical * 90),
+            offset: Offset(
+                ScreenUtil().setWidth(995), ScreenUtil().setHeight(1700)),
             child: Transform.rotate(
-              angle: -2,
+              angle: -1.5,
               child: SvgPicture.asset('assets/icons/ellipse_center_buttom.svg',
-                  width: ScaleSize.safeBlockHorizontal * 24),
+                  width: ScreenUtil().setWidth(220)),
             ),
           ),
           SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: globalPadding,
+                  padding: EdgeInsets.symmetric(
+                      horizontal: ScreenUtil().setWidth(globalPadding)),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -121,8 +127,8 @@ class _HomePageState extends State<HomePage> {
                                 1,
                                 Image.asset(
                                   "assets/images/h_nicha.png",
-                                  width: ScaleSize.safeBlockHorizontal * 65,
-                                  height: ScaleSize.safeBlockHorizontal * 90,
+                                  width: ScreenUtil().setWidth(695),
+                                  height: ScreenUtil().setHeight(1020),
                                 ))
                           ]),
                       Column(
@@ -138,10 +144,11 @@ class _HomePageState extends State<HomePage> {
                 ),
                 LayoutWidget(),
                 SizedBox(
-                  height: ScaleSize.safeBlockVertical * 4,
+                  height: ScreenUtil().setHeight(50),
                 ),
                 Padding(
-                  padding: globalPadding,
+                  padding: EdgeInsets.symmetric(
+                      horizontal: ScreenUtil().setWidth(globalPadding)),
                   child: FooterWidget(),
                 )
               ],

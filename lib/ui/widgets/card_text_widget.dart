@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nichacgm48/styles/text_styles.dart';
 
 class CardTextWidget extends StatelessWidget {
@@ -13,14 +14,18 @@ class CardTextWidget extends StatelessWidget {
     return Row(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 4, bottom: 4),
+          padding: EdgeInsets.only(
+              top: ScreenUtil().setWidth(10),
+              bottom: ScreenUtil().setWidth(10)),
           child: Text(
             title,
             style: titleTextStyle,
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 4, bottom: 4),
+          padding: EdgeInsets.only(
+              top: ScreenUtil().setWidth(10),
+              bottom: ScreenUtil().setWidth(10)),
           child: Text(
             value,
             style: valueTextStyle,
