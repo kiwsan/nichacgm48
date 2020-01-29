@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nichacgm48/constants/globals.dart';
 import 'package:nichacgm48/utils/scale_size.dart';
 import 'package:nichacgm48/ui/widgets/social_medias_widget.dart';
@@ -18,7 +19,7 @@ class LayoutWidget extends StatelessWidget {
             children: <Widget>[
               SocialMediasWidget(),
               SizedBox(
-                height: ScaleSize.safeBlockVertical * 1,
+                height: ScreenUtil().setHeight(2),
               ),
               PersonalInformationWidget(),
             ],
@@ -26,14 +27,14 @@ class LayoutWidget extends StatelessWidget {
         ),
         PhotosWidget(),
         SizedBox(
-          height: ScaleSize.safeBlockVertical * 2.5,
+          height: ScreenUtil().setHeight(2.5),
         ),
         Padding(
           padding: globalPadding,
           child: HashTagsWidget(),
         ),
         SizedBox(
-          height: ScaleSize.safeBlockVertical * 2.5,
+          height: ScreenUtil().setHeight(2.5),
         ),
         Padding(
           padding: globalPadding,

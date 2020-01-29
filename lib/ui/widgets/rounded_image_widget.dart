@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nichacgm48/utils/scale_size.dart';
 
 class RoundedImageWidget extends StatelessWidget {
@@ -17,7 +18,7 @@ class RoundedImageWidget extends StatelessWidget {
         children: <Widget>[
           CustomPaint(
             child: Container(
-              width: ScaleSize.safeBlockHorizontal * 20,
+              width: ScreenUtil().setWidth(20),
               child: ClipOval(
                 child: Image.asset(
                   image,
@@ -31,7 +32,7 @@ class RoundedImageWidget extends StatelessWidget {
             bottom: 5,
             child: ClipOval(
               child: Container(
-                width: ScaleSize.safeBlockHorizontal * 5,
+                width: ScreenUtil().setWidth(5),
                 child: Center(
                   child: Image.asset(socialImage),
                 ),

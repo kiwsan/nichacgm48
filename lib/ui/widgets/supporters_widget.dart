@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nichacgm48/ui/widgets/rounded_image_widget.dart';
 import 'package:nichacgm48/utils/scale_size.dart';
 import 'package:nichacgm48/styles/text_styles.dart';
@@ -19,7 +20,7 @@ class SupportersWidget extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: ScaleSize.safeBlockHorizontal * 2,
+          height: ScreenUtil().setHeight(5),
         ),
         Row(
           children: <Widget>[

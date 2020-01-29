@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nichacgm48/utils/read_more_text.dart';
 import 'package:nichacgm48/utils/scale_size.dart';
 import 'package:nichacgm48/models/instagram_post_model.dart';
@@ -86,8 +87,8 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
                         children: <Widget>[
                           Image.asset(
                             "assets/icons/instagram_icon.png",
-                            width: ScaleSize.safeBlockHorizontal * 4,
-                            height: ScaleSize.safeBlockVertical * 4,
+                            width: ScreenUtil().setWidth(4),
+                            height: ScreenUtil().setHeight(4),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 5.0),
@@ -102,7 +103,7 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
                         ],
                       ),
                       SizedBox(
-                        height: ScaleSize.safeBlockHorizontal * 0.2,
+                        height: ScreenUtil().setHeight(0.2),
                       ),
                       ReadMoreText(
                         caption,

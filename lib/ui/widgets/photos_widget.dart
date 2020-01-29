@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nichacgm48/blocs/instagram_posts_bloc.dart';
 import 'package:nichacgm48/constants/globals.dart';
 import 'package:nichacgm48/utils/scale_size.dart';
@@ -51,7 +52,7 @@ class PhotosWidget extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: ScaleSize.safeBlockHorizontal * 2,
+          height: ScreenUtil().setHeight(2),
         ),
         Padding(
           padding: globalPaddingLeftOnly,
@@ -77,8 +78,8 @@ class PhotosWidget extends StatelessWidget {
                     child: CircularProgressIndicator(
                       backgroundColor: Colors.amber,
                     ),
-                    width: ScaleSize.safeBlockHorizontal * 5,
-                    height: ScaleSize.safeBlockHorizontal * 5,
+                    width: ScreenUtil().setWidth(5),
+                    height: ScreenUtil().setHeight(5),
                   ),
                 );
               },
@@ -112,13 +113,13 @@ class _InstagramPosts extends StatelessWidget {
                       },
                       child: CachedNetworkImage(
                           placeholder: (context, url) => Container(
-                                height: ScaleSize.blockSizeVertical * 22,
-                                width: ScaleSize.blockSizeHorizontal * 35,
+                                height: ScreenUtil().setHeight(22),
+                                width: ScreenUtil().setWidth(35),
                                 color: Colors.black12,
                               ),
                           imageUrl: post.node.thumbnailSrc,
-                          height: ScaleSize.blockSizeVertical * 22,
-                          width: ScaleSize.blockSizeHorizontal * 35,
+                          height: ScreenUtil().setHeight(22),
+                          width: ScreenUtil().setWidth(35),
                           fit: BoxFit.cover),
                     ),
                   ),
@@ -138,7 +139,7 @@ class _InstagramPosts extends StatelessWidget {
           ),
           initialIndex: index,
           scrollDirection: Axis.horizontal,
-          fontSize: ScaleSize.blockSizeHorizontal * 3.5,
+          fontSize: ScreenUtil().setSp(3.5),
         ),
       ),
     );
