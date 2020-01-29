@@ -91,11 +91,14 @@ class _HomePageState extends State<HomePage> {
           ),
           Transform.translate(
             offset: Offset(
-                ScreenUtil().setHeight(-160), ScreenUtil().setHeight(900)),
+                ScreenUtil().setHeight(-250), ScreenUtil().setHeight(900)),
             child: Transform.rotate(
-              angle: -1.2,
-              child: Image.asset('assets/icons/ellipse_middle_right.png',
-                  width: ScreenUtil().setWidth(200)),
+              angle: -0.5,
+              child: SvgPicture.asset(
+                'assets/icons/ellipse_middle_right.svg',
+                width: ScreenUtil().setWidth(250),
+                height: ScreenUtil().setHeight(300),
+              ),
             ),
           ),
           Transform.translate(
