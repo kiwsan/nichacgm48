@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nichacgm48/constants/globals.dart';
-import 'package:nichacgm48/utils/scale_size.dart';
 import 'package:nichacgm48/ui/widgets/social_medias_widget.dart';
 import 'package:nichacgm48/ui/widgets/hashtags_widget.dart';
 import 'package:nichacgm48/ui/widgets/personal_information_widget.dart';
@@ -14,30 +13,33 @@ class LayoutWidget extends StatelessWidget {
     return Column(
       children: <Widget>[
         Padding(
-          padding: globalPadding,
+          padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(globalPadding)),
           child: Column(
             children: <Widget>[
               SocialMediasWidget(),
               SizedBox(
-                height: ScreenUtil().setHeight(2),
+                height: ScreenUtil().setHeight(10),
               ),
               PersonalInformationWidget(),
             ],
           ),
         ),
+        SizedBox(
+          height: ScreenUtil().setHeight(50),
+        ),
         PhotosWidget(),
         SizedBox(
-          height: ScreenUtil().setHeight(2.5),
+          height: ScreenUtil().setHeight(50),
         ),
         Padding(
-          padding: globalPadding,
+          padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(globalPadding)),
           child: HashTagsWidget(),
         ),
         SizedBox(
-          height: ScreenUtil().setHeight(2.5),
+          height: ScreenUtil().setHeight(50),
         ),
         Padding(
-          padding: globalPadding,
+          padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(globalPadding)),
           child: SupportersWidget(),
         )
       ],
