@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nichacgm48/constants/globals.dart';
+import 'package:nichacgm48/ui/widgets/line_square.dart';
 import 'package:nichacgm48/ui/widgets/social_medias_widget.dart';
 import 'package:nichacgm48/ui/widgets/hashtags_widget.dart';
 import 'package:nichacgm48/ui/widgets/personal_information_widget.dart';
@@ -13,7 +14,8 @@ class LayoutWidget extends StatelessWidget {
     return Column(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(globalPadding)),
+          padding: EdgeInsets.symmetric(
+              horizontal: ScreenUtil().setWidth(globalPadding)),
           child: Column(
             children: <Widget>[
               SocialMediasWidget(),
@@ -32,15 +34,25 @@ class LayoutWidget extends StatelessWidget {
           height: ScreenUtil().setHeight(50),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(globalPadding)),
+          padding: EdgeInsets.symmetric(
+              horizontal: ScreenUtil().setWidth(globalPadding)),
           child: HashTagsWidget(),
         ),
         SizedBox(
           height: ScreenUtil().setHeight(50),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(globalPadding)),
+          padding: EdgeInsets.symmetric(
+              horizontal: ScreenUtil().setWidth(globalPadding)),
           child: SupportersWidget(),
+        ),
+        SizedBox(
+          height: ScreenUtil().setHeight(50),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: ScreenUtil().setWidth(globalPadding)),
+          child: LineSquare(),
         )
       ],
     );
