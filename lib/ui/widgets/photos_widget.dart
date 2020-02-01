@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nichacgm48/blocs/instagram_posts_bloc.dart';
 import 'package:nichacgm48/constants/globals.dart';
-import 'package:nichacgm48/utils/scale_size.dart';
 import 'package:nichacgm48/ui/widgets/full_creen_image.dart';
 import 'package:nichacgm48/models/instagram_post_model.dart';
 import 'package:nichacgm48/styles/text_styles.dart';
@@ -18,7 +18,8 @@ class PhotosWidget extends StatelessWidget {
     return Column(
       children: <Widget>[
         Padding(
-          padding: globalPadding,
+          padding: EdgeInsets.symmetric(
+              horizontal: ScreenUtil().setWidth(globalPadding)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -51,10 +52,10 @@ class PhotosWidget extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: ScaleSize.safeBlockHorizontal * 2,
+          height: ScreenUtil().setHeight(20),
         ),
         Padding(
-          padding: globalPaddingLeftOnly,
+          padding: EdgeInsets.only(left: ScreenUtil().setWidth(globalPadding)),
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: StreamBuilder(
@@ -71,14 +72,18 @@ class PhotosWidget extends StatelessWidget {
                 }
 
                 return Padding(
-                  padding: const EdgeInsets.only(
-                      top: 70, bottom: 70, right: 5, left: 5),
+                  padding: EdgeInsets.only(
+                      top: ScreenUtil().setWidth(215),
+                      bottom: ScreenUtil().setWidth(215),
+                      right: ScreenUtil().setWidth(5),
+                      left: ScreenUtil().setWidth(5)),
                   child: SizedBox(
                     child: CircularProgressIndicator(
                       backgroundColor: Colors.amber,
+                      strokeWidth: ScreenUtil().setWidth(5),
                     ),
-                    width: ScaleSize.safeBlockHorizontal * 5,
-                    height: ScaleSize.safeBlockHorizontal * 5,
+                    width: ScreenUtil().setWidth(40),
+                    height: ScreenUtil().setHeight(40),
                   ),
                 );
               },
@@ -103,22 +108,23 @@ class _InstagramPosts extends StatelessWidget {
             .map((i, post) => MapEntry(
                 i,
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(14.0),
+                  borderRadius:
+                      BorderRadius.circular(ScreenUtil().setWidth(20)),
                   child: Padding(
-                    padding: const EdgeInsets.all(2.0),
+                    padding: EdgeInsets.only(right: ScreenUtil().setWidth(10)),
                     child: GestureDetector(
                       onTap: () {
                         _navigationToFullScreenImage(context, i);
                       },
                       child: CachedNetworkImage(
                           placeholder: (context, url) => Container(
-                                height: ScaleSize.blockSizeVertical * 22,
-                                width: ScaleSize.blockSizeHorizontal * 35,
+                                width: ScreenUtil().setWidth(380),
+                                height: ScreenUtil().setHeight(425),
                                 color: Colors.black12,
                               ),
                           imageUrl: post.node.thumbnailSrc,
-                          height: ScaleSize.blockSizeVertical * 22,
-                          width: ScaleSize.blockSizeHorizontal * 35,
+                          width: ScreenUtil().setWidth(380),
+                          height: ScreenUtil().setHeight(425),
                           fit: BoxFit.cover),
                     ),
                   ),
@@ -133,12 +139,12 @@ class _InstagramPosts extends StatelessWidget {
       MaterialPageRoute(
         builder: (context) => FullScreenImage(
           posts: posts,
-          backgroundDecoration: const BoxDecoration(
+          backgroundDecoration: BoxDecoration(
             color: Colors.black,
           ),
           initialIndex: index,
           scrollDirection: Axis.horizontal,
-          fontSize: ScaleSize.blockSizeHorizontal * 3.5,
+          fontSize: ScreenUtil().setSp(35),
         ),
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nichacgm48/utils/read_more_text.dart';
-import 'package:nichacgm48/utils/scale_size.dart';
 import 'package:nichacgm48/models/instagram_post_model.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
@@ -61,7 +61,7 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
           alignment: Alignment.bottomLeft,
           children: <Widget>[
             PhotoViewGallery.builder(
-              scrollPhysics: const BouncingScrollPhysics(),
+              scrollPhysics: BouncingScrollPhysics(),
               builder: _post,
               itemCount: widget.posts.edges.length,
               loadingChild: widget.loadingChild,
@@ -77,8 +77,7 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
               children: <Widget>[
                 Container(
                   color: Colors.black54,
-                  padding: const EdgeInsets.only(
-                      left: 20, right: 20, top: 5, bottom: 15),
+                  padding: EdgeInsets.all(ScreenUtil().setWidth(25)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -86,11 +85,12 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
                         children: <Widget>[
                           Image.asset(
                             "assets/icons/instagram_icon.png",
-                            width: ScaleSize.safeBlockHorizontal * 4,
-                            height: ScaleSize.safeBlockVertical * 4,
+                            width: ScreenUtil().setWidth(40),
+                            height: ScreenUtil().setHeight(40),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 5.0),
+                            padding: EdgeInsets.only(
+                                left: ScreenUtil().setWidth(15)),
                             child: Text(
                               "Nicha CGM48 on Instagram [$publishedOn]",
                               style: TextStyle(
@@ -102,7 +102,7 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
                         ],
                       ),
                       SizedBox(
-                        height: ScaleSize.safeBlockHorizontal * 0.2,
+                        height: ScreenUtil().setHeight(0.2),
                       ),
                       ReadMoreText(
                         caption,
@@ -128,11 +128,13 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          padding: const EdgeInsets.only(top: 15, left: 8),
+                          padding: EdgeInsets.only(
+                              top: ScreenUtil().setWidth(70),
+                              left: ScreenUtil().setWidth(10)),
                           child: IconButton(
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.arrow_back,
-                              size: 25.0,
+                              size: ScreenUtil().setWidth(70),
                               color: Colors.white,
                             ),
                             onPressed: () {
@@ -141,11 +143,12 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.only(top: 15, right: 0),
+                          padding:
+                              EdgeInsets.only(top: ScreenUtil().setWidth(70)),
                           child: IconButton(
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.more_vert,
-                              size: 30.0,
+                              size: ScreenUtil().setWidth(80),
                               color: Colors.white,
                             ),
                             onPressed: () {},
