@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nichacgm48/styles/text_styles.dart';
 
 class SocialMediaWidget extends StatelessWidget {
@@ -18,13 +19,13 @@ class SocialMediaWidget extends StatelessWidget {
               children: <Widget>[
                 Image.asset(
                   imagePath,
-                  width: 25,
+                  width: ScreenUtil().setWidth(75),
                 ),
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
+            padding: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(20)),
             child: Text(
               name,
               style: socialMediaTextStyle,
