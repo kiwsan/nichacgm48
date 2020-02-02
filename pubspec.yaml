@@ -36,6 +36,7 @@ dependencies:
   rxdart : ^0.23.1
   rxdart_codemod: ^0.1.5
   flutter_screenutil: ^1.0.2
+  bubble_bottom_bar: ^1.2.0
 
 dev_dependencies:
   flutter_test:

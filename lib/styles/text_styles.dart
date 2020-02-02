@@ -64,6 +64,6 @@ TextStyle errorTextStyle = TextStyle(
     fontWeight: FontWeight.normal);
 
 TextStyle bubbleBottomBarMenuTextStyle = TextStyle(
-    fontSize: ScaleSize.safeBlockHorizontal * 3.5,
+    fontSize: ScreenUtil().setSp(35),
     color: Colors.yellow[600],
     fontWeight: FontWeight.normal);
