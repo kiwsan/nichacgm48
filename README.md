@@ -38,6 +38,7 @@ $ flutter run
 
 Prototype on InVision Play Mode
 - [Home Page](https://kiwsan291178.invisionapp.com/public/share/SRZF0TZP2#screens/475912830)
+- [Shop Page](https://kiwsan291178.invisionapp.com/public/share/SRZF0TZP2#screens/475916621)
 
 ## Screenshots
 
