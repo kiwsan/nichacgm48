@@ -277,4 +277,5 @@ class _HomePageState extends State<HomePage> {
         message['body'].toString(), platformChannelSpecifics,
         payload: json.encode(message));
   }
+
 }
