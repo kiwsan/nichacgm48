@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -39,187 +38,129 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    ScaleSize().init(context);
+    //default value : width : 1080px , height:1920px , allowFontScaling:false
+    ScreenUtil.init(context);
 
     return Scaffold(
         body: NestedScrollView(
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-              SliverAppBar(
-                expandedHeight: ScaleSize.safeBlockHorizontal * 40,
-                pinned: true,
-                elevation: 0,
-                titleSpacing: 0,
-                floating: true,
-                // leading: Icon(Icons.menu),
-                backgroundColor: Colors.transparent,
-                flexibleSpace: FlexibleSpaceBar(
-                  collapseMode: CollapseMode.parallax,
-                  background: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: globalPadding,
-                        child: HeadWidget(),
-                      ),
-                    ],
-                  ),
-                ),
-                actions: <Widget>[
-                  IconButton(
-                    icon: const Icon(
-                      Icons.notifications,
-                      size: 35.0,
-                      color: Colors.black54,
-                    ),
-                    onPressed: () {},
+      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+        return <Widget>[
+          SliverAppBar(
+            expandedHeight: ScreenUtil().setHeight(440),
+            pinned: true,
+            elevation: 0,
+            titleSpacing: 0,
+            floating: true,
+            // leading: Icon(Icons.menu),
+            backgroundColor: Colors.transparent,
+            flexibleSpace: FlexibleSpaceBar(
+              collapseMode: CollapseMode.parallax,
+              background: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: ScreenUtil().setWidth(globalPadding)),
+                    child: HeadWidget(),
                   ),
                 ],
               ),
-            ];
-          },
-          body: Stack(
-            children: <Widget>[
-              Transform.translate(
-                offset: Offset(ScaleSize.safeBlockHorizontal * 55,
-                    ScaleSize.safeBlockVertical - 200),
-                child: Transform.rotate(
-                  angle: -4.2,
-                  child: SvgPicture.asset(
-                    'assets/icons/ellipse_top_left.svg',
-                    width: ScaleSize.safeBlockHorizontal * 95,
-                  ),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(
+                  Icons.notifications,
+                  size: ScreenUtil().setWidth(90),
+                  color: Colors.black54,
                 ),
-              ),
-              Transform.translate(
-                offset: Offset(ScaleSize.safeBlockHorizontal - 80,
-                    ScaleSize.safeBlockVertical * 50),
-                child: Transform.rotate(
-                  angle: -1,
-                  child: Image.asset('assets/icons/ellipse_middle_right.png',
-                      width: 100),
-                ),
-              ),
-              Transform.translate(
-                offset: Offset(ScaleSize.safeBlockHorizontal * 92,
-                    ScaleSize.safeBlockVertical * 90),
-                child: Transform.rotate(
-                  angle: -2,
-                  child: SvgPicture.asset(
-                      'assets/icons/ellipse_center_buttom.svg',
-                      width: ScaleSize.safeBlockHorizontal * 24),
-                ),
-              ),
-              SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: globalPadding,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                FadeAnimation(
-                                    1,
-                                    Image.asset(
-                                      "assets/images/h_nicha.png",
-                                      width: ScaleSize.safeBlockHorizontal * 65,
-                                      height:
-                                          ScaleSize.safeBlockHorizontal * 90,
-                                    ))
-                              ]),
-                          Column(
-                            children: <Widget>[
-                              Text(
-                                "CGM48",
-                                style: bandNameTextStyle,
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    LayoutWidget(),
-                    SizedBox(
-                      height: ScaleSize.safeBlockVertical * 4,
-                    ),
-                    Padding(
-                      padding: globalPadding,
-                      child: FooterWidget(),
-                    )
-                  ],
-                ),
+                onPressed: () {},
               ),
             ],
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: Icon(
-            Icons.payment,
-            color: Colors.black87,
+        ];
+      },
+      body: Stack(
+        children: <Widget>[
+          Transform.translate(
+            offset: Offset(
+                ScreenUtil().setWidth(590), ScreenUtil().setHeight(-650)),
+            child: Transform.rotate(
+              angle: -4.1,
+              child: SvgPicture.asset(
+                'assets/icons/ellipse_top_left.svg',
+                width: ScreenUtil().setWidth(1250),
+              ),
+            ),
           ),
-          backgroundColor: Colors.yellow[600],
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-        bottomNavigationBar: BubbleBottomBar(
-          hasNotch: true,
-          fabLocation: BubbleBottomBarFabLocation.end,
-          opacity: .2,
-          currentIndex: currentIndex,
-          onTap: changePage,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-          //border radius doesn't work when the notch is enabled.
-          elevation: 8,
-          items: <BubbleBottomBarItem>[
-            BubbleBottomBarItem(
-                backgroundColor: Colors.yellow[500],
-                icon: Icon(
-                  Icons.home,
-                  color: Colors.black,
+          Transform.translate(
+            offset: Offset(
+                ScreenUtil().setHeight(-250), ScreenUtil().setHeight(900)),
+            child: Transform.rotate(
+              angle: -0.5,
+              child: SvgPicture.asset(
+                'assets/icons/ellipse_middle_right.svg',
+                width: ScreenUtil().setWidth(250),
+                height: ScreenUtil().setHeight(300),
+              ),
+            ),
+          ),
+          Transform.translate(
+            offset: Offset(
+                ScreenUtil().setWidth(995), ScreenUtil().setHeight(1700)),
+            child: Transform.rotate(
+              angle: -1.5,
+              child: SvgPicture.asset('assets/icons/ellipse_center_buttom.svg',
+                  width: ScreenUtil().setWidth(220)),
+            ),
+          ),
+          SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: ScreenUtil().setWidth(globalPadding)),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            FadeAnimation(
+                                1,
+                                Image.asset(
+                                  "assets/images/h_nicha.png",
+                                  width: ScreenUtil().setWidth(695),
+                                  height: ScreenUtil().setHeight(1020),
+                                ))
+                          ]),
+                      Column(
+                        children: <Widget>[
+                          Text(
+                            "CGM48",
+                            style: bandNameTextStyle,
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-                activeIcon: Icon(
-                  Icons.home,
-                  color: Colors.black54,
+                LayoutWidget(),
+                SizedBox(
+                  height: ScreenUtil().setHeight(50),
                 ),
-                title: Text("Home", style: bubbleBottomBarMenuTextStyle)),
-            BubbleBottomBarItem(
-                backgroundColor: Colors.yellow[500],
-                icon: Icon(
-                  Icons.apps,
-                  color: Colors.black,
-                ),
-                activeIcon: Icon(
-                  Icons.apps,
-                  color: Colors.black54,
-                ),
-                title: Text("Projects", style: bubbleBottomBarMenuTextStyle)),
-            BubbleBottomBarItem(
-                backgroundColor: Colors.yellow[500],
-                icon: Icon(
-                  Icons.shopping_basket,
-                  color: Colors.black,
-                ),
-                activeIcon: Icon(
-                  Icons.shopping_basket,
-                  color: Colors.black54,
-                ),
-                title: Text(
-                  "Shop",
-                  style: bubbleBottomBarMenuTextStyle,
-                )),
-          ],
-        ));
-  }
-
-  void changePage(int index) {
-    setState(() {
-      currentIndex = index;
-    });
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: ScreenUtil().setWidth(globalPadding)),
+                  child: FooterWidget(),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    ));
   }
 
   void registerNotification() {
