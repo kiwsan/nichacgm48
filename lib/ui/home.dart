@@ -20,8 +20,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final FirebaseMessaging firebaseMessaging = new FirebaseMessaging();
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+  final FirebaseMessaging _firebaseMessaging = new FirebaseMessaging();
+  final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       new FlutterLocalNotificationsPlugin();
 
   @override
@@ -162,9 +162,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   void registerNotification() {
-    firebaseMessaging.requestNotificationPermissions();
+    _firebaseMessaging.requestNotificationPermissions();
 
-    firebaseMessaging.configure(onMessage: (Map<String, dynamic> message) {
+    _firebaseMessaging.configure(onMessage: (Map<String, dynamic> message) {
       print('onMessage: $message');
       showNotification(message['notification']);
       return;
@@ -176,7 +176,7 @@ class _HomePageState extends State<HomePage> {
       return;
     });
 
-    firebaseMessaging.getToken().then((token) {
+    _firebaseMessaging.getToken().then((token) {
       //print('token: $token');
     }).catchError((err) {
       print(err.message.toString());
@@ -189,7 +189,7 @@ class _HomePageState extends State<HomePage> {
     var initializationSettingsIOS = new IOSInitializationSettings();
     var initializationSettings = new InitializationSettings(
         initializationSettingsAndroid, initializationSettingsIOS);
-    flutterLocalNotificationsPlugin.initialize(initializationSettings);
+    _flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 
   void showNotification(message) async {
@@ -205,7 +205,7 @@ class _HomePageState extends State<HomePage> {
     var iOSPlatformChannelSpecifics = new IOSNotificationDetails();
     var platformChannelSpecifics = new NotificationDetails(
         androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
-    await flutterLocalNotificationsPlugin.show(0, message['title'].toString(),
+    await _flutterLocalNotificationsPlugin.show(0, message['title'].toString(),
         message['body'].toString(), platformChannelSpecifics,
         payload: json.encode(message));
   }
