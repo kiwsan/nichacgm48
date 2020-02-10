@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return <Widget>[
           SliverAppBar(
-            expandedHeight: ScreenUtil().setHeight(400),
+            expandedHeight: ScreenUtil().setHeight(350),
             pinned: true,
             elevation: 0,
             titleSpacing: 0,
@@ -56,8 +56,10 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: ScreenUtil().setWidth(globalPadding)),
+                    padding: EdgeInsets.only(
+                        left: ScreenUtil().setWidth(globalPadding),
+                        right: ScreenUtil().setWidth(globalPadding),
+                        top: ScreenUtil().setWidth(40)),
                     child: HeadWidget(),
                   ),
                 ],
