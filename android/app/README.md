@@ -1,7 +1,7 @@
 We’re going to make some simple shell scripts to build the app and run tests, to keep our Fastfile clean.
 
 ```bash
-$ touch android/fastlane/flutter_build.sh
+touch android/fastlane/flutter_build.sh
 ```
 
 ```bash

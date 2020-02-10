@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return <Widget>[
           SliverAppBar(
-            expandedHeight: ScreenUtil().setHeight(440),
+            expandedHeight: ScreenUtil().setHeight(400),
             pinned: true,
             elevation: 0,
             titleSpacing: 0,

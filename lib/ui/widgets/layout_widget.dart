@@ -13,33 +13,36 @@ class LayoutWidget extends StatelessWidget {
     return Column(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(globalPadding)),
+          padding: EdgeInsets.symmetric(
+              horizontal: ScreenUtil().setWidth(globalPadding)),
           child: Column(
             children: <Widget>[
               SocialMediasWidget(),
               SizedBox(
-                height: ScreenUtil().setHeight(10),
+                height: ScreenUtil().setHeight(40),
               ),
               PersonalInformationWidget(),
             ],
           ),
         ),
         SizedBox(
-          height: ScreenUtil().setHeight(50),
+          height: ScreenUtil().setHeight(70),
         ),
         PhotosWidget(),
         SizedBox(
-          height: ScreenUtil().setHeight(50),
+          height: ScreenUtil().setHeight(70),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(globalPadding)),
+          padding: EdgeInsets.symmetric(
+              horizontal: ScreenUtil().setWidth(globalPadding)),
           child: HashTagsWidget(),
         ),
         SizedBox(
-          height: ScreenUtil().setHeight(50),
+          height: ScreenUtil().setHeight(70),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(globalPadding)),
+          padding: EdgeInsets.symmetric(
+              horizontal: ScreenUtil().setWidth(globalPadding)),
           child: SupportersWidget(),
         )
       ],

@@ -25,7 +25,7 @@ class SupportersWidget extends StatelessWidget {
           children: <Widget>[
             InkWell(
                 onTap: () async {
-                  const protocolUrl = 'fb://page/nichacgm48thfans';
+                  //const protocolUrl = 'fb://page/nichacgm48thfans';
                   const fallbackUrl =
                       'https://www.facebook.com/nichacgm48thfans';
 
