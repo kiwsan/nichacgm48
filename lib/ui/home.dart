@@ -8,6 +8,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nichacgm48/constants/globals.dart';
+import 'package:nichacgm48/styles/colors.dart';
 import 'package:nichacgm48/styles/text_styles.dart';
 import 'package:nichacgm48/ui/widgets/footer_widget.dart';
 import 'package:nichacgm48/ui/widgets/head_widget.dart';
@@ -24,12 +25,48 @@ class _HomePageState extends State<HomePage> {
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       new FlutterLocalNotificationsPlugin();
 
+  ScrollController _scrollController;
+
+  bool get isShrink =>
+      _scrollController.hasClients &&
+      _getAppBarCollapsePercent() >
+          (ScreenUtil().setHeight(300) - kToolbarHeight);
+
+  bool lastStatus = true;
+
+  _scrollListener() {
+    if (isShrink != lastStatus) {
+      setState(() {
+        lastStatus = isShrink;
+      });
+    }
+  }
+
+  double _getAppBarCollapsePercent() {
+    if (!_scrollController.hasClients ||
+        // ignore: invalid_use_of_protected_member
+        _scrollController.positions.length > 1) {
+      return ScreenUtil().setHeight(170);
+    }
+
+    return _scrollController.offset;
+  }
+
   @override
   void initState() {
+    _scrollController = ScrollController();
+    _scrollController.addListener(_scrollListener);
+
     super.initState();
 
     registerNotification();
     configLocalNotification();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_scrollListener);
+    super.dispose();
   }
 
   @override
@@ -39,16 +76,38 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
         body: NestedScrollView(
+      controller: _scrollController,
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return <Widget>[
           SliverAppBar(
             expandedHeight: ScreenUtil().setHeight(350),
             pinned: true,
             elevation: 0,
-            titleSpacing: 0,
-            floating: true,
-            // leading: Icon(Icons.menu),
-            backgroundColor: Colors.transparent,
+            leading: Padding(
+              padding: EdgeInsets.only(
+                  left: ScreenUtil().setWidth(globalPadding),
+                  bottom: ScreenUtil().setWidth(20),
+                  top: ScreenUtil().setWidth(20)),
+              child: isShrink
+                  ? CircleAvatar(
+                      backgroundImage: AssetImage('assets/images/profile.jpg'))
+                  : Container(),
+            ),
+            title: isShrink
+                ? Text(
+                    "Nicha CGM48",
+                    style: TextStyle(
+                        fontSize: ScreenUtil().setSp(50),
+                        color: grey800TextColor,
+                        fontWeight: FontWeight.normal),
+                  )
+                : Container(),
+            backgroundColor: isShrink ? Colors.white : Colors.transparent,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(0),
+              ),
+            ),
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.parallax,
               background: Column(
@@ -59,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                     padding: EdgeInsets.only(
                         left: ScreenUtil().setWidth(globalPadding),
                         right: ScreenUtil().setWidth(globalPadding),
-                        top: ScreenUtil().setWidth(40)),
+                        top: ScreenUtil().setWidth(60)),
                     child: HeadWidget(),
                   ),
                 ],

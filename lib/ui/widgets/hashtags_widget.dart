@@ -94,7 +94,7 @@ class HashTagsWidget extends StatelessWidget {
                       }),
                 ),
               ),
-            )
+            ),
           ],
         )
       ],

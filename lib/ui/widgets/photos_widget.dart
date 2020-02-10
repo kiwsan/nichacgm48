@@ -75,15 +75,15 @@ class PhotosWidget extends StatelessWidget {
                   padding: EdgeInsets.only(
                       top: ScreenUtil().setWidth(215),
                       bottom: ScreenUtil().setWidth(215),
-                      right: ScreenUtil().setWidth(5),
-                      left: ScreenUtil().setWidth(5)),
+                      right: ScreenUtil().setWidth(10),
+                      left: ScreenUtil().setWidth(10)),
                   child: SizedBox(
                     child: CircularProgressIndicator(
                       backgroundColor: Colors.amber,
                       strokeWidth: ScreenUtil().setWidth(5),
                     ),
-                    width: ScreenUtil().setWidth(40),
-                    height: ScreenUtil().setHeight(40),
+                    width: ScreenUtil().setWidth(30),
+                    height: ScreenUtil().setHeight(30),
                   ),
                 );
               },

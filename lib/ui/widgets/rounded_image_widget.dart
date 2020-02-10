@@ -5,8 +5,7 @@ class RoundedImageWidget extends StatelessWidget {
   final String image;
   final String socialImage;
 
-  const RoundedImageWidget(
-      {Key key, @required this.image, @required this.socialImage})
+  const RoundedImageWidget({Key key, @required this.image, this.socialImage})
       : super(key: key);
 
   @override
@@ -32,7 +31,7 @@ class RoundedImageWidget extends StatelessWidget {
               child: Container(
                 width: ScreenUtil().setWidth(60),
                 child: Center(
-                  child: Image.asset(socialImage),
+                  child: socialImage != null ? Image.asset(socialImage) : Container(),
                 ),
               ),
             ),
