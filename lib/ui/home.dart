@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nichacgm48/blocs/hashtag_bloc.dart';
+import 'package:nichacgm48/blocs/profile_bloc.dart';
 import 'package:nichacgm48/constants/globals.dart';
 import 'package:nichacgm48/styles/colors.dart';
 import 'package:nichacgm48/styles/text_styles.dart';
@@ -73,6 +75,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     //default value : width : 1080px , height:1920px , allowFontScaling:false
     ScreenUtil.init(context);
+
+    //api
+    profileBLoc.fetchProfile();
+    hastagBloc.fetchHashtags();
 
     return Scaffold(
         body: NestedScrollView(
