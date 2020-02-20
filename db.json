@@ -1,11 +1,12 @@
 {
-  "posts": [
+  "hashtags": [
     {
       "id": 1,
-      "title": "hello"
+      "hashtag": "#nichacgm48"
+    },
+    {
+      "id": 1,
+      "hashtag": "#cgm48"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
