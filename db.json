@@ -2,5 +2,19 @@
   "profile": {
     "name": "NichaCGM48",
     "image": "https://raw.githubusercontent.com/kiwsan/nichacgm48/master/assets/images/h_nicha.png"
-  }
+  },
+  "hashtags": [
+    {
+      "id": 1,
+      "hashtag": "#NichaCGM48"
+    },
+    {
+      "id": 2,
+      "hashtag": "#CGM48"
+    },
+    {
+      "id": 3,
+      "hashtag": "#N26withTHESUN"
+    }
+  ]
 }
