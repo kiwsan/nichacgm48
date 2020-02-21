@@ -19,5 +19,12 @@
       "title": "#N26withTHESUN",
       "hashtag": "N26withTHESUN"
     }
+  ],
+  "supporters": [
+    {
+      "id": 1,
+      "image": "https://raw.githubusercontent.com/kiwsan/nichacgm48/master/assets/images/nicha_home_fan_page.jpg",
+      "social": "https://raw.githubusercontent.com/kiwsan/nichacgm48/master/assets/icons/facebook_icon.png"
+    }
   ]
 }
