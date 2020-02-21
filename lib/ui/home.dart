@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nichacgm48/blocs/hashtag_bloc.dart';
 import 'package:nichacgm48/blocs/profile_bloc.dart';
 import 'package:nichacgm48/constants/globals.dart';
+import 'package:nichacgm48/models/profile_model.dart';
 import 'package:nichacgm48/styles/colors.dart';
 import 'package:nichacgm48/styles/text_styles.dart';
 import 'package:nichacgm48/ui/widgets/footer_widget.dart';
@@ -78,7 +78,6 @@ class _HomePageState extends State<HomePage> {
 
     //api
     profileBLoc.fetchProfile();
-    hastagBloc.fetchHashtags();
 
     return Scaffold(
         body: NestedScrollView(
@@ -273,5 +272,22 @@ class _HomePageState extends State<HomePage> {
     await _flutterLocalNotificationsPlugin.show(0, message['title'].toString(),
         message['body'].toString(), platformChannelSpecifics,
         payload: json.encode(message));
+  }
+}
+
+class _Profile extends StatelessWidget {
+  final Profile profile;
+
+  _Profile({Key key, @required this.profile}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeAnimation(
+        1,
+        Image.network(
+          profile.image,
+          width: ScreenUtil().setWidth(695),
+          height: ScreenUtil().setHeight(1020),
+        ));
   }
 }

@@ -6,10 +6,10 @@ import 'package:nichacgm48/constants/globals.dart';
 import 'package:nichacgm48/ui/widgets/full_creen_image.dart';
 import 'package:nichacgm48/models/instagram_post_model.dart';
 import 'package:nichacgm48/styles/text_styles.dart';
+import 'package:nichacgm48/ui/widgets/progressbar_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PhotosWidget extends StatelessWidget {
-  final EdgeOwnerToTimelineMedia posts = null;
 
   @override
   Widget build(BuildContext context) {
@@ -71,21 +71,7 @@ class PhotosWidget extends StatelessWidget {
                   );
                 }
 
-                return Padding(
-                  padding: EdgeInsets.only(
-                      top: ScreenUtil().setWidth(215),
-                      bottom: ScreenUtil().setWidth(215),
-                      right: ScreenUtil().setWidth(10),
-                      left: ScreenUtil().setWidth(10)),
-                  child: SizedBox(
-                    child: CircularProgressIndicator(
-                      backgroundColor: Colors.amber,
-                      strokeWidth: ScreenUtil().setWidth(5),
-                    ),
-                    width: ScreenUtil().setWidth(30),
-                    height: ScreenUtil().setHeight(30),
-                  ),
-                );
+                return ProgressBar(size: 215,);
               },
             ),
           ),

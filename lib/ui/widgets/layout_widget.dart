@@ -38,7 +38,7 @@ class LayoutWidget extends StatelessWidget {
           child: HashTagsWidget(),
         ),
         SizedBox(
-          height: ScreenUtil().setHeight(70),
+          height: ScreenUtil().setHeight(55),
         ),
         Padding(
           padding: EdgeInsets.symmetric(

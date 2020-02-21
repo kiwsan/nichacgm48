@@ -6,15 +6,25 @@
   "hashtags": [
     {
       "id": 1,
-      "hashtag": "#NichaCGM48"
+      "title": "#NichaCGM48",
+      "hashtag": "NichaCGM48"
     },
     {
       "id": 2,
-      "hashtag": "#CGM48"
+      "title": "#CGM48",
+      "hashtag": "CGM48"
     },
     {
       "id": 3,
-      "hashtag": "#N26withTHESUN"
+      "title": "#N26withTHESUN",
+      "hashtag": "N26withTHESUN"
+    }
+  ],
+  "supporters": [
+    {
+      "id": 1,
+      "image": "https://raw.githubusercontent.com/kiwsan/nichacgm48/master/assets/images/nicha_home_fan_page.jpg",
+      "social": "https://raw.githubusercontent.com/kiwsan/nichacgm48/master/assets/icons/facebook_icon.png"
     }
   ]
 }
