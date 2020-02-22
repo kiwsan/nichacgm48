@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,8 @@ class _HomePageState extends State<HomePage> {
   final FirebaseMessaging _firebaseMessaging = new FirebaseMessaging();
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       new FlutterLocalNotificationsPlugin();
+
+  int currentIndex;
 
   ScrollController _scrollController;
 
@@ -61,8 +64,16 @@ class _HomePageState extends State<HomePage> {
 
     super.initState();
 
+    currentIndex = 0;
+
     registerNotification();
     configLocalNotification();
+  }
+
+  void changePage(int index) {
+    setState(() {
+      currentIndex = index;
+    });
   }
 
   @override
@@ -81,148 +92,207 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
         body: NestedScrollView(
-      controller: _scrollController,
-      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-        return <Widget>[
-          SliverAppBar(
-            expandedHeight: ScreenUtil().setHeight(350),
-            pinned: true,
-            elevation: 0,
-            leading: Padding(
-              padding: EdgeInsets.only(
-                  left: ScreenUtil().setWidth(globalPadding),
-                  bottom: ScreenUtil().setWidth(20),
-                  top: ScreenUtil().setWidth(20)),
-              child: isShrink
-                  ? CircleAvatar(
-                      backgroundImage: AssetImage('assets/images/profile.jpg'))
-                  : Container(),
-            ),
-            title: isShrink
-                ? Text(
-                    "Nicha CGM48",
-                    style: TextStyle(
-                        fontSize: ScreenUtil().setSp(50),
-                        color: grey800TextColor,
-                        fontWeight: FontWeight.normal),
-                  )
-                : Container(),
-            backgroundColor: isShrink ? Colors.white : Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(0),
-              ),
-            ),
-            flexibleSpace: FlexibleSpaceBar(
-              collapseMode: CollapseMode.parallax,
-              background: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: ScreenUtil().setWidth(globalPadding),
-                        right: ScreenUtil().setWidth(globalPadding),
-                        top: ScreenUtil().setWidth(60)),
-                    child: HeadWidget(),
-                  ),
-                ],
-              ),
-            ),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(
-                  Icons.notifications,
-                  size: ScreenUtil().setWidth(90),
-                  color: Colors.black54,
+          controller: _scrollController,
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              SliverAppBar(
+                expandedHeight: ScreenUtil().setHeight(350),
+                pinned: true,
+                elevation: 0,
+                leading: Padding(
+                  padding: EdgeInsets.only(
+                      left: ScreenUtil().setWidth(globalPadding),
+                      bottom: ScreenUtil().setWidth(20),
+                      top: ScreenUtil().setWidth(20)),
+                  child: isShrink
+                      ? CircleAvatar(
+                          backgroundImage:
+                              AssetImage('assets/images/profile.jpg'))
+                      : Container(),
                 ),
-                onPressed: () {},
-              ),
-            ],
-          ),
-        ];
-      },
-      body: Stack(
-        children: <Widget>[
-          Transform.translate(
-            offset: Offset(
-                ScreenUtil().setWidth(590), ScreenUtil().setHeight(-650)),
-            child: Transform.rotate(
-              angle: -4.1,
-              child: SvgPicture.asset(
-                'assets/icons/ellipse_top_left.svg',
-                width: ScreenUtil().setWidth(1250),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(
-                ScreenUtil().setHeight(-250), ScreenUtil().setHeight(900)),
-            child: Transform.rotate(
-              angle: -0.5,
-              child: SvgPicture.asset(
-                'assets/icons/ellipse_middle_right.svg',
-                width: ScreenUtil().setWidth(250),
-                height: ScreenUtil().setHeight(300),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(
-                ScreenUtil().setWidth(995), ScreenUtil().setHeight(1700)),
-            child: Transform.rotate(
-              angle: -1.5,
-              child: SvgPicture.asset('assets/icons/ellipse_center_buttom.svg',
-                  width: ScreenUtil().setWidth(220)),
-            ),
-          ),
-          SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: ScreenUtil().setWidth(globalPadding)),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            FadeAnimation(
-                                1,
-                                Image.asset(
-                                  "assets/images/h_nicha.png",
-                                  width: ScreenUtil().setWidth(695),
-                                  height: ScreenUtil().setHeight(1020),
-                                ))
-                          ]),
-                      Column(
-                        children: <Widget>[
-                          Text(
-                            "CGM48",
-                            style: bandNameTextStyle,
-                          )
-                        ],
+                title: isShrink
+                    ? Text(
+                        "Nicha CGM48",
+                        style: TextStyle(
+                            fontSize: ScreenUtil().setSp(50),
+                            color: grey800TextColor,
+                            fontWeight: FontWeight.normal),
                       )
+                    : Container(),
+                backgroundColor: isShrink ? Colors.white : Colors.transparent,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(0),
+                  ),
+                ),
+                flexibleSpace: FlexibleSpaceBar(
+                  collapseMode: CollapseMode.parallax,
+                  background: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: ScreenUtil().setWidth(globalPadding),
+                            right: ScreenUtil().setWidth(globalPadding),
+                            top: ScreenUtil().setWidth(60)),
+                        child: HeadWidget(),
+                      ),
                     ],
                   ),
                 ),
-                LayoutWidget(),
-                SizedBox(
-                  height: ScreenUtil().setHeight(50),
+                actions: <Widget>[
+                  IconButton(
+                    icon: Icon(
+                      Icons.notifications,
+                      size: ScreenUtil().setWidth(90),
+                      color: Colors.black54,
+                    ),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ];
+          },
+          body: Stack(
+            children: <Widget>[
+              Transform.translate(
+                offset: Offset(
+                    ScreenUtil().setWidth(590), ScreenUtil().setHeight(-650)),
+                child: Transform.rotate(
+                  angle: -4.1,
+                  child: SvgPicture.asset(
+                    'assets/icons/ellipse_top_left.svg',
+                    width: ScreenUtil().setWidth(1250),
+                  ),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: ScreenUtil().setWidth(globalPadding)),
-                  child: FooterWidget(),
-                )
-              ],
-            ),
+              ),
+              Transform.translate(
+                offset: Offset(
+                    ScreenUtil().setHeight(-250), ScreenUtil().setHeight(900)),
+                child: Transform.rotate(
+                  angle: -0.5,
+                  child: SvgPicture.asset(
+                    'assets/icons/ellipse_middle_right.svg',
+                    width: ScreenUtil().setWidth(250),
+                    height: ScreenUtil().setHeight(300),
+                  ),
+                ),
+              ),
+              Transform.translate(
+                offset: Offset(
+                    ScreenUtil().setWidth(995), ScreenUtil().setHeight(1700)),
+                child: Transform.rotate(
+                  angle: -1.5,
+                  child: SvgPicture.asset(
+                      'assets/icons/ellipse_center_buttom.svg',
+                      width: ScreenUtil().setWidth(220)),
+                ),
+              ),
+              SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: ScreenUtil().setWidth(globalPadding)),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                FadeAnimation(
+                                    1,
+                                    Image.asset(
+                                      "assets/images/h_nicha.png",
+                                      width: ScreenUtil().setWidth(695),
+                                      height: ScreenUtil().setHeight(1020),
+                                    ))
+                              ]),
+                          Column(
+                            children: <Widget>[
+                              Text(
+                                "CGM48",
+                                style: bandNameTextStyle,
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    LayoutWidget(),
+                    SizedBox(
+                      height: ScreenUtil().setHeight(50),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: ScreenUtil().setWidth(globalPadding)),
+                      child: FooterWidget(),
+                    )
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-    ));
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(
+            Icons.payment,
+            color: Colors.black87,
+          ),
+          backgroundColor: Colors.yellow[600],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        bottomNavigationBar: BubbleBottomBar(
+          hasNotch: true,
+          fabLocation: BubbleBottomBarFabLocation.end,
+          opacity: .2,
+          currentIndex: currentIndex,
+          onTap: changePage,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+          //border radius doesn't work when the notch is enabled.
+          elevation: 8,
+          items: <BubbleBottomBarItem>[
+            BubbleBottomBarItem(
+                backgroundColor: Colors.yellow[500],
+                icon: Icon(
+                  Icons.home,
+                  color: Colors.black,
+                ),
+                activeIcon: Icon(
+                  Icons.home,
+                  color: Colors.black54,
+                ),
+                title: Text("Home", style: bubbleBottomBarMenuTextStyle)),
+            BubbleBottomBarItem(
+                backgroundColor: Colors.yellow[500],
+                icon: Icon(
+                  Icons.apps,
+                  color: Colors.black,
+                ),
+                activeIcon: Icon(
+                  Icons.apps,
+                  color: Colors.black54,
+                ),
+                title: Text("Projects", style: bubbleBottomBarMenuTextStyle)),
+            BubbleBottomBarItem(
+                backgroundColor: Colors.yellow[500],
+                icon: Icon(
+                  Icons.shopping_basket,
+                  color: Colors.black,
+                ),
+                activeIcon: Icon(
+                  Icons.shopping_basket,
+                  color: Colors.black54,
+                ),
+                title: Text(
+                  "Shop",
+                  style: bubbleBottomBarMenuTextStyle,
+                )),
+          ],
+        ));
   }
 
   void registerNotification() {
