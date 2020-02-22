@@ -92,268 +92,150 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
         body: NestedScrollView(
-      controller: _scrollController,
-      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-        return <Widget>[
-          SliverAppBar(
-            expandedHeight: ScreenUtil().setHeight(350),
-            pinned: true,
-            elevation: 0,
-            leading: Padding(
-              padding: EdgeInsets.only(
-                  left: ScreenUtil().setWidth(globalPadding),
-                  bottom: ScreenUtil().setWidth(20),
-                  top: ScreenUtil().setWidth(20)),
-              child: isShrink
-                  ? CircleAvatar(
-                      backgroundImage: AssetImage('assets/images/profile.jpg'))
-                  : Container(),
-            ),
-            title: isShrink
-                ? Text(
-                    "Nicha CGM48",
-                    style: TextStyle(
-                        fontSize: ScreenUtil().setSp(50),
-                        color: grey800TextColor,
-                        fontWeight: FontWeight.normal),
-                  )
-                : Container(),
-            backgroundColor: isShrink ? Colors.white : Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(0),
-              ),
-            ),
-            flexibleSpace: FlexibleSpaceBar(
-              collapseMode: CollapseMode.parallax,
-              background: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: ScreenUtil().setWidth(globalPadding),
-                        right: ScreenUtil().setWidth(globalPadding),
-                        top: ScreenUtil().setWidth(60)),
-                    child: HeadWidget(),
+          controller: _scrollController,
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              SliverAppBar(
+                expandedHeight: ScreenUtil().setHeight(350),
+                pinned: true,
+                elevation: 0,
+                leading: Padding(
+                  padding: EdgeInsets.only(
+                      left: ScreenUtil().setWidth(globalPadding),
+                      bottom: ScreenUtil().setWidth(20),
+                      top: ScreenUtil().setWidth(20)),
+                  child: isShrink
+                      ? CircleAvatar(
+                          backgroundImage:
+                              AssetImage('assets/images/profile.jpg'))
+                      : Container(),
+                ),
+                title: isShrink
+                    ? Text(
+                        "Nicha CGM48",
+                        style: TextStyle(
+                            fontSize: ScreenUtil().setSp(50),
+                            color: grey800TextColor,
+                            fontWeight: FontWeight.normal),
+                      )
+                    : Container(),
+                backgroundColor: isShrink ? Colors.white : Colors.transparent,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(0),
+                  ),
+                ),
+                flexibleSpace: FlexibleSpaceBar(
+                  collapseMode: CollapseMode.parallax,
+                  background: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: ScreenUtil().setWidth(globalPadding),
+                            right: ScreenUtil().setWidth(globalPadding),
+                            top: ScreenUtil().setWidth(60)),
+                        child: HeadWidget(),
+                      ),
+                    ],
+                  ),
+                ),
+                actions: <Widget>[
+                  IconButton(
+                    icon: Icon(
+                      Icons.notifications,
+                      size: ScreenUtil().setWidth(90),
+                      color: Colors.black54,
+                    ),
+                    onPressed: () {},
                   ),
                 ],
               ),
-            ),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(
-                  Icons.notifications,
-                  size: ScreenUtil().setWidth(90),
-                  color: Colors.black54,
+            ];
+          },
+          body: Stack(
+            children: <Widget>[
+              Transform.translate(
+                offset: Offset(
+                    ScreenUtil().setWidth(590), ScreenUtil().setHeight(-650)),
+                child: Transform.rotate(
+                  angle: -4.1,
+                  child: SvgPicture.asset(
+                    'assets/icons/ellipse_top_left.svg',
+                    width: ScreenUtil().setWidth(1250),
+                  ),
                 ),
-                onPressed: () {},
+              ),
+              Transform.translate(
+                offset: Offset(
+                    ScreenUtil().setHeight(-250), ScreenUtil().setHeight(900)),
+                child: Transform.rotate(
+                  angle: -0.5,
+                  child: SvgPicture.asset(
+                    'assets/icons/ellipse_middle_right.svg',
+                    width: ScreenUtil().setWidth(250),
+                    height: ScreenUtil().setHeight(300),
+                  ),
+                ),
+              ),
+              Transform.translate(
+                offset: Offset(
+                    ScreenUtil().setWidth(995), ScreenUtil().setHeight(1700)),
+                child: Transform.rotate(
+                  angle: -1.5,
+                  child: SvgPicture.asset(
+                      'assets/icons/ellipse_center_buttom.svg',
+                      width: ScreenUtil().setWidth(220)),
+                ),
+              ),
+              SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: ScreenUtil().setWidth(globalPadding)),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                FadeAnimation(
+                                    1,
+                                    Image.asset(
+                                      "assets/images/h_nicha.png",
+                                      width: ScreenUtil().setWidth(695),
+                                      height: ScreenUtil().setHeight(1020),
+                                    ))
+                              ]),
+                          Column(
+                            children: <Widget>[
+                              Text(
+                                "CGM48",
+                                style: bandNameTextStyle,
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    LayoutWidget(),
+                    SizedBox(
+                      height: ScreenUtil().setHeight(50),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: ScreenUtil().setWidth(globalPadding)),
+                      child: FooterWidget(),
+                    )
+                  ],
+                ),
               ),
             ],
           ),
-        ];
-      },
-      body: Stack(
-        children: <Widget>[
-          Transform.translate(
-            offset: Offset(
-                ScreenUtil().setWidth(590), ScreenUtil().setHeight(-650)),
-            child: Transform.rotate(
-              angle: -4.1,
-              child: SvgPicture.asset(
-                'assets/icons/ellipse_top_left.svg',
-                width: ScreenUtil().setWidth(1250),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(
-                ScreenUtil().setHeight(-250), ScreenUtil().setHeight(900)),
-            child: Transform.rotate(
-              angle: -0.5,
-              child: SvgPicture.asset(
-                'assets/icons/ellipse_middle_right.svg',
-                width: ScreenUtil().setWidth(250),
-                height: ScreenUtil().setHeight(300),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(
-                ScreenUtil().setWidth(995), ScreenUtil().setHeight(1700)),
-            child: Transform.rotate(
-              angle: -1.5,
-              child: SvgPicture.asset('assets/icons/ellipse_center_buttom.svg',
-                  width: ScreenUtil().setWidth(220)),
-            ),
-          ),
-          SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: ScreenUtil().setWidth(globalPadding)),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            FadeAnimation(
-                                1,
-                                Image.asset(
-                                  "assets/images/h_nicha.png",
-                                  width: ScreenUtil().setWidth(695),
-                                  height: ScreenUtil().setHeight(1020),
-                                ))
-                          ]),
-                      Column(
-                        children: <Widget>[
-                          Text(
-                            "CGM48",
-                            style: bandNameTextStyle,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                LayoutWidget(),
-                SizedBox(
-                  height: ScreenUtil().setHeight(50),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: ScreenUtil().setWidth(globalPadding)),
-                  child: FooterWidget(),
-                )
-              ],
-            ),
-          ),
-        ],
-      ),
-    ));
-            headerSliverBuilder:
-                (BuildContext context, bool innerBoxIsScrolled) {
-              return <Widget>[
-                SliverAppBar(
-                  expandedHeight: ScreenUtil().setHeight(440),
-                  pinned: true,
-                  elevation: 0,
-                  titleSpacing: 0,
-                  floating: true,
-                  // leading: Icon(Icons.menu),
-                  backgroundColor: Colors.transparent,
-                  flexibleSpace: FlexibleSpaceBar(
-                    collapseMode: CollapseMode.parallax,
-                    background: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: ScreenUtil().setWidth(globalPadding)),
-                          child: HeadWidget(),
-                        ),
-                      ],
-                    ),
-                  ),
-                  actions: <Widget>[
-                    IconButton(
-                      icon: Icon(
-                        Icons.notifications,
-                        size: ScreenUtil().setWidth(90),
-                        color: Colors.black54,
-                      ),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
-              ];
-            },
-            body: Stack(
-              children: <Widget>[
-                Transform.translate(
-                  offset: Offset(
-                      ScreenUtil().setWidth(590), ScreenUtil().setHeight(-650)),
-                  child: Transform.rotate(
-                    angle: -4.1,
-                    child: SvgPicture.asset(
-                      'assets/icons/ellipse_top_left.svg',
-                      width: ScreenUtil().setWidth(1250),
-                    ),
-                  ),
-                ),
-                Transform.translate(
-                  offset: Offset(ScreenUtil().setHeight(-250),
-                      ScreenUtil().setHeight(900)),
-                  child: Transform.rotate(
-                    angle: -0.5,
-                    child: SvgPicture.asset(
-                      'assets/icons/ellipse_middle_right.svg',
-                      width: ScreenUtil().setWidth(250),
-                      height: ScreenUtil().setHeight(300),
-                    ),
-                  ),
-                ),
-                Transform.translate(
-                  offset: Offset(
-                      ScreenUtil().setWidth(995), ScreenUtil().setHeight(1700)),
-                  child: Transform.rotate(
-                    angle: -1.5,
-                    child: SvgPicture.asset(
-                        'assets/icons/ellipse_center_buttom.svg',
-                        width: ScreenUtil().setWidth(220)),
-                  ),
-                ),
-                SingleChildScrollView(
-                  child: Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: ScreenUtil().setWidth(globalPadding)),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  FadeAnimation(
-                                      1,
-                                      Image.asset(
-                                        "assets/images/h_nicha.png",
-                                        width: ScreenUtil().setWidth(695),
-                                        height: ScreenUtil().setHeight(1020),
-                                      ))
-                                ]),
-                            Column(
-                              children: <Widget>[
-                                Text(
-                                  "CGM48",
-                                  style: bandNameTextStyle,
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                      LayoutWidget(),
-                      SizedBox(
-                        height: ScreenUtil().setHeight(50),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: ScreenUtil().setWidth(globalPadding)),
-                        child: FooterWidget(),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            )),
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
           child: Icon(
