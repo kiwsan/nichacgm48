@@ -1,0 +1,31 @@
+{
+  "profile": {
+    "name": "NichaCGM48",
+    "image": "https://raw.githubusercontent.com/kiwsan/nichacgm48/master/assets/images/h_nicha.png"
+  },
+  "hashtags": [
+    {
+      "id": 1,
+      "title": "#NichaCGM48",
+      "hashtag": "NichaCGM48"
+    },
+    {
+      "id": 2,
+      "title": "#CGM48",
+      "hashtag": "CGM48"
+    },
+    {
+      "id": 3,
+      "title": "#N26withTHESUN",
+      "hashtag": "N26withTHESUN"
+    }
+  ],
+  "supporters": [
+    {
+      "id": 1,
+      "image": "https://raw.githubusercontent.com/kiwsan/nichacgm48/master/assets/images/nicha_home_fan_page.jpg",
+      "social": "https://raw.githubusercontent.com/kiwsan/nichacgm48/master/assets/icons/facebook_icon.png",
+      "url": "https://web.facebook.com/nichacgm48thfans/?_rdc=1&_rdr"
+    }
+  ]
+}

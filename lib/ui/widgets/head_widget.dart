@@ -10,7 +10,7 @@ class HeadWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Text(
-              "YOU'RE WELCOME",
+              "CGM48 Trainee",
               style: welcomeTextStyle,
             ),
             Text(
