@@ -265,7 +265,7 @@ class _HomePageState extends State<HomePage> {
                   Icons.home,
                   color: Colors.black54,
                 ),
-                title: Text("Home", style: bubbleBottomBarMenuTextStyle)),
+                title: Text("HOME", style: bubbleBottomBarMenuTextStyle)),
             BubbleBottomBarItem(
                 backgroundColor: Colors.yellow[500],
                 icon: Icon(
@@ -276,7 +276,7 @@ class _HomePageState extends State<HomePage> {
                   Icons.apps,
                   color: Colors.black54,
                 ),
-                title: Text("Projects", style: bubbleBottomBarMenuTextStyle)),
+                title: Text("PROJECTS", style: bubbleBottomBarMenuTextStyle)),
             BubbleBottomBarItem(
                 backgroundColor: Colors.yellow[500],
                 icon: Icon(
@@ -288,7 +288,7 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.black54,
                 ),
                 title: Text(
-                  "Shop",
+                  "SHOP",
                   style: bubbleBottomBarMenuTextStyle,
                 )),
           ],

@@ -10,7 +10,7 @@ class FooterWidget extends StatelessWidget {
     return Column(
       children: <Widget>[
         Text(
-          "$yearNow © design and develop by alpha. All rights reserved",
+          "$yearNow © Nicha CGM48 Thailand Fanclub. All rights reserved",
           style: copyRightTextStyle,
         ),
         SizedBox(
