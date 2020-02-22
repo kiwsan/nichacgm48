@@ -1,6 +1,6 @@
 import 'package:nichacgm48/models/base_model.dart';
 
-class Supporters {
+class Supporters extends BaseModel {
   List<Supporter> supporters;
 
   Supporters({this.supporters});
@@ -28,13 +28,15 @@ class Supporter extends BaseModel {
   int id;
   String image;
   String social;
+  String url;
 
-  Supporter({this.id, this.image, this.social});
+  Supporter({this.id, this.image, this.social, this.url});
 
   Supporter.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     image = json['image'];
     social = json['social'];
+    url = json['url'];
   }
 
   Map<String, dynamic> toJson() {
@@ -42,6 +44,7 @@ class Supporter extends BaseModel {
     data['id'] = this.id;
     data['image'] = this.image;
     data['social'] = this.social;
+    data['url'] = this.url;
     return data;
   }
 }
