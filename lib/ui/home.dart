@@ -7,16 +7,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:nichacgm48/blocs/profile_bloc.dart';
 import 'package:nichacgm48/constants/globals.dart';
-import 'package:nichacgm48/models/profile_model.dart';
 import 'package:nichacgm48/styles/colors.dart';
 import 'package:nichacgm48/styles/text_styles.dart';
-import 'package:nichacgm48/ui/widgets/footer_widget.dart';
+import 'package:nichacgm48/ui/donate.dart';
+import 'package:nichacgm48/ui/profile.dart';
+import 'package:nichacgm48/ui/project.dart';
+import 'package:nichacgm48/ui/shop.dart';
 import 'package:nichacgm48/ui/widgets/head_widget.dart';
-import 'package:nichacgm48/ui/widgets/layout_widget.dart';
-import 'package:nichacgm48/utils/fade_animation.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -28,14 +27,19 @@ class _HomePageState extends State<HomePage> {
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       new FlutterLocalNotificationsPlugin();
 
-  int currentIndex;
+  int _currentIndex;
 
   ScrollController _scrollController;
 
-  bool get isShrink =>
-      _scrollController.hasClients &&
-      _getAppBarCollapsePercent() >
-          (ScreenUtil().setHeight(300) - kToolbarHeight);
+  bool get isShrink {
+    if (_currentIndex > 0) {
+      return true;
+    }
+
+    return _scrollController.hasClients &&
+        _getAppBarCollapsePercent() >
+            (ScreenUtil().setHeight(300) - kToolbarHeight);
+  }
 
   bool lastStatus = true;
 
@@ -64,7 +68,7 @@ class _HomePageState extends State<HomePage> {
 
     super.initState();
 
-    currentIndex = 0;
+    _currentIndex = 0;
 
     registerNotification();
     configLocalNotification();
@@ -72,7 +76,7 @@ class _HomePageState extends State<HomePage> {
 
   void changePage(int index) {
     setState(() {
-      currentIndex = index;
+      _currentIndex = index;
     });
   }
 
@@ -81,6 +85,8 @@ class _HomePageState extends State<HomePage> {
     _scrollController.removeListener(_scrollListener);
     super.dispose();
   }
+
+  final List<Widget> _pages = [ProfilePage(), ProjectPage(), ShopPage()];
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                             left: ScreenUtil().setWidth(globalPadding),
                             right: ScreenUtil().setWidth(globalPadding),
                             top: ScreenUtil().setWidth(60)),
-                        child: HeadWidget(),
+                        child: _currentIndex > 0 ? Container() : HeadWidget(),
                       ),
                     ],
                   ),
@@ -154,90 +160,18 @@ class _HomePageState extends State<HomePage> {
               ),
             ];
           },
-          body: Stack(
-            children: <Widget>[
-              Transform.translate(
-                offset: Offset(
-                    ScreenUtil().setWidth(590), ScreenUtil().setHeight(-650)),
-                child: Transform.rotate(
-                  angle: -4.1,
-                  child: SvgPicture.asset(
-                    'assets/icons/ellipse_top_left.svg',
-                    width: ScreenUtil().setWidth(1250),
-                  ),
-                ),
-              ),
-              Transform.translate(
-                offset: Offset(
-                    ScreenUtil().setHeight(-250), ScreenUtil().setHeight(900)),
-                child: Transform.rotate(
-                  angle: -0.5,
-                  child: SvgPicture.asset(
-                    'assets/icons/ellipse_middle_right.svg',
-                    width: ScreenUtil().setWidth(250),
-                    height: ScreenUtil().setHeight(300),
-                  ),
-                ),
-              ),
-              Transform.translate(
-                offset: Offset(
-                    ScreenUtil().setWidth(995), ScreenUtil().setHeight(1700)),
-                child: Transform.rotate(
-                  angle: -1.5,
-                  child: SvgPicture.asset(
-                      'assets/icons/ellipse_center_buttom.svg',
-                      width: ScreenUtil().setWidth(220)),
-                ),
-              ),
-              SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: ScreenUtil().setWidth(globalPadding)),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                FadeAnimation(
-                                    1,
-                                    Image.asset(
-                                      "assets/images/h_nicha.png",
-                                      width: ScreenUtil().setWidth(695),
-                                      height: ScreenUtil().setHeight(1020),
-                                    ))
-                              ]),
-                          Column(
-                            children: <Widget>[
-                              Text(
-                                "CGM48",
-                                style: bandNameTextStyle,
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    LayoutWidget(),
-                    SizedBox(
-                      height: ScreenUtil().setHeight(50),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: ScreenUtil().setWidth(globalPadding)),
-                      child: FooterWidget(),
-                    )
-                  ],
-                ),
-              ),
-            ],
+          body: SafeArea(
+            top: false,
+            child: IndexedStack(
+              index: _currentIndex,
+              children: _pages,
+            ),
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            _navigationToDonate(context);
+          },
           child: Icon(
             Icons.payment,
             color: Colors.black87,
@@ -249,7 +183,7 @@ class _HomePageState extends State<HomePage> {
           hasNotch: true,
           fabLocation: BubbleBottomBarFabLocation.end,
           opacity: .2,
-          currentIndex: currentIndex,
+          currentIndex: _currentIndex,
           onTap: changePage,
           borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
           //border radius doesn't work when the notch is enabled.
@@ -343,21 +277,13 @@ class _HomePageState extends State<HomePage> {
         message['body'].toString(), platformChannelSpecifics,
         payload: json.encode(message));
   }
-}
 
-class _Profile extends StatelessWidget {
-  final Profile profile;
-
-  _Profile({Key key, @required this.profile}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return FadeAnimation(
-        1,
-        Image.network(
-          profile.image,
-          width: ScreenUtil().setWidth(695),
-          height: ScreenUtil().setHeight(1020),
-        ));
+  void _navigationToDonate(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DonatePage(),
+      ),
+    );
   }
 }

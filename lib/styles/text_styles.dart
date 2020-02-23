@@ -67,3 +67,8 @@ TextStyle bubbleBottomBarMenuTextStyle = TextStyle(
     fontSize: ScreenUtil().setSp(35),
     color: Colors.yellow[600],
     fontWeight: FontWeight.normal);
+
+TextStyle appBarTextStyle = TextStyle(
+    fontSize: ScreenUtil().setSp(50),
+    color: grey800TextColor,
+    fontWeight: FontWeight.normal);
