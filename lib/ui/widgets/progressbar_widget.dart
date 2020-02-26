@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProgressBar extends StatelessWidget {
-  double size;
+  final double size;
 
   ProgressBar({Key key, @required this.size}) : super(key: key);
 
@@ -20,7 +20,7 @@ class ProgressBar extends StatelessWidget {
           strokeWidth: ScreenUtil().setWidth(5),
         ),
         width: ScreenUtil().setWidth(30),
-        height: ScreenUtil().setHeight(30),
+        height: ScreenUtil().setHeight(29),
       ),
     );
   }

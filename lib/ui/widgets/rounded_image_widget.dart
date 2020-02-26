@@ -47,9 +47,10 @@ class RoundedImageWidget extends StatelessWidget {
 class RoundedImageNetworkWidget extends StatelessWidget {
   final String image;
   final String socialImage;
+  final double size;
 
   const RoundedImageNetworkWidget(
-      {Key key, @required this.image, this.socialImage})
+      {Key key, @required this.image, this.socialImage, this.size})
       : super(key: key);
 
   @override
@@ -59,7 +60,7 @@ class RoundedImageNetworkWidget extends StatelessWidget {
         children: <Widget>[
           CustomPaint(
             child: Container(
-              width: ScreenUtil().setWidth(210),
+              width: ScreenUtil().setWidth(size),
               child: ClipOval(
                 child: Image.network(
                   image,
@@ -69,11 +70,11 @@ class RoundedImageNetworkWidget extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: ScreenUtil().setWidth(2),
-            bottom: ScreenUtil().setWidth(10),
+            right: ScreenUtil().setWidth(0),
+            bottom: ScreenUtil().setWidth(2),
             child: ClipOval(
               child: Container(
-                width: ScreenUtil().setWidth(60),
+                width: ScreenUtil().setWidth(50),
                 child: Center(
                   child: socialImage != null
                       ? Image.network(socialImage)

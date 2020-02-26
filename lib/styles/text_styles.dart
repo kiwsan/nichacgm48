@@ -72,3 +72,18 @@ TextStyle appBarTextStyle = TextStyle(
     fontSize: ScreenUtil().setSp(50),
     color: grey800TextColor,
     fontWeight: FontWeight.normal);
+
+TextStyle normalTextStyle = TextStyle(
+    fontSize: ScreenUtil().setSp(25),
+    color: Colors.grey,
+    fontWeight: FontWeight.normal);
+
+TextStyle donateTitleTextStyle = TextStyle(
+    fontSize: ScreenUtil().setSp(45),
+    color: Colors.grey,
+    fontWeight: FontWeight.normal);
+
+TextStyle appBarTitleTextStyle = TextStyle(
+    fontSize: ScreenUtil().setSp(50),
+    color: grey800TextColor,
+    fontWeight: FontWeight.normal);

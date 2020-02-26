@@ -67,26 +67,30 @@ class _Supporters extends StatelessWidget {
             .asMap()
             .map((key, value) => MapEntry(
                 key,
-                InkWell(
-                    onTap: () async {
-                      //const protocolUrl = 'fb://page/nichacgm48thfans';
-                      var fallbackUrl = value.url;
+                Padding(
+                  padding: EdgeInsets.only(right: ScreenUtil().setWidth(20)),
+                  child: InkWell(
+                      onTap: () async {
+                        //const protocolUrl = 'fb://page/nichacgm48thfans';
+                        var fallbackUrl = value.url;
 
-                      try {
-                        bool launched =
-                            //await launch(protocolUrl, forceSafariVC: false);
+                        try {
+                          bool launched =
+                              //await launch(protocolUrl, forceSafariVC: false);
+                              await launch(fallbackUrl, forceSafariVC: false);
+                          if (!launched) {
                             await launch(fallbackUrl, forceSafariVC: false);
-                        if (!launched) {
+                          }
+                        } catch (e) {
                           await launch(fallbackUrl, forceSafariVC: false);
                         }
-                      } catch (e) {
-                        await launch(fallbackUrl, forceSafariVC: false);
-                      }
-                    },
-                    child: RoundedImageNetworkWidget(
-                      image: value.image,
-                      socialImage: value.social,
-                    ))))
+                      },
+                      child: RoundedImageNetworkWidget(
+                        image: value.image,
+                        socialImage: value.social,
+                        size: 150,
+                      )),
+                )))
             .values
             .toList());
   }

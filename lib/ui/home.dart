@@ -8,14 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nichacgm48/blocs/profile_bloc.dart';
-import 'package:nichacgm48/constants/globals.dart';
-import 'package:nichacgm48/styles/colors.dart';
 import 'package:nichacgm48/styles/text_styles.dart';
 import 'package:nichacgm48/ui/donate.dart';
 import 'package:nichacgm48/ui/profile.dart';
 import 'package:nichacgm48/ui/project.dart';
 import 'package:nichacgm48/ui/shop.dart';
-import 'package:nichacgm48/ui/widgets/head_widget.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -28,10 +25,9 @@ class _HomePageState extends State<HomePage> {
       new FlutterLocalNotificationsPlugin();
 
   int _currentIndex;
-
   ScrollController _scrollController;
 
-  bool get isShrink {
+  bool get _isShrink {
     if (_currentIndex > 0) {
       return true;
     }
@@ -44,9 +40,9 @@ class _HomePageState extends State<HomePage> {
   bool lastStatus = true;
 
   _scrollListener() {
-    if (isShrink != lastStatus) {
+    if (_isShrink != lastStatus) {
       setState(() {
-        lastStatus = isShrink;
+        lastStatus = _isShrink;
       });
     }
   }
@@ -59,6 +55,18 @@ class _HomePageState extends State<HomePage> {
     }
 
     return _scrollController.offset;
+  }
+
+  void changePage(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_scrollListener);
+    super.dispose();
   }
 
   @override
@@ -74,18 +82,6 @@ class _HomePageState extends State<HomePage> {
     configLocalNotification();
   }
 
-  void changePage(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
-  @override
-  void dispose() {
-    _scrollController.removeListener(_scrollListener);
-    super.dispose();
-  }
-
   final List<Widget> _pages = [ProfilePage(), ProjectPage(), ShopPage()];
 
   @override
@@ -97,75 +93,11 @@ class _HomePageState extends State<HomePage> {
     profileBLoc.fetchProfile();
 
     return Scaffold(
-        body: NestedScrollView(
-          controller: _scrollController,
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-              SliverAppBar(
-                expandedHeight: ScreenUtil().setHeight(350),
-                pinned: true,
-                elevation: 0,
-                leading: Padding(
-                  padding: EdgeInsets.only(
-                      left: ScreenUtil().setWidth(globalPadding),
-                      bottom: ScreenUtil().setWidth(20),
-                      top: ScreenUtil().setWidth(20)),
-                  child: isShrink
-                      ? CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/images/profile.jpg'))
-                      : Container(),
-                ),
-                title: isShrink
-                    ? Text(
-                        "Nicha CGM48",
-                        style: TextStyle(
-                            fontSize: ScreenUtil().setSp(50),
-                            color: grey800TextColor,
-                            fontWeight: FontWeight.normal),
-                      )
-                    : Container(),
-                backgroundColor: isShrink ? Colors.white : Colors.transparent,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(
-                    bottom: Radius.circular(0),
-                  ),
-                ),
-                flexibleSpace: FlexibleSpaceBar(
-                  collapseMode: CollapseMode.parallax,
-                  background: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: ScreenUtil().setWidth(globalPadding),
-                            right: ScreenUtil().setWidth(globalPadding),
-                            top: ScreenUtil().setWidth(60)),
-                        child: _currentIndex > 0 ? Container() : HeadWidget(),
-                      ),
-                    ],
-                  ),
-                ),
-                actions: <Widget>[
-                  IconButton(
-                    icon: Icon(
-                      Icons.notifications,
-                      size: ScreenUtil().setWidth(90),
-                      color: Colors.black54,
-                    ),
-                    onPressed: () {},
-                  ),
-                ],
-              ),
-            ];
-          },
-          body: SafeArea(
-            top: false,
-            child: IndexedStack(
-              index: _currentIndex,
-              children: _pages,
-            ),
+        body: SafeArea(
+          top: false,
+          child: IndexedStack(
+            index: _currentIndex,
+            children: _pages,
           ),
         ),
         floatingActionButton: FloatingActionButton(

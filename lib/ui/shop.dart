@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nichacgm48/constants/globals.dart';
+import 'package:nichacgm48/styles/text_styles.dart';
+import 'package:nichacgm48/ui/widgets/appbar_widget.dart';
 
 class ShopPage extends StatefulWidget {
   @override
@@ -8,6 +12,26 @@ class ShopPage extends StatefulWidget {
 class _ShopPageState extends State<ShopPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: defaultAppBar,
+      body: Padding(
+        padding: EdgeInsets.only(
+            left: ScreenUtil().setWidth(globalPadding),
+            top: ScreenUtil().setWidth(25)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              "SHOP",
+              style: nickNameTextStyle,
+            ),
+            Text(
+              "Get feverite your items",
+              style: normalTextStyle,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
