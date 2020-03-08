@@ -27,8 +27,8 @@ class _DonatePageState extends State<DonatePage> {
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(
-            left: ScreenUtil().setWidth(globalPadding),
-            top: ScreenUtil().setWidth(globalPadding)),
+            left: ScreenUtil().setWidth(Constants.LayoutPadding),
+            top: ScreenUtil().setWidth(Constants.LayoutPadding)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

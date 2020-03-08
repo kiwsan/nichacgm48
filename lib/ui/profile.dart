@@ -84,7 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
             elevation: 0,
             leading: Padding(
               padding: EdgeInsets.only(
-                  left: ScreenUtil().setWidth(globalPadding),
+                  left: ScreenUtil().setWidth(Constants.LayoutPadding),
                   bottom: ScreenUtil().setWidth(20),
                   top: ScreenUtil().setWidth(20)),
               child: _isShrink
@@ -112,8 +112,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(
-                        left: ScreenUtil().setWidth(globalPadding),
-                        right: ScreenUtil().setWidth(globalPadding),
+                        left: ScreenUtil().setWidth(Constants.LayoutPadding),
+                        right: ScreenUtil().setWidth(Constants.LayoutPadding),
                         top: ScreenUtil().setWidth(60)),
                     child: _currentIndex > 0 ? Container() : HeadWidget(),
                   ),
@@ -172,7 +172,7 @@ class _ProfilePageState extends State<ProfilePage> {
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.symmetric(
-                      horizontal: ScreenUtil().setWidth(globalPadding)),
+                      horizontal: ScreenUtil().setWidth(Constants.LayoutPadding)),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -205,7 +205,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
-                      horizontal: ScreenUtil().setWidth(globalPadding)),
+                      horizontal: ScreenUtil().setWidth(Constants.LayoutPadding)),
                   child: FooterWidget(),
                 )
               ],

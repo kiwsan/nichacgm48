@@ -14,7 +14,7 @@ class LayoutWidget extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: ScreenUtil().setWidth(globalPadding)),
+              horizontal: ScreenUtil().setWidth(Constants.LayoutPadding)),
           child: Column(
             children: <Widget>[
               SocialMediasWidget(),
@@ -34,7 +34,7 @@ class LayoutWidget extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: ScreenUtil().setWidth(globalPadding)),
+              horizontal: ScreenUtil().setWidth(Constants.LayoutPadding)),
           child: HashTagsWidget(),
         ),
         SizedBox(
@@ -42,7 +42,7 @@ class LayoutWidget extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: ScreenUtil().setWidth(globalPadding)),
+              horizontal: ScreenUtil().setWidth(Constants.LayoutPadding)),
           child: SupportersWidget(),
         )
       ],

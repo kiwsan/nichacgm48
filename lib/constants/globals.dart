@@ -1,1 +1,3 @@
-double globalPadding = 40;
+class Constants{
+  static const double LayoutPadding = 40;
+}

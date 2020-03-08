@@ -19,7 +19,7 @@ class PhotosWidget extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: ScreenUtil().setWidth(globalPadding)),
+              horizontal: ScreenUtil().setWidth(Constants.LayoutPadding)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -55,7 +55,7 @@ class PhotosWidget extends StatelessWidget {
           height: ScreenUtil().setHeight(20),
         ),
         Padding(
-          padding: EdgeInsets.only(left: ScreenUtil().setWidth(globalPadding)),
+          padding: EdgeInsets.only(left: ScreenUtil().setWidth(Constants.LayoutPadding)),
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: StreamBuilder(
