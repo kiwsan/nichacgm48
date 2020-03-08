@@ -26,7 +26,7 @@ class _ProjectPageState extends State<ProjectPage> {
               style: nickNameTextStyle,
             ),
             Text(
-              "All abouts Nicha",
+              "All about Nicha",
               style: normalTextStyle,
             ),
           ],

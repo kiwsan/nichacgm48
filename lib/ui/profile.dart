@@ -184,7 +184,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 1,
                                 Image.asset(
                                   "assets/images/h_nicha.png",
-                                  width: ScreenUtil().setWidth(695),
+                                  width: ScreenUtil().setWidth(750),
                                   height: ScreenUtil().setHeight(1020),
                                 ))
                           ]),
