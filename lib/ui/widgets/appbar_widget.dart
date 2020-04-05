@@ -15,12 +15,14 @@ AppBar defaultAppBar = AppBar(
           size: ScreenUtil().setWidth(90),
           color: Colors.black54,
         ),
-        onPressed: () {},
+        onPressed: () {
+
+        },
       )
     ],
     leading: Padding(
       padding: EdgeInsets.only(
-          left: ScreenUtil().setWidth(globalPadding),
+          left: ScreenUtil().setWidth(Constants.LayoutPadding),
           bottom: ScreenUtil().setWidth(20),
           top: ScreenUtil().setWidth(20)),
       child: CircleAvatar(

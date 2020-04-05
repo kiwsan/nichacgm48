@@ -16,7 +16,7 @@ class _ProjectPageState extends State<ProjectPage> {
       appBar: defaultAppBar,
       body: Padding(
         padding: EdgeInsets.only(
-            left: ScreenUtil().setWidth(globalPadding),
+            left: ScreenUtil().setWidth(Constants.LayoutPadding),
             top: ScreenUtil().setWidth(25)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,7 +26,7 @@ class _ProjectPageState extends State<ProjectPage> {
               style: nickNameTextStyle,
             ),
             Text(
-              "All abouts Nicha",
+              "All about Nicha",
               style: normalTextStyle,
             ),
           ],
