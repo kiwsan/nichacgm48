@@ -88,10 +88,18 @@ class ReadMoreTextState extends State<ReadMoreText> {
         assert(constraints.hasBoundedWidth);
         final double maxWidth = constraints.maxWidth;
 
+        var content = widget.data;
+
+        final RegExp regexEmo = RegExp(
+            r'(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])');
+        if (content.contains(regexEmo)) {
+          content = content.replaceAll(regexEmo, '');
+        }
+
         // Create a TextSpan with data
         final text = TextSpan(
           style: effectiveTextStyle,
-          text: widget.data,
+          text: content,
         );
 
         // Layout and measure link
@@ -135,18 +143,18 @@ class ReadMoreTextState extends State<ReadMoreText> {
         var textSpan;
         switch (widget.trimMode) {
           case TrimMode.Length:
-            if (widget.trimLength < widget.data.length) {
+            if (widget.trimLength < content.length) {
               textSpan = TextSpan(
                 style: effectiveTextStyle,
                 text: _readMore
-                    ? widget.data.substring(0, widget.trimLength)
-                    : widget.data,
+                    ? content.substring(0, widget.trimLength)
+                    : content,
                 children: <TextSpan>[link],
               );
             } else {
               textSpan = TextSpan(
                 style: effectiveTextStyle,
-                text: widget.data,
+                text: content,
               );
             }
             break;
@@ -155,15 +163,15 @@ class ReadMoreTextState extends State<ReadMoreText> {
               textSpan = TextSpan(
                 style: effectiveTextStyle,
                 text: _readMore
-                    ? widget.data.substring(0, endIndex) +
+                    ? content.substring(0, endIndex) +
                         (linkLongerThanLine ? _kLineSeparator : '')
-                    : widget.data,
+                    : content,
                 children: <TextSpan>[link],
               );
             } else {
               textSpan = TextSpan(
                 style: effectiveTextStyle,
-                text: widget.data,
+                text: content,
               );
             }
             break;

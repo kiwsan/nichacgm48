@@ -13,11 +13,6 @@
       "id": 2,
       "title": "#CGM48",
       "hashtag": "CGM48"
-    },
-    {
-      "id": 3,
-      "title": "#N26withTHESUN",
-      "hashtag": "N26withTHESUN"
     }
   ],
   "supporters": [
@@ -38,6 +33,12 @@
       "image": "https://raw.githubusercontent.com/kiwsan/nichacgm48/master/assets/icons/qrcode.png",
       "social": "https://raw.githubusercontent.com/kiwsan/nichacgm48/master/assets/icons/line_icon.png",
       "url": "https://line.me/ti/g2/iN_IcvBYB8RQ-_96gEoSmg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"
+    },
+    {
+      "id": 4,
+      "image": "https://raw.githubusercontent.com/kiwsan/nichacgm48/master/assets/icons/nicha_sunflower_field.png",
+      "social": "https://raw.githubusercontent.com/kiwsan/nichacgm48/master/assets/icons/youtube_brand_icon.jpg",
+      "url": "https://www.youtube.com/channel/UCA3p1URrETr969lqBIT1Y9w"
     }
   ]
 }

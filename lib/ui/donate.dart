@@ -21,7 +21,7 @@ class _DonatePageState extends State<DonatePage> {
         ),
         centerTitle: true,
         title: Text(
-          "Nicha CGM48",
+          "Donate for #NichaCGM48",
           style: appBarTextStyle,
         ),
       ),
@@ -32,14 +32,6 @@ class _DonatePageState extends State<DonatePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              "DONATE",
-              style: nickNameTextStyle,
-            ),
-            Text(
-              "3 physical card",
-              style: normalTextStyle,
-            ),
             /*Material(
               elevation: 4,
               borderRadius:
