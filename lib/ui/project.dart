@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nichacgm48/constants/globals.dart';
-import 'package:nichacgm48/styles/text_styles.dart';
 import 'package:nichacgm48/ui/widgets/appbar_widget.dart';
 import 'package:nichacgm48/utils/read_more_text.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -18,8 +17,8 @@ class _ProjectPageState extends State<ProjectPage> {
       appBar: defaultAppBar,
       body: Padding(
         padding: EdgeInsets.only(
-          left: ScreenUtil().setWidth(Constants.LayoutPadding),
-          right: ScreenUtil().setWidth(Constants.LayoutPadding),
+          left: ScreenUtil().setWidth(Constants.LayoutPadding2),
+          right: ScreenUtil().setWidth(Constants.LayoutPadding2),
         ),
         child: ListView(
           children: <Widget>[
