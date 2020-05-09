@@ -28,8 +28,8 @@ class SocialMediasWidget extends StatelessWidget {
 
                   try {
                     bool launched =
-                        //await launch(protocolUrl, forceSafariVC: false);
-                        await launch(fallbackUrl, forceSafariVC: false);
+                    //await launch(protocolUrl, forceSafariVC: false);
+                    await launch(fallbackUrl, forceSafariVC: false);
                     if (!launched) {
                       await launch(fallbackUrl, forceSafariVC: false);
                     }
@@ -53,7 +53,7 @@ class SocialMediasWidget extends StatelessWidget {
 
                   try {
                     bool launched =
-                        await launch(protocolUrl, forceSafariVC: false);
+                    await launch(protocolUrl, forceSafariVC: false);
                     if (!launched) {
                       await launch(fallbackUrl, forceSafariVC: false);
                     }

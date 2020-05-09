@@ -15,23 +15,10 @@ class _ShopPageState extends State<ShopPage> {
     return Scaffold(
       appBar: defaultAppBar,
       body: Padding(
-        padding: EdgeInsets.only(
-            left: ScreenUtil().setWidth(Constants.LayoutPadding),
-            top: ScreenUtil().setWidth(25)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              "SHOP",
-              style: nickNameTextStyle,
-            ),
-            Text(
-              "Get feverite your items",
-              style: normalTextStyle,
-            ),
-          ],
-        ),
-      ),
+          padding: EdgeInsets.only(
+              left: ScreenUtil().setWidth(Constants.LayoutPadding),
+              top: ScreenUtil().setWidth(25)),
+          child: Text("")),
     );
   }
 }

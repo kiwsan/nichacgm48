@@ -87,3 +87,8 @@ TextStyle appBarTitleTextStyle = TextStyle(
     fontSize: ScreenUtil().setSp(50),
     color: grey800TextColor,
     fontWeight: FontWeight.normal);
+
+TextStyle headerTextStyle = TextStyle(
+    fontSize: ScreenUtil().setSp(80),
+    color: grey800TextColor,
+    fontWeight: FontWeight.normal);
