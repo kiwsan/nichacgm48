@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nichacgm48/constants/globals.dart';
+import 'package:nichacgm48/styles/text_styles.dart';
 import 'package:nichacgm48/ui/widgets/appbar_widget.dart';
 import 'package:nichacgm48/utils/read_more_text.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -24,6 +25,16 @@ class _ProjectPageState extends State<ProjectPage> {
           children: <Widget>[
             SizedBox(
               height: ScreenUtil().setHeight(35),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: ScreenUtil().setSp(10)),
+              child: Text(
+                "All project for #NichaCGM48",
+                style: valueTextStyle,
+              ),
+            ),
+            SizedBox(
+              height: ScreenUtil().setHeight(10),
             ),
             InkWell(
                 child: CustomCard(

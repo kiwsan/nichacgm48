@@ -32,27 +32,16 @@ class _DonatePageState extends State<DonatePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            /*Material(
-              elevation: 4,
-              borderRadius:
-                  BorderRadius.all(Radius.circular(ScreenUtil().setWidth(15))),
-              child: Padding(
-                padding: EdgeInsets.all(ScreenUtil().setWidth(30)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      ":)",
-                      style: donateTitleTextStyle,
-                    ),
-                    Text(
-                      "VISA",
-                      style: donateTitleTextStyle,
-                    ),
-                  ],
-                ),
+            Padding(
+              padding: EdgeInsets.only(left: ScreenUtil().setSp(10)),
+              child: Text(
+                "3 physical card avaliable.",
+                style: valueTextStyle,
               ),
-            )*/
+            ),
+            SizedBox(
+              height: ScreenUtil().setHeight(10),
+            ),
           ],
         ),
       ),

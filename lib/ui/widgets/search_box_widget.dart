@@ -10,8 +10,7 @@ class SearchBoxWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-          right: ScreenUtil().setWidth(Constants.LayoutPadding),
-          top: ScreenUtil().setWidth(40)),
+          right: ScreenUtil().setWidth(Constants.LayoutPadding)),
       child: Card(
         color: Colors.white,
         elevation: 5,

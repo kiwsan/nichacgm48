@@ -97,3 +97,8 @@ TextStyle hintSearchTextStyle = TextStyle(
     fontSize: ScreenUtil().setSp(40),
     color: grey100TextColor,
     fontWeight: FontWeight.w400);
+
+TextStyle pageTitleTextStyle = TextStyle(
+    fontSize: ScreenUtil().setSp(35),
+    color: grey100TextColor,
+    fontWeight: FontWeight.normal);
