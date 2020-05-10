@@ -19,9 +19,7 @@ class _ShopPageState extends State<ShopPage> {
         appBar: defaultAppBar,
         body: SingleChildScrollView(
           padding: EdgeInsets.only(
-              left: ScreenUtil().setWidth(Constants.LayoutPadding2),
-              right: ScreenUtil().setWidth(Constants.LayoutPadding2),
-              top: ScreenUtil().setWidth(35)),
+              left: ScreenUtil().setWidth(Constants.LayoutPadding2)),
           child: Column(
             children: <Widget>[
               SearchBoxWidget(),
@@ -30,13 +28,16 @@ class _ShopPageState extends State<ShopPage> {
               ),
               ShopCategoryWidget(),
               SizedBox(
-                height: ScreenUtil().setHeight(60),
+                height: ScreenUtil().setHeight(30),
               ),
               ShopPromotionWidget(),
               SizedBox(
-                height: ScreenUtil().setHeight(60),
+                height: ScreenUtil().setHeight(30),
               ),
-              ShopTrendingWidget()
+              ShopTrendingWidget(),
+              SizedBox(
+                height: ScreenUtil().setHeight(20),
+              ),
             ],
           ),
         ));

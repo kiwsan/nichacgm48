@@ -5,6 +5,7 @@ import 'package:nichacgm48/models/supporter_model.dart';
 import 'package:nichacgm48/ui/widgets/progressbar_widget.dart';
 import 'package:nichacgm48/ui/widgets/rounded_image_widget.dart';
 import 'package:nichacgm48/styles/text_styles.dart';
+import 'package:nichacgm48/ui/widgets/supporter_item_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SupportersWidget extends StatelessWidget {
@@ -35,7 +36,7 @@ class SupportersWidget extends StatelessWidget {
                     stream: supporterBloc.supporters,
                     builder: (context, AsyncSnapshot<Supporters> snapshot) {
                       if (snapshot.hasData) {
-                        return _Supporters(supporters: snapshot.data);
+                        return SupporterItemWidget(supporters: snapshot.data);
                       } else if (snapshot.hasError) {
                         return Text(
                           snapshot.error.toString(),
@@ -51,47 +52,5 @@ class SupportersWidget extends StatelessWidget {
         ),
       ],
     );
-  }
-}
-
-class _Supporters extends StatelessWidget {
-  final Supporters supporters;
-
-  _Supporters({Key key, @required this.supporters}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: supporters.supporters
-            .asMap()
-            .map((key, value) => MapEntry(
-                key,
-                Padding(
-                  padding: EdgeInsets.only(right: ScreenUtil().setWidth(20)),
-                  child: InkWell(
-                      onTap: () async {
-                        //const protocolUrl = 'fb://page/nichacgm48thfans';
-                        var fallbackUrl = value.url;
-
-                        try {
-                          bool launched =
-                              //await launch(protocolUrl, forceSafariVC: false);
-                              await launch(fallbackUrl, forceSafariVC: false);
-                          if (!launched) {
-                            await launch(fallbackUrl, forceSafariVC: false);
-                          }
-                        } catch (e) {
-                          await launch(fallbackUrl, forceSafariVC: false);
-                        }
-                      },
-                      child: RoundedImageNetworkWidget(
-                        image: value.image,
-                        socialImage: value.social,
-                        size: 150,
-                      )),
-                )))
-            .values
-            .toList());
   }
 }

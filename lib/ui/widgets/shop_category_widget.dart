@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nichacgm48/constants/globals.dart';
 import 'package:nichacgm48/styles/text_styles.dart';
 
 class ShopCategoryWidget extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(10)),
+          padding: EdgeInsets.only(
+              right: ScreenUtil().setWidth(Constants.LayoutPadding2),
+              top: ScreenUtil().setWidth(10)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -27,8 +29,46 @@ class ShopCategoryWidget extends StatelessWidget {
             ],
           ),
         ),
+        SizedBox(
+          height: ScreenUtil().setHeight(20),
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          padding: EdgeInsets.only(
+              bottom: ScreenUtil().setWidth(30)),
+          child: Row(
+            children: <Widget>[
+              Card(
+                elevation: 5,
+                color: Colors.white,
+                child: Container(
+                  height: ScreenUtil().setHeight(300),
+                  width: ScreenUtil().setWidth(350),
+                  child: Text(""),
+                ),
+              ),
+              Card(
+                elevation: 5,
+                color: Colors.white,
+                child: Container(
+                  height: ScreenUtil().setHeight(300),
+                  width: ScreenUtil().setWidth(350),
+                  child: Text(""),
+                ),
+              ),
+              Card(
+                elevation: 5,
+                color: Colors.white,
+                child: Container(
+                  height: ScreenUtil().setHeight(300),
+                  width: ScreenUtil().setWidth(350),
+                  child: Text(""),
+                ),
+              )
+            ],
+          ),
+        ),
       ],
     );
   }
-
 }
