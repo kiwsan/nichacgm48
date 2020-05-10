@@ -92,3 +92,8 @@ TextStyle headerTextStyle = TextStyle(
     fontSize: ScreenUtil().setSp(80),
     color: grey800TextColor,
     fontWeight: FontWeight.normal);
+
+TextStyle hintSearchTextStyle = TextStyle(
+    fontSize: ScreenUtil().setSp(40),
+    color: grey100TextColor,
+    fontWeight: FontWeight.w400);
