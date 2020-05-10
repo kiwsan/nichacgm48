@@ -6,10 +6,11 @@ import 'package:nichacgm48/constants/globals.dart';
 import 'package:nichacgm48/ui/widgets/full_creen_image.dart';
 import 'package:nichacgm48/models/instagram_post_model.dart';
 import 'package:nichacgm48/styles/text_styles.dart';
+import 'package:nichacgm48/ui/widgets/instagram_post_widget.dart';
+import 'package:nichacgm48/ui/widgets/progressbar_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PhotosWidget extends StatelessWidget {
-  final EdgeOwnerToTimelineMedia posts = null;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class PhotosWidget extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: ScreenUtil().setWidth(globalPadding)),
+              horizontal: ScreenUtil().setWidth(Constants.LayoutPadding)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -55,7 +56,7 @@ class PhotosWidget extends StatelessWidget {
           height: ScreenUtil().setHeight(20),
         ),
         Padding(
-          padding: EdgeInsets.only(left: ScreenUtil().setWidth(globalPadding)),
+          padding: EdgeInsets.only(left: ScreenUtil().setWidth(Constants.LayoutPadding)),
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: StreamBuilder(
@@ -63,7 +64,7 @@ class PhotosWidget extends StatelessWidget {
               builder:
                   (context, AsyncSnapshot<EdgeOwnerToTimelineMedia> snapshot) {
                 if (snapshot.hasData) {
-                  return _InstagramPosts(posts: snapshot.data);
+                  return InstagramPostWidget(posts: snapshot.data);
                 } else if (snapshot.hasError) {
                   return Text(
                     snapshot.error.toString(),
@@ -71,21 +72,7 @@ class PhotosWidget extends StatelessWidget {
                   );
                 }
 
-                return Padding(
-                  padding: EdgeInsets.only(
-                      top: ScreenUtil().setWidth(215),
-                      bottom: ScreenUtil().setWidth(215),
-                      right: ScreenUtil().setWidth(5),
-                      left: ScreenUtil().setWidth(5)),
-                  child: SizedBox(
-                    child: CircularProgressIndicator(
-                      backgroundColor: Colors.amber,
-                      strokeWidth: ScreenUtil().setWidth(5),
-                    ),
-                    width: ScreenUtil().setWidth(40),
-                    height: ScreenUtil().setHeight(40),
-                  ),
-                );
+                return ProgressBar(size: 215,);
               },
             ),
           ),
@@ -95,58 +82,3 @@ class PhotosWidget extends StatelessWidget {
   }
 }
 
-class _InstagramPosts extends StatelessWidget {
-  final EdgeOwnerToTimelineMedia posts;
-
-  _InstagramPosts({Key key, @required this.posts}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-        children: posts.edges
-            .asMap()
-            .map((i, post) => MapEntry(
-                i,
-                ClipRRect(
-                  borderRadius:
-                      BorderRadius.circular(ScreenUtil().setWidth(20)),
-                  child: Padding(
-                    padding: EdgeInsets.only(right: ScreenUtil().setWidth(10)),
-                    child: GestureDetector(
-                      onTap: () {
-                        _navigationToFullScreenImage(context, i);
-                      },
-                      child: CachedNetworkImage(
-                          placeholder: (context, url) => Container(
-                                width: ScreenUtil().setWidth(380),
-                                height: ScreenUtil().setHeight(425),
-                                color: Colors.black12,
-                              ),
-                          imageUrl: post.node.thumbnailSrc,
-                          width: ScreenUtil().setWidth(380),
-                          height: ScreenUtil().setHeight(425),
-                          fit: BoxFit.cover),
-                    ),
-                  ),
-                )))
-            .values
-            .toList());
-  }
-
-  void _navigationToFullScreenImage(BuildContext context, final int index) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => FullScreenImage(
-          posts: posts,
-          backgroundDecoration: BoxDecoration(
-            color: Colors.black,
-          ),
-          initialIndex: index,
-          scrollDirection: Axis.horizontal,
-          fontSize: ScreenUtil().setSp(35),
-        ),
-      ),
-    );
-  }
-}

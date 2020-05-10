@@ -67,3 +67,33 @@ TextStyle bubbleBottomBarMenuTextStyle = TextStyle(
     fontSize: ScreenUtil().setSp(35),
     color: Colors.yellow[600],
     fontWeight: FontWeight.normal);
+
+TextStyle appBarTextStyle = TextStyle(
+    fontSize: ScreenUtil().setSp(50),
+    color: grey800TextColor,
+    fontWeight: FontWeight.normal);
+
+TextStyle normalTextStyle = TextStyle(
+    fontSize: ScreenUtil().setSp(25),
+    color: Colors.grey,
+    fontWeight: FontWeight.normal);
+
+TextStyle donateTitleTextStyle = TextStyle(
+    fontSize: ScreenUtil().setSp(45),
+    color: Colors.grey,
+    fontWeight: FontWeight.normal);
+
+TextStyle appBarTitleTextStyle = TextStyle(
+    fontSize: ScreenUtil().setSp(50),
+    color: grey800TextColor,
+    fontWeight: FontWeight.normal);
+
+TextStyle headerTextStyle = TextStyle(
+    fontSize: ScreenUtil().setSp(80),
+    color: grey800TextColor,
+    fontWeight: FontWeight.normal);
+
+TextStyle hintSearchTextStyle = TextStyle(
+    fontSize: ScreenUtil().setSp(40),
+    color: grey100TextColor,
+    fontWeight: FontWeight.w400);

@@ -5,8 +5,7 @@ class RoundedImageWidget extends StatelessWidget {
   final String image;
   final String socialImage;
 
-  const RoundedImageWidget(
-      {Key key, @required this.image, @required this.socialImage})
+  const RoundedImageWidget({Key key, @required this.image, this.socialImage})
       : super(key: key);
 
   @override
@@ -32,7 +31,54 @@ class RoundedImageWidget extends StatelessWidget {
               child: Container(
                 width: ScreenUtil().setWidth(60),
                 child: Center(
-                  child: Image.asset(socialImage),
+                  child: socialImage != null
+                      ? Image.asset(socialImage)
+                      : Container(),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class RoundedImageNetworkWidget extends StatelessWidget {
+  final String image;
+  final String socialImage;
+  final double size;
+
+  const RoundedImageNetworkWidget(
+      {Key key, @required this.image, this.socialImage, this.size})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Stack(
+        children: <Widget>[
+          CustomPaint(
+            child: Container(
+              width: ScreenUtil().setWidth(size),
+              child: ClipOval(
+                child: Image.network(
+                  image,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            right: ScreenUtil().setWidth(0),
+            bottom: ScreenUtil().setWidth(2),
+            child: ClipOval(
+              child: Container(
+                width: ScreenUtil().setWidth(50),
+                child: Center(
+                  child: socialImage != null
+                      ? Image.network(socialImage)
+                      : Container(),
                 ),
               ),
             ),
