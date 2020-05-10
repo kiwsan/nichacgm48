@@ -10,7 +10,7 @@ class ShopTrendingWidget extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: EdgeInsets.only(
-              right: ScreenUtil().setWidth(Constants.LayoutPadding2),
+              right: ScreenUtil().setWidth(Constants.LayoutPadding),
               top: ScreenUtil().setWidth(10)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

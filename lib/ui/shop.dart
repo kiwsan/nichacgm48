@@ -19,7 +19,7 @@ class _ShopPageState extends State<ShopPage> {
         appBar: defaultAppBar,
         body: SingleChildScrollView(
           padding: EdgeInsets.only(
-              left: ScreenUtil().setWidth(Constants.LayoutPadding2)),
+              left: ScreenUtil().setWidth(Constants.LayoutPadding)),
           child: Column(
             children: <Widget>[
               SearchBoxWidget(),
