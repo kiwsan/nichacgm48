@@ -34,8 +34,7 @@ class ShopCategoryWidget extends StatelessWidget {
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          padding: EdgeInsets.only(
-              bottom: ScreenUtil().setWidth(30)),
+          padding: EdgeInsets.only(bottom: ScreenUtil().setWidth(30)),
           child: Row(
             children: <Widget>[
               Card(
@@ -44,7 +43,15 @@ class ShopCategoryWidget extends StatelessWidget {
                 child: Container(
                   height: ScreenUtil().setHeight(300),
                   width: ScreenUtil().setWidth(350),
-                  child: Text(""),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Image.asset(
+                        "assets/images/no-data-avaliable.png",
+                        width: ScreenUtil().setWidth(100),
+                      )
+                    ],
+                  ),
                 ),
               ),
               Card(
@@ -53,7 +60,15 @@ class ShopCategoryWidget extends StatelessWidget {
                 child: Container(
                   height: ScreenUtil().setHeight(300),
                   width: ScreenUtil().setWidth(350),
-                  child: Text(""),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Image.asset(
+                        "assets/images/no-data-avaliable.png",
+                        width: ScreenUtil().setWidth(100),
+                      )
+                    ],
+                  ),
                 ),
               ),
               Card(
@@ -62,7 +77,15 @@ class ShopCategoryWidget extends StatelessWidget {
                 child: Container(
                   height: ScreenUtil().setHeight(300),
                   width: ScreenUtil().setWidth(350),
-                  child: Text(""),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Image.asset(
+                        "assets/images/no-data-avaliable.png",
+                        width: ScreenUtil().setWidth(100),
+                      )
+                    ],
+                  ),
                 ),
               )
             ],

@@ -34,8 +34,7 @@ class ShopPromotionWidget extends StatelessWidget {
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          padding: EdgeInsets.only(
-              bottom: ScreenUtil().setWidth(30)),
+          padding: EdgeInsets.only(bottom: ScreenUtil().setWidth(30)),
           child: Row(
             children: <Widget>[
               Card(
@@ -44,7 +43,15 @@ class ShopPromotionWidget extends StatelessWidget {
                 child: Container(
                   height: ScreenUtil().setHeight(360),
                   width: ScreenUtil().setWidth(670),
-                  child: Text(""),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Image.asset(
+                        "assets/images/no-data-avaliable.png",
+                        width: ScreenUtil().setWidth(200),
+                      )
+                    ],
+                  ),
                 ),
               ),
               Card(
@@ -53,9 +60,17 @@ class ShopPromotionWidget extends StatelessWidget {
                 child: Container(
                   height: ScreenUtil().setHeight(360),
                   width: ScreenUtil().setWidth(670),
-                  child: Text(""),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Image.asset(
+                        "assets/images/no-data-avaliable.png",
+                        width: ScreenUtil().setWidth(200),
+                      )
+                    ],
+                  ),
                 ),
-              )
+              ),
             ],
           ),
         )
