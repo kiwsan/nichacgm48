@@ -37,7 +37,7 @@ class ShopTrendingWidget extends StatelessWidget {
           padding: EdgeInsets.only(
               bottom: ScreenUtil().setWidth(30)),
           child: Text(
-            "No data avaliable.",
+            "no data available.",
             style: valueTextStyle,
           ),
         )

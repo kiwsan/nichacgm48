@@ -184,11 +184,16 @@ class _HomePageState extends State<HomePage> {
   }
 
   void configLocalNotification() {
+    //Android
     var initializationSettingsAndroid =
-        new AndroidInitializationSettings('app_icon');
+        new AndroidInitializationSettings('@drawable/ic_stat_mood');
+
+    //IOS
     var initializationSettingsIOS = new IOSInitializationSettings();
     var initializationSettings = new InitializationSettings(
         initializationSettingsAndroid, initializationSettingsIOS);
+
+    //INITIAL
     _flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 
@@ -202,12 +207,29 @@ class _HomePageState extends State<HomePage> {
       importance: Importance.Max,
       priority: Priority.High,
     );
+
     var iOSPlatformChannelSpecifics = new IOSNotificationDetails();
+
     var platformChannelSpecifics = new NotificationDetails(
         androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+
     await _flutterLocalNotificationsPlugin.show(0, message['title'].toString(),
         message['body'].toString(), platformChannelSpecifics,
         payload: json.encode(message));
+  }
+
+  sendNotification() async {
+    var androidPlatformChannelSpecifics = AndroidNotificationDetails('10000',
+        'flutter_manual_channel', 'flutter_manual_channel_detail',
+        importance: Importance.Max, priority: Priority.High);
+    var iOSPlatformChannelSpecifics = IOSNotificationDetails();
+
+    var platformChannelSpecifics = NotificationDetails(
+        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+
+    await _flutterLocalNotificationsPlugin.show(111, 'Hello!',
+        'This is a notifications. ', platformChannelSpecifics,
+        payload: 'I just need to meet you.');
   }
 
   void _navigationToDonate(BuildContext context) {

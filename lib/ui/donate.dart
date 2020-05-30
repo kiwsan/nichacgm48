@@ -35,7 +35,7 @@ class _DonatePageState extends State<DonatePage> {
             Padding(
               padding: EdgeInsets.only(left: ScreenUtil().setSp(10)),
               child: Text(
-                "3 physical card avaliable.",
+                "3 physical card available.",
                 style: valueTextStyle,
               ),
             ),
