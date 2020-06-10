@@ -10,7 +10,6 @@
 ## Please Follow Nicha CGM48 on Social Media
 - [Nicha CGM48 on Facebook](http://facebook.com/cgm48official.nicha/)
 - [Nicha CGM48 on Instagram](http://www.instagram.com/nicha.cgm48official/)
-- 
 ## Getting Started
 
 This project is a starting point for a Flutter application.

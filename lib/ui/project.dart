@@ -127,6 +127,7 @@ class CustomCard extends StatelessWidget {
                         fontSize: ScreenUtil().setSp(35),
                         fontWeight: FontWeight.normal),
                     trimLength: 50,
+                    colorClickableText: Colors.amber,
                   )
                 ],
               ))
