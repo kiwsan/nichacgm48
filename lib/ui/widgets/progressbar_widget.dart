@@ -19,8 +19,6 @@ class ProgressBar extends StatelessWidget {
           backgroundColor: Colors.amber,
           strokeWidth: ScreenUtil().setWidth(5),
         ),
-        width: ScreenUtil().setWidth(30),
-        height: ScreenUtil().setHeight(29),
       ),
     );
   }

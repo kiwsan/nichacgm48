@@ -80,7 +80,7 @@ class _ProfilePageState extends State<ProfilePage> {
           SliverAppBar(
             expandedHeight: ScreenUtil().setHeight(expandedHeight),
             pinned: true,
-            elevation: _isShrink ? 4 : 0,
+            elevation: _isShrink ? 0 : 0,
             leading: Padding(
               padding: EdgeInsets.only(
                   left: ScreenUtil().setWidth(Constants.LayoutPadding),

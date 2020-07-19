@@ -4,7 +4,6 @@ import 'package:nichacgm48/constants/globals.dart';
 import 'package:nichacgm48/styles/text_styles.dart';
 import 'package:nichacgm48/ui/widgets/appbar_widget.dart';
 import 'package:nichacgm48/utils/read_more_text.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ProjectPage extends StatefulWidget {
   @override
@@ -39,7 +38,7 @@ class _ProjectPageState extends State<ProjectPage> {
             InkWell(
                 child: CustomCard(
                   imageUrl:
-                      "https://instagram.fbkk22-3.fna.fbcdn.net/v/t51.2885-15/e35/s1080x1080/91579376_2549133458673926_5466221338395953106_n.jpg?_nc_ht=instagram.fbkk22-3.fna.fbcdn.net&_nc_cat=102&_nc_ohc=Fq6pPTmnJKcAX_726PS&oh=932352168c0d708b25c7e98577f6f1db&oe=5EDE7FC4",
+                      "",
                   description: """TouchByHeart หัวใจใกล้กัน cover by NICHA CGM48
 
 #TouchByHeart #หัวใจใกล้กัน ฝากเสียงเพลงส่งไปแทนความคิดถึงของณิชานะคะ 💛
@@ -59,7 +58,7 @@ class _ProjectPageState extends State<ProjectPage> {
             InkWell(
                 child: CustomCard(
                     imageUrl:
-                        "https://instagram.fbkk22-1.fna.fbcdn.net/v/t51.2885-15/e35/84451869_201269761059132_3557874501554935537_n.jpg?_nc_ht=instagram.fbkk22-1.fna.fbcdn.net&_nc_cat=100&_nc_ohc=29MzJzACw7gAX9F1hge&oh=c5c57bc5cae6e63dc42f781fa0703b94&oe=5EDF21EA",
+                        "",
                     description: """ฮัลโหลลลลล๊ *〰️*
 ~
 ทุกคน ดูวิดีโอของณิชากันหรือยังจ๊ะ ถ้าใครยังไม่ได้ดูก็รีบดูเลยนะ ~
