@@ -3,10 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nichacgm48/blocs/supporter_bloc.dart';
 import 'package:nichacgm48/models/supporter_model.dart';
 import 'package:nichacgm48/ui/widgets/progressbar_widget.dart';
-import 'package:nichacgm48/ui/widgets/rounded_image_widget.dart';
 import 'package:nichacgm48/styles/text_styles.dart';
 import 'package:nichacgm48/ui/widgets/supporter_item_widget.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class SupportersWidget extends StatelessWidget {
   @override

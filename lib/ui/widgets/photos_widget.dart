@@ -1,9 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nichacgm48/blocs/instagram_posts_bloc.dart';
 import 'package:nichacgm48/constants/globals.dart';
-import 'package:nichacgm48/ui/widgets/full_creen_image.dart';
 import 'package:nichacgm48/models/instagram_post_model.dart';
 import 'package:nichacgm48/styles/text_styles.dart';
 import 'package:nichacgm48/ui/widgets/instagram_post_widget.dart';
