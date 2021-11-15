@@ -64,6 +64,7 @@ class _FullScreenImageScreen extends State<FullScreenImage> {
               scrollPhysics: BouncingScrollPhysics(),
               builder: _post,
               itemCount: widget.posts.edges.length,
+              // ignore: deprecated_member_use
               loadingChild: widget.loadingChild,
               backgroundDecoration: widget.backgroundDecoration,
               pageController: widget.pageController,

@@ -37,8 +37,7 @@ class _ProjectPageState extends State<ProjectPage> {
             ),
             InkWell(
                 child: CustomCard(
-                  imageUrl:
-                      "",
+                  imageUrl: "",
                   description: """TouchByHeart หัวใจใกล้กัน cover by NICHA CGM48
 
 #TouchByHeart #หัวใจใกล้กัน ฝากเสียงเพลงส่งไปแทนความคิดถึงของณิชานะคะ 💛
@@ -56,10 +55,7 @@ class _ProjectPageState extends State<ProjectPage> {
                   await launch(fallbackUrl, forceSafariVC: false);*/
                 }),
             InkWell(
-                child: CustomCard(
-                    imageUrl:
-                        "",
-                    description: """ฮัลโหลลลลล๊ *〰️*
+                child: CustomCard(imageUrl: "", description: """ฮัลโหลลลลล๊ *〰️*
 ~
 ทุกคน ดูวิดีโอของณิชากันหรือยังจ๊ะ ถ้าใครยังไม่ได้ดูก็รีบดูเลยนะ ~
 รู้ป่ะทำไมต้องดู ?
@@ -67,8 +63,7 @@ class _ProjectPageState extends State<ProjectPage> {
 เพราะว่า ว่า ว่า ณิชา ชา ชา อยากจะให้ทุกคนดูไง 😏 ~
 ขอฝากณิชา CGM48 ด้วยนะคะ 💛
 ~
-#CGM48 #NichaCGM48 #N26withTHESUN"""),
-                onTap: () async {})
+#CGM48 #NichaCGM48 #N26withTHESUN"""), onTap: () async {})
           ],
         ),
       ),
@@ -90,7 +85,7 @@ class CustomCard extends StatelessWidget {
       elevation: 5,
       child: Column(
         children: <Widget>[
-          Image.network(imageUrl),
+          imageUrl != "" ? Image.network(imageUrl) : Text(""),
           Padding(
               padding: EdgeInsets.all(7.0),
               child: Column(
@@ -129,7 +124,8 @@ class CustomCard extends StatelessWidget {
                     colorClickableText: Colors.amber,
                   )
                 ],
-              ))
+              )),
+          Text("")
         ],
       ),
     );

@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -12,7 +11,7 @@ import 'package:nichacgm48/styles/text_styles.dart';
 import 'package:nichacgm48/ui/donate.dart';
 import 'package:nichacgm48/ui/profile.dart';
 import 'package:nichacgm48/ui/project.dart';
-import 'package:nichacgm48/ui/shop.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -20,7 +19,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final FirebaseMessaging _firebaseMessaging = new FirebaseMessaging();
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       new FlutterLocalNotificationsPlugin();
 
@@ -78,11 +76,10 @@ class _HomePageState extends State<HomePage> {
 
     _currentIndex = 0;
 
-    registerNotification();
     configLocalNotification();
   }
 
-  final List<Widget> _pages = [ProfilePage(), ProjectPage(), ShopPage()];
+  final List<Widget> _pages = [ProfilePage(), ProjectPage()];
 
   @override
   Widget build(BuildContext context) {
@@ -101,11 +98,21 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            _navigationToDonate(context);
+          onPressed: () async {
+            var protocolUrl = 'https://www.youtube.com/CGM48official';
+            var fallbackUrl = 'https://www.youtube.com/CGM48official';
+
+            try {
+              bool launched = await launch(protocolUrl, forceSafariVC: false);
+              if (!launched) {
+                await launch(fallbackUrl, forceSafariVC: false);
+              }
+            } catch (e) {
+              await launch(fallbackUrl, forceSafariVC: false);
+            }
           },
           child: Icon(
-            Icons.payment,
+            Icons.video_library,
             color: Colors.black87,
           ),
           backgroundColor: Colors.yellow[600],
@@ -142,45 +149,9 @@ class _HomePageState extends State<HomePage> {
                   Icons.apps,
                   color: Colors.black54,
                 ),
-                title: Text("PROJECTS", style: bubbleBottomBarMenuTextStyle)),
-            BubbleBottomBarItem(
-                backgroundColor: Colors.yellow[500],
-                icon: Icon(
-                  Icons.shopping_basket,
-                  color: Colors.black,
-                ),
-                activeIcon: Icon(
-                  Icons.shopping_basket,
-                  color: Colors.black54,
-                ),
-                title: Text(
-                  "SHOP",
-                  style: bubbleBottomBarMenuTextStyle,
-                )),
+                title: Text("PROJECTS", style: bubbleBottomBarMenuTextStyle))
           ],
         ));
-  }
-
-  void registerNotification() {
-    _firebaseMessaging.requestNotificationPermissions();
-
-    _firebaseMessaging.configure(onMessage: (Map<String, dynamic> message) {
-      print('onMessage: $message');
-      showNotification(message['notification']);
-      return;
-    }, onResume: (Map<String, dynamic> message) {
-      print('onResume: $message');
-      return;
-    }, onLaunch: (Map<String, dynamic> message) {
-      print('onLaunch: $message');
-      return;
-    });
-
-    _firebaseMessaging.getToken().then((token) {
-      //print('token: $token');
-    }).catchError((err) {
-      print(err.message.toString());
-    });
   }
 
   void configLocalNotification() {
@@ -219,25 +190,16 @@ class _HomePageState extends State<HomePage> {
   }
 
   sendNotification() async {
-    var androidPlatformChannelSpecifics = AndroidNotificationDetails('10000',
-        'flutter_manual_channel', 'flutter_manual_channel_detail',
+    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+        '10000', 'flutter_manual_channel', 'flutter_manual_channel_detail',
         importance: Importance.Max, priority: Priority.High);
     var iOSPlatformChannelSpecifics = IOSNotificationDetails();
 
     var platformChannelSpecifics = NotificationDetails(
         androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
 
-    await _flutterLocalNotificationsPlugin.show(111, 'Hello!',
-        'This is a notifications. ', platformChannelSpecifics,
+    await _flutterLocalNotificationsPlugin.show(
+        111, 'Hello!', 'This is a notifications. ', platformChannelSpecifics,
         payload: 'I just need to meet you.');
-  }
-
-  void _navigationToDonate(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => DonatePage(),
-      ),
-    );
   }
 }

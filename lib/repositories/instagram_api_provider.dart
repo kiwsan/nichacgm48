@@ -9,6 +9,7 @@ class InstagramApiProvider {
         await http.get('https://www.instagram.com/nicha.cgm48official/?__a=1');
 
     if (response.statusCode == 200) {
+      //var jsonString = response.body.toString();
       // If the call to the server was successful, parse the JSON.
       var responseJson = json.decode(response.body);
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: update_fastlane" time="0.045904">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.00013">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: ./flutter_test.sh" time="0.008177">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: ./flutter_build.sh --clean" time="76.756426">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: ./flutter_build.sh --apk" time="25.022022">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>

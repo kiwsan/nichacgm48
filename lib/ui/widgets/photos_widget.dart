@@ -9,7 +9,6 @@ import 'package:nichacgm48/ui/widgets/progressbar_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PhotosWidget extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     instagramPostsBLoc.fetchPosts();
@@ -79,4 +78,3 @@ class PhotosWidget extends StatelessWidget {
     );
   }
 }
-
